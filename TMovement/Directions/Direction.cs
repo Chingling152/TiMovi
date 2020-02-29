@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 namespace TMovement.Directions
 {
     /// <summary>
@@ -21,9 +22,9 @@ namespace TMovement.Directions
                     return Vector2.left;
             else
                 if (positive)
-                    return Vector2.down;
-                else
-                    return Vector2.up;
+                return Vector2.down;
+            else
+                return Vector2.up;
         }
 
         /// <summary>
@@ -41,9 +42,9 @@ namespace TMovement.Directions
                     return Vector2.right;
             else
                 if (positive)
-                    return Vector2.up;
-                else
-                    return Vector2.down;
+                return Vector2.up;
+            else
+                return Vector2.down;
         }
 
         /// <summary>
@@ -61,9 +62,9 @@ namespace TMovement.Directions
                     return Vector2.up;
             else
                 if (positive)
-                    return Vector2.left;
-                else
-                    return Vector2.right;
+                return Vector2.left;
+            else
+                return Vector2.right;
         }
 
         /// <summary>
