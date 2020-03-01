@@ -1,34 +1,40 @@
 ﻿using TMovement.Interfaces;
-using UnityEngine;
 
 namespace TMovement
 {
     public class TilePhysics : ITilePhysics
     {
         [System.Obsolete("Not Applied")]
-        public ICoordinate ApplyForce(ICoordinate coordinate, bool vertical, int force = 1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        [System.Obsolete("Not Applied")]
-        public ICoordinate ApplyForce(ICoordinate coordinate, bool vertical, Vector2 maxCoordinate, int force = 1)
+        public ICoordinate ApplyForce(ICoordinate coordinate, ICoordinate maxCoordinates, bool vertical, int force = 1)
         {
             var returnCoordinate = (Coordinate)coordinate;
+            var limits = (Coordinate)maxCoordinates;
 
             if (!vertical)
             {
                 int x = (int)returnCoordinate.Local.x + force;
                 int X = (int)returnCoordinate.Global.x;
 
-                if (x > maxCoordinate.x)
+                int mx = (int)limits.Local.x;
+                int mX = (int)limits.Global.x;
+                // this logic will go to Test()
+                while(x > mx)
                 {
+                    if(X < mX)
+                    {
+                        x = x - mx;
+                        X++;
+                    }
+                    else
+                    {
+                        x = mx;
+                        X = mX;
+                    }
 
                 }
-
-                if(x < 0)
+                while (x < 0)
                 {
-                    x = (int)maxCoordinate.x;
+
                 }
             }
             else
@@ -37,5 +43,12 @@ namespace TMovement
             }
             return null;
         }
+        //TODO : Finish this
+        private void Test(out int x,out int X, int mx,int mX)
+        {
+            x = 0;
+            X = 0;
+        }
+
     }
 }
