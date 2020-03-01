@@ -2,7 +2,7 @@
 using TMovement.Interfaces;
 using UnityEngine;
 
-namespace TMovement.Utils
+namespace TMovement
 {
     /// <summary>
     /// Class about Coordinate of an Entity in a Tile Map

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TMovement.Directions
+namespace TMovement
 {
     /// <summary>
     /// Class to get a directions on a tile map based on Entity Direction
