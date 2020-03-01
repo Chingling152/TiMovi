@@ -9,8 +9,6 @@ namespace TMovement
     /// </summary>
     public class Coordinate : ICoordinate
     {
-        //TODO : I Will Probably change the set access modifier of Local and Global
-
         /// <summary>
         /// Define the exacly the Coordinate of an Entity
         /// </summary>

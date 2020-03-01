@@ -7,6 +7,12 @@ namespace TMovement.Interfaces
     /// </summary>
     public interface ICoordinate
     {
+
+        /// <summary>
+        /// Define the exacly the Coordinate of an Entity
+        /// </summary>
+        Vector2 Local { get; set; }
+
         /// <summary>
         /// Calculate the distance of 2 Coordinates
         /// </summary>
