@@ -17,21 +17,9 @@ namespace TMovement
 
                 int mx = (int)limits.Local.x;
                 int mX = (int)limits.Global.x;
-                // this logic will go to Test()
-                while(x > mx)
-                {
-                    if(X < mX)
-                    {
-                        x = x - mx;
-                        X++;
-                    }
-                    else
-                    {
-                        x = mx;
-                        X = mX;
-                    }
 
-                }
+
+                //TODO : put this logic in Test()
                 while (x < 0)
                 {
 
@@ -44,10 +32,21 @@ namespace TMovement
             return null;
         }
         //TODO : Finish this
-        private void Test(out int x,out int X, int mx,int mX)
+        private void Test(ref int v, ref int V, int mv,int mV)
         {
-            x = 0;
-            X = 0;
+            while (v > mv)
+            {
+                if(++V > mV)
+                {
+                    V = mV;
+                    v = mv;
+                }
+                else
+                {
+                    v = v - mv;
+                }
+            }
+
         }
 
     }
