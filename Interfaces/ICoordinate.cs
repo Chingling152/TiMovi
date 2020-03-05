@@ -25,6 +25,12 @@ namespace TMovement.Interfaces
         /// Convert the current Coordinate (Global and Local) to Absolute values
         /// </summary>
         /// <returns>The current Coordinate with Absolute Values</returns>
-        ICoordinate ToAbs();
+        ICoordinate ToAbsolute();
+
+        /// <summary>
+        /// Default to string
+        /// </summary>
+        string ToString();
+
     }
 }

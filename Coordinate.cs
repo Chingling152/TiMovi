@@ -26,8 +26,8 @@ namespace TMovement
         /// <param name="Global">Map part that the Entity is occupying</param>
         public Coordinate(Vector2 Local, Vector2 Global)
         {
-            this.Local = new Vector2((int)Local.x, (int)Local.y);
-            this.Global = new Vector2((int)Global.x, (int)Global.y);
+            this.Local = Local.ToAbsolute();
+            this.Global = Global.ToAbsolute();
         }
         /// <summary>
         /// Calculate the distance of 2 Coordinates
@@ -37,17 +37,22 @@ namespace TMovement
         /// <returns>Returns a Vector with the Absolute and integer distance of 2 coordinates</returns>
         public Vector2 Distance(ICoordinate cord1, ICoordinate cord2)
         {
-            var cord3 = (Coordinate)((Coordinate)cord1 - (Coordinate)cord2).ToAbs();
+            var cord3 = (Coordinate)((Coordinate)cord1 - (Coordinate)cord2).ToAbsolute();
             return cord3.Local * cord3.Global;
         }
         /// <summary>
         /// Convert a Coordinate to Absolute values
         /// </summary>
         /// <returns>Return a new Coordinate with Integer positives values</returns>
-        public ICoordinate ToAbs()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
+        public ICoordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
 
         public static Coordinate operator +(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global + cord.Global, cor.Local + cord.Local);
 
         public static Coordinate operator -(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global - cord.Global, cor.Local - cord.Local);
+
+        public override string ToString()
+        {
+            return $"Global : {Global.ToAbsolute().ToString()}\nLocal : {Local.ToAbsolute().ToString()}";
+        }
     }
 }

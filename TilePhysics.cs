@@ -18,32 +18,53 @@ namespace TMovement
                 int mx = (int)limits.Local.x;
                 int mX = (int)limits.Global.x;
 
+                Test(ref x, ref X, mx, mX);
 
-                //TODO : put this logic in Test()
-                while (x < 0)
-                {
-
-                }
+                returnCoordinate.Local.Set(x,returnCoordinate.Local.y);
+                returnCoordinate.Global.Set(X, returnCoordinate.Global.y);
             }
             else
             {
+                int y = (int)returnCoordinate.Local.y + force;
+                int Y = (int)returnCoordinate.Global.y;
 
+                int my = (int)limits.Local.y;
+                int mY = (int)limits.Global.y;
+
+                Test(ref y, ref Y, my, mY);
+
+                returnCoordinate.Local.Set(returnCoordinate.Local.x,y);
+                returnCoordinate.Global.Set(returnCoordinate.Global.x, Y);
             }
-            return null;
+            return returnCoordinate;
         }
-        //TODO : Finish this
+        //TODO : Finish this (Test this)
         private void Test(ref int v, ref int V, int mv,int mV)
         {
-            while (v > mv)
+            if (v > mv)
             {
-                if(++V > mV)
+                if (++V < mV)
                 {
+                    v = 0;
                     V = mV;
-                    v = mv;
                 }
                 else
                 {
                     v = v - mv;
+                    V = mV;
+                }
+            }
+
+            if(v < 0)
+            {
+                if(--V > 0)
+                {
+                    v = mv;
+                }
+                else
+                {
+                    v = 0;
+                    V = 0;
                 }
             }
 
