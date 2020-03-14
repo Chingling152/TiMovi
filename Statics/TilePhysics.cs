@@ -1,14 +1,10 @@
-﻿using TiMovi.Interfaces;
-
-namespace TiMovi
+﻿namespace TiMovi.Statics
 {
     /// <summary>
-    /// Defines a class to control TilePhysics (can be changed to static)
+    /// Defines a class to control TilePhysics 
     /// </summary>
-    public sealed class TilePhysics : ITilePhysics
+    public static class TilePhysics 
     {
-        // create a maxCoordinate static variable (?)
-
         /// <summary>
         /// Changes a coordinate to a especific force in a certain direction
         /// </summary>
@@ -17,10 +13,10 @@ namespace TiMovi
         /// <param name="vertical">Defines if the movement is vertical</param>
         /// <param name="force">Define the amount of the tiles the Eneity will move (use negative values to back)</param>
         /// <returns>Returns the new coordinate result of the movement</returns>
-        public ICoordinate ApplyForce(ICoordinate coordinate, ICoordinate maxCoordinates, bool vertical, int force = 1)
+        public static Coordinate ApplyForce(Coordinate coordinate, Coordinate maxCoordinates, bool vertical, int force = 1)
         {
-            var returnCoordinate = (Coordinate)coordinate;
-            var limits = (Coordinate)maxCoordinates;
+            var returnCoordinate = coordinate;
+            var limits = maxCoordinates;
 
             if (!vertical)
             {
@@ -58,7 +54,7 @@ namespace TiMovi
         /// <param name="V">Could be global x or the global y of some coordinate</param>
         /// <param name="mv">Could be max local x or the max local y of some coordinate</param>
         /// <param name="mV">Could be max global x or the max global y of some coordinate</param>
-        private void VerifyLimits(ref int v, ref int V, int mv,int mV)
+        private static void VerifyLimits(ref int v, ref int V, int mv,int mV)
         {
             if (v > mv)
             {

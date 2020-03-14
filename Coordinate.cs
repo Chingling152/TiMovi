@@ -1,5 +1,4 @@
 ﻿using TiMovi.Extensions;
-using TiMovi.Interfaces;
 using UnityEngine;
 
 namespace TiMovi
@@ -7,7 +6,7 @@ namespace TiMovi
     /// <summary>
     /// Class about Coordinate of an Entity in a Tile Map
     /// </summary>
-    public sealed class Coordinate : ICoordinate
+    public class Coordinate
     {
         /// <summary>
         /// Define the exacly the Coordinate of an Entity
@@ -35,16 +34,16 @@ namespace TiMovi
         /// <param name="cord1">Coordinate 1</param>
         /// <param name="cord2">Coordinate 2</param>
         /// <returns>Returns a Vector with the Absolute and integer distance of 2 coordinates</returns>
-        public Vector2 Distance(ICoordinate cord1, ICoordinate cord2)
+        public virtual Vector2 Distance(Coordinate cord1, Coordinate cord2)
         {
-            var cord3 = (Coordinate)((Coordinate)cord1 - (Coordinate)cord2).ToAbsolute();
+            var cord3 = (cord1 - cord2).ToAbsolute();
             return cord3.Local * cord3.Global;
         }
         /// <summary>
         /// Convert a Coordinate to Absolute values
         /// </summary>
         /// <returns>Return a new Coordinate with Integer positives values</returns>
-        public ICoordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
+        public virtual Coordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
 
         #region operators
         public static Coordinate operator +(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global + cord.Global, cor.Local + cord.Local);
@@ -70,12 +69,10 @@ namespace TiMovi
         /// </summary>
         /// <param name="obj">The coordinate to compare with the actual one</param>
         /// <returns>Return true if the coordinates are the same</returns>
-        public bool Equals(ICoordinate obj)
+        public bool Equals(Coordinate obj)
         {
-            Coordinate coord = (Coordinate)obj;
-
-            if(this.Local == coord.Local)
-                if(this.Global == coord.Global)
+            if(this.Local == obj.Local)
+                if(this.Global == obj.Global)
                     return true;
 
             return false;

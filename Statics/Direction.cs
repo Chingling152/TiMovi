@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TiMovi
+namespace TiMovi.Statics
 {
     /// <summary>
     /// Class to get a directions on a tile map based on Entity Direction
