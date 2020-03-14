@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-namespace TMovement.Interfaces
+namespace TiMovi.Interfaces
 {
     /// <summary>
     /// Interface with methods to create a valid Coordinate
     /// </summary>
+    [System.Obsolete("No interfaces")]
     public interface ICoordinate
     {
 
@@ -31,6 +32,13 @@ namespace TMovement.Interfaces
         /// Default to string
         /// </summary>
         string ToString();
+
+        /// <summary>
+        /// Default Equals
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        bool Equals(ICoordinate obj);
 
     }
 }

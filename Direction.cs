@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace TMovement
+namespace TiMovi
 {
     /// <summary>
     /// Class to get a directions on a tile map based on Entity Direction
     /// </summary>
-    public class Direction
+    public sealed class Direction
     {
         /// <summary>
         /// Returns the coordinate on right of an Entity based on it's actual Direction. 

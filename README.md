@@ -1,8 +1,8 @@
-# TMovement
+# TiMovi
 Small Unity Library With useful stuff about Tile Movement.
 
 ## Introduction
-This project was made to be used in the game i'm creating. But i might be useful to some people, so i created this and published.
+This project was made to be used in the game i'm creating. But it might be useful to some people, so I created this and published.
 
 ## Architeture  
 |  All classes will be here  
@@ -15,9 +15,9 @@ You can download the project and in the root folderyou can open the command prom
 So you can just put that in your project.  
   
 The project uses theses Dependencies :
-- UnityEngine
-- UnityEngine.Core
 - System
 - System.Collections
+- UnityEngine
+- UnityEngine.Core
 
 .NET Framework 4.5

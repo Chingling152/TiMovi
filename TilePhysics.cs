@@ -1,10 +1,22 @@
-﻿using TMovement.Interfaces;
+﻿using TiMovi.Interfaces;
 
-namespace TMovement
+namespace TiMovi
 {
-    public class TilePhysics : ITilePhysics
+    /// <summary>
+    /// Defines a class to control TilePhysics (can be changed to static)
+    /// </summary>
+    public sealed class TilePhysics : ITilePhysics
     {
-        [System.Obsolete("Not Applied")]
+        // create a maxCoordinate static variable (?)
+
+        /// <summary>
+        /// Changes a coordinate to a especific force in a certain direction
+        /// </summary>
+        /// <param name="coordinate">The actual coordinate of an Entity</param>
+        /// <param name="maxCoordinates">The max coordinates of the map</param>
+        /// <param name="vertical">Defines if the movement is vertical</param>
+        /// <param name="force">Define the amount of the tiles the Eneity will move (use negative values to back)</param>
+        /// <returns>Returns the new coordinate result of the movement</returns>
         public ICoordinate ApplyForce(ICoordinate coordinate, ICoordinate maxCoordinates, bool vertical, int force = 1)
         {
             var returnCoordinate = (Coordinate)coordinate;
@@ -18,7 +30,7 @@ namespace TMovement
                 int mx = (int)limits.Local.x;
                 int mX = (int)limits.Global.x;
 
-                Test(ref x, ref X, mx, mX);
+                VerifyLimits(ref x, ref X, mx, mX);
 
                 returnCoordinate.Local.Set(x,returnCoordinate.Local.y);
                 returnCoordinate.Global.Set(X, returnCoordinate.Global.y);
@@ -31,41 +43,34 @@ namespace TMovement
                 int my = (int)limits.Local.y;
                 int mY = (int)limits.Global.y;
 
-                Test(ref y, ref Y, my, mY);
+                VerifyLimits(ref y, ref Y, my, mY);
 
                 returnCoordinate.Local.Set(returnCoordinate.Local.x,y);
                 returnCoordinate.Global.Set(returnCoordinate.Global.x, Y);
             }
             return returnCoordinate;
         }
-        //TODO : Finish this (Test this)
-        private void Test(ref int v, ref int V, int mv,int mV)
+
+        /// <summary>
+        /// Verify the limits of some direction and make changes if some limits are passed
+        /// </summary>
+        /// <param name="v">Could be local x or the local y of some coordinate</param>
+        /// <param name="V">Could be global x or the global y of some coordinate</param>
+        /// <param name="mv">Could be max local x or the max local y of some coordinate</param>
+        /// <param name="mV">Could be max global x or the max global y of some coordinate</param>
+        private void VerifyLimits(ref int v, ref int V, int mv,int mV)
         {
             if (v > mv)
             {
-                if (++V < mV)
-                {
-                    v = 0;
-                    V = mV;
-                }
-                else
-                {
-                    v = v - mv;
-                    V = mV;
-                }
+                v = v - mv;
+                V++;
+                V = V > mV? mV : V;
             }
 
             if(v < 0)
             {
-                if(--V > 0)
-                {
-                    v = mv;
-                }
-                else
-                {
-                    v = 0;
-                    V = 0;
-                }
+                v = mv - System.Math.Abs(v);
+                V = V < 0 ? 0 : V;
             }
 
         }

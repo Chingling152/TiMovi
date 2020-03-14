@@ -1,13 +1,13 @@
-﻿using TMovement.Extensions;
-using TMovement.Interfaces;
+﻿using TiMovi.Extensions;
+using TiMovi.Interfaces;
 using UnityEngine;
 
-namespace TMovement
+namespace TiMovi
 {
     /// <summary>
     /// Class about Coordinate of an Entity in a Tile Map
     /// </summary>
-    public class Coordinate : ICoordinate
+    public sealed class Coordinate : ICoordinate
     {
         /// <summary>
         /// Define the exacly the Coordinate of an Entity
@@ -46,13 +46,40 @@ namespace TMovement
         /// <returns>Return a new Coordinate with Integer positives values</returns>
         public ICoordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
 
+        #region operators
         public static Coordinate operator +(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global + cord.Global, cor.Local + cord.Local);
 
         public static Coordinate operator -(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global - cord.Global, cor.Local - cord.Local);
 
-        public override string ToString()
+        public static bool operator ==(Coordinate cor, Coordinate cord )=> cor.Equals(cord);
+
+        public static bool operator !=(Coordinate cor, Coordinate cord) => !cor.Equals(cord);
+
+        #endregion
+
+
+        #region default
+        /// <summary>
+        /// Return all information about a Coordinate
+        /// </summary>
+        /// <returns> 2 Lines : one of them with informations about global coordinates info and the second one with the local coordinates info</returns>
+        public override string ToString() => $"Global : {Global.ToAbsolute().ToString()}\nLocal : {Local.ToAbsolute().ToString()}";
+
+        /// <summary>
+        /// Compare two coordinates
+        /// </summary>
+        /// <param name="obj">The coordinate to compare with the actual one</param>
+        /// <returns>Return true if the coordinates are the same</returns>
+        public bool Equals(ICoordinate obj)
         {
-            return $"Global : {Global.ToAbsolute().ToString()}\nLocal : {Local.ToAbsolute().ToString()}";
+            Coordinate coord = (Coordinate)obj;
+
+            if(this.Local == coord.Local)
+                if(this.Global == coord.Global)
+                    return true;
+
+            return false;
         }
+        #endregion
     }
 }
