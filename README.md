@@ -1,16 +1,14 @@
-# RpgWorld
-My Unity Library Collection to my Rpg Game
-
-## Introduction
-There are my Libraries used to make my game, It might be useful for some people so...
+# The World
+The world is a collection of Libraries to make my RPG game.  
+It'll might be useful to some people, so...
 
 ## Libraries
 All thoese libraries make some specific stuff and together the'll make my game work.
 
-- **TiMovi**
-A Small library to TileMovement.  
+- **TiMovi**  
+A Small library to TileMovement.
 
-- ***Extensions***
+- ***Extensions***  
 A Collection of Extesions classes of Unity.  
 
 ## How to Build
