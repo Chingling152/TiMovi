@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Extensions.Unity
 {
+    /// <summary>
+    /// Class used to create more methos to Vector2 class
+    /// </summary>
     public static class Vector2Extension 
     {
         /// <summary>
