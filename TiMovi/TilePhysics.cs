@@ -1,4 +1,6 @@
-﻿namespace TiMovi
+﻿using UnityEngine;
+
+namespace TiMovi
 {
     /// <summary>
     /// Defines a class to control TilePhysics 
@@ -15,36 +17,33 @@
         /// <returns>Returns the new coordinate result of the movement</returns>
         public static Coordinate ApplyForce(Coordinate coordinate, Coordinate maxCoordinates, bool vertical, int force = 1)
         {
-            var returnCoordinate = coordinate;
-            var limits = maxCoordinates;
-
             if (!vertical)
             {
-                int x = (int)returnCoordinate.Local.x + force;
-                int X = (int)returnCoordinate.Global.x;
+                int x = (int)coordinate.Local.x + force;
+                int X = (int)coordinate.Global.x;
 
-                int mx = (int)limits.Local.x;
-                int mX = (int)limits.Global.x;
+                int mx = (int)maxCoordinates.Local.x;
+                int mX = (int)maxCoordinates.Global.x;
 
                 VerifyLimits(ref x, ref X, mx, mX);
 
-                returnCoordinate.Local.Set(x,returnCoordinate.Local.y);
-                returnCoordinate.Global.Set(X, returnCoordinate.Global.y);
+                coordinate.Local.Set(x, coordinate.Local.y);
+                coordinate.Global.Set(X, coordinate.Global.y);
             }
             else
             {
-                int y = (int)returnCoordinate.Local.y + force;
-                int Y = (int)returnCoordinate.Global.y;
+                int y = (int)coordinate.Local.y + force;
+                int Y = (int)coordinate.Global.y;
 
-                int my = (int)limits.Local.y;
-                int mY = (int)limits.Global.y;
+                int my = (int)maxCoordinates.Local.y;
+                int mY = (int)maxCoordinates.Global.y;
 
                 VerifyLimits(ref y, ref Y, my, mY);
 
-                returnCoordinate.Local.Set(returnCoordinate.Local.x,y);
-                returnCoordinate.Global.Set(returnCoordinate.Global.x, Y);
+                coordinate.Local.Set(coordinate.Local.x,y);
+                coordinate.Global.Set(coordinate.Global.x, Y);
             }
-            return returnCoordinate;
+            return coordinate;
         }
 
         /// <summary>
@@ -69,6 +68,16 @@
                 V = V < 0 ? 0 : V;
             }
 
+        }
+
+        public static Coordinate ApplyForce(Coordinate coordinate, Coordinate maxCoordinates,Vector2 direction)
+        {
+            coordinate.Local += direction;
+            /*if(coordinate.Local > maxCoordinates.Local)
+            {
+                Probably needs a new extension method
+            }*/
+            return null;
         }
 
     }
