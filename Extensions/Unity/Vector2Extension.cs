@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace TiMovi.Extensions
+namespace Extensions.Unity
 {
     public static class Vector2Extension 
     {

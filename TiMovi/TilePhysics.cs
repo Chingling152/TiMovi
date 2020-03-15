@@ -1,4 +1,4 @@
-﻿namespace TiMovi.Statics
+﻿namespace TiMovi
 {
     /// <summary>
     /// Defines a class to control TilePhysics 

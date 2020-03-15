@@ -1,23 +1,25 @@
-# TiMovi
-Small Unity Library With useful stuff about Tile Movement.
+# RpgWorld
+My Unity Library Collection to my Rpg Game
 
 ## Introduction
-This project was made to be used in the game i'm creating. But it might be useful to some people, so I created this and published.
+There are my Libraries used to make my game, It might be useful for some people so...
 
-## Architeture  
-|  All classes will be here  
-├── Extensions ------------ # Extensions of System/Unity classes  
-├── Interfaces ------------ # Interfaces of the Libary (So you can create your own if you want)  
-└── ...
+## Libraries
+All thoese libraries make some specific stuff and together the'll make my game work.
+
+- **TiMovi**
+A Small library to TileMovement.  
+
+- ***Extensions***
+A Collection of Extesions classes of Unity.  
 
 ## How to Build
 You can download the project and in the root folderyou can open the command prompt and restores it's dependencies with **```dotnet restore```**. After that type : **```dotnet build```** and go to **/bin/Debug** folder and the .dll will be there
 So you can just put that in your project.  
   
-The project uses theses Dependencies :
-- System
-- System.Collections
+The Solution uses theses Dependencies :
 - UnityEngine
 - UnityEngine.Core
+- Microsoft.VisualStudio.TestTools.UnitTesting
 
 .NET Framework 4.5

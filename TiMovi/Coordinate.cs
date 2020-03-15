@@ -1,4 +1,4 @@
-﻿using TiMovi.Extensions;
+﻿using Extensions.Unity;
 using UnityEngine;
 
 namespace TiMovi
