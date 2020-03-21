@@ -57,6 +57,15 @@ namespace TiMovi
         #endregion
 
 
+
+
+
+
+
+
+
+
+
         #region default
         /// <summary>
         /// Return all information about a Coordinate

@@ -7,8 +7,8 @@
     <ProjectGuid>{AC3FDD92-D875-4643-81DE-FD997539F8DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TMovement</RootNamespace>
-    <AssemblyName>TMovement</AssemblyName>
+    <RootNamespace>TiMovi</RootNamespace>
+    <AssemblyName>TiMovi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
