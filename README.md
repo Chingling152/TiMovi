@@ -18,6 +18,6 @@ So you can just put that in your project.
 The Solution uses theses Dependencies :
 - UnityEngine
 - UnityEngine.Core
-- Microsoft.VisualStudio.TestTools.UnitTesting
+- Xunit
 
 .NET Framework 4.5
