@@ -1,5 +1,5 @@
-﻿using Colver.Main;
-using UnityEngine;
+﻿using UnityEngine;
+using Colver.Main;
 
 namespace TiMovi
 {
@@ -82,7 +82,7 @@ namespace TiMovi
         {
             coordinate.Local += direction;
 
-            while (coordinate.Local.GreaterThan(maxCoordinates.Local))
+            while (coordinate.Local.AbsGreaterThan(maxCoordinates.Local))
             {
                 if (coordinate.Local.x > maxCoordinates.Local.x || coordinate.Local.x < 0)
                 {
