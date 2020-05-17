@@ -1,12 +1,12 @@
-using Colver.Main;
 using UnityEngine;
+using UnityExtended.Extensions;
 
 namespace TiMovi
 {
     /// <summary>
     /// Class about Coordinate of an Entity in a Tile Map
     /// </summary>
-    public class Coordinate
+    public sealed class Coordinate
     {
         /// <summary>
         /// Define the exacly the Coordinate of an Entity
@@ -34,7 +34,7 @@ namespace TiMovi
         /// <param name="cord1">Coordinate 1</param>
         /// <param name="cord2">Coordinate 2</param>
         /// <returns>Returns a Vector with the Absolute and integer distance of 2 coordinates</returns>
-        public virtual Vector2 Distance(Coordinate cord1, Coordinate cord2)
+        public Vector2 Distance(Coordinate cord1, Coordinate cord2)
         {
             var cord3 = (cord1 - cord2).ToAbsolute();
             return cord3.Local * cord3.Global;
@@ -43,7 +43,7 @@ namespace TiMovi
         /// Convert a Coordinate to Absolute values
         /// </summary>
         /// <returns>Return a new Coordinate with Integer positives values</returns>
-        public virtual Coordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
+        public Coordinate ToAbsolute()=> new Coordinate(Local.ToAbsolute(),Global.ToAbsolute());
 
         #region operators
         public static Coordinate operator +(Coordinate cor, Coordinate cord)=> new Coordinate(cor.Global + cord.Global, cor.Local + cord.Local);
@@ -55,16 +55,6 @@ namespace TiMovi
         public static bool operator !=(Coordinate cor, Coordinate cord) => !cor.Equals(cord);
 
         #endregion
-
-
-
-
-
-
-
-
-
-
 
         #region default
         /// <summary>
