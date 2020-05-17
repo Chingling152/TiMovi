@@ -1,4 +1,9 @@
 # The World [W.I.P.]
-The world is a ~~collection of Libraries~~ Unity Package to make my RPG game.  
+The world is now under refactor... the idea is to be a collection of libraries of different styles of games...
 
-The project will becom a Unity Package instead a C# library class
+For now the objective will be (for now 2D):  
+- [ ] Rpg 
+  - [ ] TileBased
+  - [ ] Inventory System
+- [ ] Top Down Shooter
+- [ ] Plataform Game
