@@ -25,6 +25,9 @@ namespace TheChest.Items
         [Range(0,100)]
         protected int maxStack;
 
+        /// <summary>
+        /// Unique identifier of item 
+        /// </summary>
         public string ID => id;
         public string Name => name;
 

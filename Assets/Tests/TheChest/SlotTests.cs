@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
+using System;
 using TheChest.Containers;
 using TheChest.Items;
 
-namespace Tests.TheChest
+namespace TheWorld.Tests.TheChest
 {
     public partial class SlotTests
     {
@@ -11,6 +12,17 @@ namespace Tests.TheChest
         public SlotTests()
         {
             random = new System.Random();
+        }
+
+        private Item DefaultItemGenerator()
+        {
+            return new Item(
+              id: Guid.NewGuid().ToString(),
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: random.Next(1,20)
+           );
         }
 
         [Test]

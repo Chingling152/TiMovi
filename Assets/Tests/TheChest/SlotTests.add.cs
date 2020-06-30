@@ -2,32 +2,15 @@
 using System;
 using TheChest.Containers;
 using TheChest.Items;
-using UnityEngine;
 
-namespace Tests.TheChest
+namespace TheWorld.Tests.TheChest
 {
     public partial class SlotTests
     {
-
-
-        // adciona se : 
-        // tiver vazio
-        // tiver o mesmo item dentro do slot e naõ tiver cheio
-        // tiver replace = true
-
-        // não adciona se
-        // estiver cheio (sem replace)
-        // estiver com outro objeto (sem replace)
         [Test]
         public void ShouldAddItemOnEmptySlot()
         {
-            var item = new Item(
-                id: Guid.NewGuid().ToString(),
-                name: Guid.NewGuid().ToString(),
-                description: Guid.NewGuid().ToString(),
-                image: null,
-                maxStack: 1
-            );
+            var item = this.DefaultItemGenerator();
 
             var slot = new Slot();
 
@@ -60,34 +43,6 @@ namespace Tests.TheChest
             Assert.AreEqual(item, slot.CurrentItem);//Should keep the currentItem
         }
 
-        /// <summary>
-        /// This test is for verify if the slot can
-        /// </summary>
-        [Test]
-        public void ShouldStackItemOnSlotUntilIsFull()
-        { 
-            var maxStack = random.Next(2, 20);
-
-            var item = new Item(
-               id: Guid.NewGuid().ToString(),
-               name: Guid.NewGuid().ToString(),
-               description: Guid.NewGuid().ToString(),
-               image: null,
-               maxStack: maxStack
-            );
-
-            var slot = new Slot();
-
-            for (int i = 0; i < maxStack; i++)
-            {
-                var result = slot.Add(item);
-                Assert.IsTrue(result);//Should be true
-            }
-
-            Assert.IsTrue(slot.isFull);//Verify if the inventory is full
-        }
-
-
         [Test]
         public void ShouldNotAddItemOnFullSlot()
         {
@@ -110,21 +65,8 @@ namespace Tests.TheChest
         [Test]
         public void ShouldNotAddItemOnSlotWithOtherItem()
         {
-            var item = new Item(
-               id: Guid.NewGuid().ToString(),
-               name: Guid.NewGuid().ToString(),
-               description: Guid.NewGuid().ToString(),
-               image: null,
-               maxStack: random.Next(2, 20)
-           );
-
-            var otherItem = new Item(
-               id: Guid.NewGuid().ToString(),
-               name: Guid.NewGuid().ToString(),
-               description: Guid.NewGuid().ToString(),
-               image: null,
-               maxStack: random.Next(2, 20)
-            );
+            var item = this.DefaultItemGenerator();
+            var otherItem = this.DefaultItemGenerator();
 
             var slot = new Slot(otherItem);
 
@@ -132,6 +74,49 @@ namespace Tests.TheChest
 
             Assert.IsFalse(result);//Should be false because cannot replace items
             Assert.AreEqual(otherItem, slot.CurrentItem);//Should keep the currentItem
+        }
+
+        [Test]
+        public void ShouldAddAnAmountOfItemsOnSlot()
+        {
+            var amountAndStack = random.Next(1, 20);
+
+            var item = new Item(
+               id: Guid.NewGuid().ToString(),
+               name: Guid.NewGuid().ToString(),
+               description: Guid.NewGuid().ToString(),
+               image: null,
+               maxStack: amountAndStack
+            );
+
+            var slot = new Slot();
+
+            var result = slot.Add(item, amountAndStack);
+
+            Assert.AreEqual(0, result);//Should be true
+           
+            Assert.IsTrue(slot.isFull);//Verify if the inventory is full
+        }
+
+        [Test]
+        public void ShouldReturnTheAmountThatCoudNotBeAdded_IfAmountIsBiggerThanSlotMaxStack()
+        {
+            var amount = random.Next(10, 20);
+            var maxStack = random.Next(1, 9);
+
+            var item = new Item(
+               id: Guid.NewGuid().ToString(),
+               name: Guid.NewGuid().ToString(),
+               description: Guid.NewGuid().ToString(),
+               image: null,
+               maxStack: maxStack
+            );
+
+            var slot = new Slot();
+
+            var result = slot.Add(item, amount);
+
+            Assert.AreEqual(Math.Abs(maxStack-amount), result);//Should be true
         }
     }
 }
