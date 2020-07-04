@@ -11,16 +11,16 @@ namespace TheChest.Containers
     {
         public Item CurrentItem { get; protected set; }//TODO: get protected?
 
-        protected int StackAmount;
+        public int StackAmount { get; protected set; }
 
         public bool isFull => StackAmount >= (CurrentItem?.MaxStack ?? 1);
 
         public bool isEmpty => CurrentItem == null || StackAmount == 0;
 
-        public Slot(Item CurrentItem = null)
+        public Slot(Item CurrentItem = null,int amount = 1)
         {
             this.CurrentItem = CurrentItem;
-            this.StackAmount = CurrentItem == null ? 0 : 1;
+            this.StackAmount = CurrentItem != null ? amount : 0;
         }
 
         public bool Add(Item item)
@@ -53,7 +53,6 @@ namespace TheChest.Containers
             return Math.Abs(res);
         }
 
-        [Obsolete("Not tested yet")]
         public Item[] Replace(Item item, int amount = 1)
         {
             Item[] items = new Item[0];
