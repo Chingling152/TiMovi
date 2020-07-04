@@ -1,9 +1,9 @@
 ﻿namespace TheChest.Containers.Generics
 {
     /// <summary>
-    /// Interface generica para Slot de Inventario
+    /// Generic Inventory Slot
     /// </summary>
-    /// <typeparam name="T">Tipo de Item que o inventario aceita</typeparam>
+    /// <typeparam name="T">Item the Slot Accept</typeparam>
     public interface ISlot<T>
     {
         /// <summary>

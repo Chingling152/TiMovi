@@ -45,10 +45,19 @@ namespace TheChest.Containers
             if (!this.isEmpty && this.CurrentItem != item || this.isFull)
                 return amount;
             
-            int res = amount - (item.MaxStack - this.StackAmount);
+            int res = 0;
 
             this.CurrentItem = item;
-            this.StackAmount = amount - res;
+
+            if (amount + this.StackAmount > item.MaxStack)
+            {
+                res = this.StackAmount + amount - item.MaxStack;
+                this.StackAmount = item.MaxStack;
+            }
+            else
+            {
+                this.StackAmount += amount;
+            }
 
             return Math.Abs(res);
         }
@@ -59,7 +68,7 @@ namespace TheChest.Containers
 
             if(amount < 1) return items;
 
-            if (this.CurrentItem == item && !this.isFull)
+            if (this.CurrentItem == item)
             {
                 int resultAmount = this.Add(item,amount);
 

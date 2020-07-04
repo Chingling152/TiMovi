@@ -9,9 +9,14 @@ namespace TheWorld.Tests.TheChest
     {
         public System.Random random;
 
+        const int low_amount = 10;
+        const int high_amount = 20;
+
         public SlotTests()
         {
-            random = new System.Random();
+            random = new Random();
+
+            Assert.IsTrue(low_amount < high_amount);
         }
 
         private Item DefaultItemGenerator()
@@ -21,7 +26,7 @@ namespace TheWorld.Tests.TheChest
               name: Guid.NewGuid().ToString(),
               description: Guid.NewGuid().ToString(),
               image: null,
-              maxStack: random.Next(1,20)
+              maxStack: random.Next(1, high_amount)
            );
         }
 

@@ -28,9 +28,9 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void ShouldReturnAllItemsFromSlot()
+        public void OnGetAll_ShouldReturnAllItemsFromSlot()
         {
-            var stackAmount = random.Next(2, 20);
+            var stackAmount = random.Next(2, high_amount);
 
             var item = new Item(
               id: Guid.NewGuid().ToString(),
@@ -50,10 +50,10 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void ShouldReturnAnAmountFromSlot()
+        public void OnGetAmount_ShouldReturnAnAmountFromSlot()
         {
-            var randomAmount = random.Next(1, 10);
-            var expectedAmount = random.Next(10, 20);
+            var randomAmount = random.Next(1, low_amount);
+            var expectedAmount = random.Next(low_amount, high_amount);
 
             var item = this.DefaultItemGenerator();
             var slot = new Slot(item, expectedAmount);
@@ -67,9 +67,24 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void ShouldReturnTheMaxItemsFromSlot()
+        public void OnGetAmount_BiggestAmountShouldReturnTheMaxCapacity()
         {
-            var randomAmount = random.Next(1, 20);
+            var searchedAmount = random.Next(low_amount, high_amount);
+            var itemAmount = random.Next(1, low_amount);
+
+            var item = this.DefaultItemGenerator();
+            var slot = new Slot(item, itemAmount);
+
+            var result = slot.GetAmount(searchedAmount);
+
+            Assert.IsTrue(slot.isEmpty);
+            Assert.AreEqual(itemAmount,result.Length);
+        }
+
+        [Test]
+        public void OnGetAll_ShouldReturnTheMaxItemsFromSlot()
+        {
+            var randomAmount = random.Next(1, high_amount);
             var item = this.DefaultItemGenerator();
 
             var slot = new Slot(item, randomAmount);
@@ -81,7 +96,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnReplaceEmptySlot_ShouldReturnNull()
+        public void OnReplace_EmptySlotShouldReturnNull()
         {
             //Arrange
             var item = this.DefaultItemGenerator();
@@ -96,14 +111,15 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnReplaceSlot_ShouldReturnOldObejct()
+        public void OnReplace_ShouldReturnOldObejct()
         {
-            //Arrange
+            //Item to replace
             var newItem = this.DefaultItemGenerator();
-            var newItemAmountRandom = random.Next(1, 10);
+            var newItemAmountRandom = random.Next(1, low_amount);
 
+            //Item to be replaced
             var oldItem = this.DefaultItemGenerator();
-            var oldItemAmountRandom = random.Next(1,10);
+            var oldItemAmountRandom = random.Next(1, low_amount);
 
             //Act
             var slot = new Slot(oldItem, oldItemAmountRandom);
@@ -123,20 +139,21 @@ namespace TheWorld.Tests.TheChest
         }
     
         [Test]
-        public void OnReplaceSlotWithNegativeAmount_ShouldNotReplace()
+        public void OnReplace_SlotWithNegativeAmountShouldNotReplace()
         {
+            //Item to replace
             var newItem = this.DefaultItemGenerator();
             var newItemAmountRandom = random.Next(int.MinValue,-1);
 
+            //Item to be replaced
             var oldItem = this.DefaultItemGenerator();
-            var oldItemAmountRandom = random.Next(1, 10);
+            var oldItemAmountRandom = random.Next(1, low_amount);
 
-            //Act
             var slot = new Slot(oldItem, oldItemAmountRandom);
 
             var results = slot.Replace(newItem, newItemAmountRandom);
 
-            // Assert
+            //Tests
             Assert.IsEmpty(results);
             Assert.AreEqual(slot.CurrentItem,oldItem);
             Assert.AreEqual(slot.StackAmount,oldItemAmountRandom);
@@ -148,7 +165,7 @@ namespace TheWorld.Tests.TheChest
             Item newItem = null;
 
             var oldItem = this.DefaultItemGenerator();
-            var oldItemAmountRandom = random.Next(1, 10);
+            var oldItemAmountRandom = random.Next(1, low_amount);
 
             //Act
             var slot = new Slot(oldItem, oldItemAmountRandom);
@@ -160,5 +177,48 @@ namespace TheWorld.Tests.TheChest
             Assert.AreEqual(oldItemAmountRandom,results.Length);
         }
 
+        [Test]
+        public void OnReplace_SameItemType_ShouldStack()
+        {
+            var itemAmount = random.Next(1, low_amount);
+            var maxStack = itemAmount * 2 + random.Next(0, low_amount / 2);//to be possible to add twice and not get full
+
+            var item = new Item(
+              id: Guid.NewGuid().ToString(),
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: maxStack
+           );
+
+            var slot = new Slot(item, itemAmount);
+
+            var results = slot.Replace(item, itemAmount);
+
+            Assert.Zero(results.Length);
+            Assert.AreEqual(slot.StackAmount, itemAmount * 2);
+        }
+
+        [Test]
+        public void OnReplace_SameItemTypeWithBiggerAmountShouldStackAndReturnTheItemsNotAdded()
+        {
+            var maxStack = random.Next(low_amount, high_amount);
+            var itemAmount = maxStack / 2 + random.Next(1, low_amount / 2);//to be possible to add twice and overflow
+
+            var item = new Item(
+              id: Guid.NewGuid().ToString(),
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: maxStack
+           );
+
+            var slot = new Slot(item, itemAmount);
+
+            var results = slot.Replace(item, itemAmount);
+
+            Assert.IsTrue(slot.isFull);
+            Assert.AreEqual(itemAmount * 2 - maxStack, results.Length);
+        }
     }
 }
