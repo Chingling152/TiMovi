@@ -1,11 +1,12 @@
 ﻿namespace TheChest.Containers.Generics
 {
     /// <summary>
-    /// Generic Inventory Slot
+    /// Generic Inventory Slot with item stack
     /// </summary>
     /// <typeparam name="T">Item the Slot Accept</typeparam>
     public interface ISlot<T>
     {
+        #region Properties
         /// <summary>
         /// The current item inside the slot
         /// </summary>
@@ -22,6 +23,13 @@
         bool isEmpty { get; }
 
         /// <summary>
+        /// Defines the max amount of item that this slot can contain
+        /// </summary>
+        int MaxStackAmount { get; }
+        #endregion
+
+        #region add
+        /// <summary>
         /// Add the item in the current Slot
         /// </summary>
         /// <param name="item">The item to be added</param>
@@ -35,7 +43,9 @@
         /// <param name="amount">The amount of items added</param>
         /// <returns>Return 0 if all items are fully added to slot , else will return the amount left</returns>
         int Add(T item, int amount = 1);
+        #endregion
 
+        #region replace
         /// <summary>
         /// Remove the current item of Slot and replace by a new one
         /// </summary>
@@ -43,7 +53,9 @@
         /// <param name="amount">The amount of the New item</param>
         /// <returns>Returns an array of the old item</returns>
         T[] Replace(T item, int amount = 1);
+        #endregion
 
+        #region get
         /// <summary>
         /// Returns an item from slot
         /// </summary>
@@ -62,5 +74,6 @@
         /// </summary>
         /// <returns>Returns all item from slot</returns>
         T[] GetAll();
+        #endregion
     }
 }

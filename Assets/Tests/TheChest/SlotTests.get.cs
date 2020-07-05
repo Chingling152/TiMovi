@@ -84,15 +84,23 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void OnGetAll_ShouldReturnTheMaxItemsFromSlot()
         {
-            var randomAmount = random.Next(1, high_amount);
-            var item = this.DefaultItemGenerator();
+            var stackAmount = random.Next(2, high_amount);
 
-            var slot = new Slot(item, randomAmount);
+            var item = new Item(
+              id: Guid.NewGuid().ToString(),
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: stackAmount
+            );
+
+            var slot = new Slot(item, stackAmount);
+
 
             var result = slot.GetAll();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(randomAmount, result.Length);
+            Assert.AreEqual(stackAmount, result.Length);
         }
 
         [Test]

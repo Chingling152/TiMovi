@@ -1,5 +1,4 @@
-﻿using System;
-using TheChest.Items;
+﻿using TheChest.Items;
 using TheChest.Containers.Generics;
 
 namespace TheChest.Containers
@@ -7,125 +6,22 @@ namespace TheChest.Containers
     /// <summary>
     /// Slot of an <see cref="IInventory{T}"/>
     /// </summary>
-    public class Slot : ISlot<Item>
+    public class Slot : BaseSlot<Item>
     {
-        public Item CurrentItem { get; protected set; }//TODO: get protected?
+        /// <summary>
+        /// Returns the Max amount of <see cref="Item"/> this slot can carry
+        /// </summary>
+        public override int MaxStackAmount => this.CurrentItem?.MaxStack??1;
 
-        public int StackAmount { get; protected set; }
-
-        public bool isFull => StackAmount >= (CurrentItem?.MaxStack ?? 1);
-
-        public bool isEmpty => CurrentItem == null || StackAmount == 0;
-
-        public Slot(Item CurrentItem = null,int amount = 1)
+        /// <summary>
+        /// Creates an Slot with an Item
+        /// </summary>
+        /// <param name="CurrentItem">Item inside the slot (can be null)</param>
+        /// <param name="amount">Amount of <paramref name="CurrentItem"/> (0 if null)</param>
+        public Slot(Item CurrentItem = null,int amount = 1) 
         {
             this.CurrentItem = CurrentItem;
             this.StackAmount = CurrentItem != null ? amount : 0;
-        }
-
-        public bool Add(Item item)
-        {
-            if (
-                this.isEmpty || 
-                (this.CurrentItem == item && !this.isFull)
-            )
-            {
-                this.CurrentItem = item;
-                this.StackAmount++;
-                return true;
-            }
-
-            return false;
-        }
-
-        public int Add(Item item, int amount = 1)
-        {
-            if(amount <1) return 0;
-
-            if (!this.isEmpty && this.CurrentItem != item || this.isFull)
-                return amount;
-            
-            int res = 0;
-
-            this.CurrentItem = item;
-
-            if (amount + this.StackAmount > item.MaxStack)
-            {
-                res = this.StackAmount + amount - item.MaxStack;
-                this.StackAmount = item.MaxStack;
-            }
-            else
-            {
-                this.StackAmount += amount;
-            }
-
-            return Math.Abs(res);
-        }
-
-        public Item[] Replace(Item item, int amount = 1)
-        {
-            Item[] items = new Item[0];
-
-            if(amount < 1) return items;
-
-            if (this.CurrentItem == item)
-            {
-                int resultAmount = this.Add(item,amount);
-
-                items = new Item[resultAmount];
-
-                for (int i = 0; i < resultAmount; i++)
-                {
-                    items[i] = this.CurrentItem;
-                }
-            }
-            else
-            {
-                items = this.GetAll();
-
-                this.CurrentItem = item;
-                this.StackAmount = amount;
-            }
-
-            return items;
-        }
-
-        public Item GetOne()
-        {
-            if (StackAmount < 1)
-                return null;
-
-            Item item = this.CurrentItem;
-
-            this.StackAmount--;
-
-            if (StackAmount == 0)
-                this.CurrentItem = null;
-
-            return item;
-        }
-
-        public Item[] GetAmount(int amount = 1)
-        {
-            if (amount < 1) return new Item[0];
-            if (amount > StackAmount) amount = this.StackAmount;
-
-            Item[] items = new Item[amount];
-
-            for (int i = 0; i < amount; i++)
-            {
-                this.StackAmount--;
-                items[i] = this.CurrentItem;
-            }
-
-            if (this.StackAmount == 0) this.CurrentItem = null;
-
-            return items;
-        }
-
-        public Item[] GetAll()
-        {
-            return this.GetAmount(this.StackAmount);
         }
     }
 }

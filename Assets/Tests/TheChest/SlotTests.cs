@@ -7,7 +7,7 @@ namespace TheWorld.Tests.TheChest
 {
     public partial class SlotTests
     {
-        public System.Random random;
+        public Random random;
 
         const int low_amount = 10;
         const int high_amount = 20;
