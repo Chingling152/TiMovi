@@ -6,14 +6,20 @@ namespace TheChest.Containers.Generics
     /// Generic Slot with defined Stack
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
-    public class BaseSlot<T> : ISlot<T>
+    public class BaseSlot<T> : ISlot<T> where T : class
     {
         #region Properties
         public virtual T CurrentItem { get; protected set; }
 
+        /// <summary>
+        /// Defines the amount of items this slot is holding
+        /// </summary>
         public virtual int StackAmount { get; protected set; }
 
-        public virtual int MaxStackAmount { get; protected set; }
+        /// <summary>
+        /// Defines the max amount of item that this slot can contain
+        /// </summary>
+        public virtual int MaxStackAmount { get; protected set ;}
 
         public virtual bool isFull => StackAmount == MaxStackAmount;
 
@@ -21,7 +27,7 @@ namespace TheChest.Containers.Generics
         #endregion
 
         #region Constructor
-        public BaseSlot(T CurrentItem = default, int amount = 1, int maxStackAmount = 1)
+        public BaseSlot(T CurrentItem = null, int amount = 1, int maxStackAmount = 1)
         {
             amount = amount > maxStackAmount? maxStackAmount :amount;
 
@@ -32,11 +38,16 @@ namespace TheChest.Containers.Generics
         #endregion
 
         #region Add
+        /// <summary>
+        /// Adds a item in the slot (try stack)
+        /// </summary>
+        /// <param name="item">Item to be added</param>
+        /// <returns>returns true if successfully added</returns>
         public virtual bool Add(T item)
         {
             if (
                 this.isEmpty ||
-                (this.CurrentItem.Equals(item) && !this.isFull)
+                (this.CurrentItem == item && !this.isFull)
             )
             {
                 this.CurrentItem = item;
@@ -51,9 +62,7 @@ namespace TheChest.Containers.Generics
         {
             if (amount < 1) return 0; 
             
-            var equals = this.CurrentItem?.Equals(item) ?? false;
-
-            if ((!this.isEmpty && !equals) || this.isFull)
+            if ((!this.isEmpty && this.CurrentItem != item) || this.isFull)
                 return amount;
 
             int res = 0;
@@ -81,7 +90,7 @@ namespace TheChest.Containers.Generics
 
             if (amount < 1) return items;
             
-            if (this.CurrentItem?.Equals(item)??false)
+            if (this.CurrentItem == item)
             {
                 int resultAmount = this.Add(item, amount);
 
@@ -108,14 +117,14 @@ namespace TheChest.Containers.Generics
         public virtual T GetOne()
         {
             if (StackAmount < 1)
-                return default;
+                return null;
 
             T item = this.CurrentItem;
 
             this.StackAmount--;
 
             if (StackAmount == 0)
-                this.CurrentItem = default;
+                this.CurrentItem = null;
 
             return item;
         }
@@ -133,7 +142,7 @@ namespace TheChest.Containers.Generics
                 items[i] = this.CurrentItem;
             }
 
-            if (this.StackAmount == 0) this.CurrentItem = default;
+            if (this.StackAmount == 0) this.CurrentItem = null;
 
             return items;
         }

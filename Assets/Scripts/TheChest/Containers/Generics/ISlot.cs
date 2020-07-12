@@ -21,11 +21,6 @@
         /// Verify if the current slot is empty
         /// </summary>
         bool isEmpty { get; }
-
-        /// <summary>
-        /// Defines the max amount of item that this slot can contain
-        /// </summary>
-        int MaxStackAmount { get; }
         #endregion
 
         #region add

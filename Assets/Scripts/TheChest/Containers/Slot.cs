@@ -4,7 +4,7 @@ using TheChest.Containers.Generics;
 namespace TheChest.Containers
 {
     /// <summary>
-    /// Slot of an <see cref="IInventory{T}"/>
+    /// Slot with stackable items defined by it's own
     /// </summary>
     public class Slot : BaseSlot<Item>
     {
