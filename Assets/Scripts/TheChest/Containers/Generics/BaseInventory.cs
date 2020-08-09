@@ -18,7 +18,7 @@ namespace TheChest.Containers.Generics
 
         public virtual ISlot<T>[] Slots { get; protected set; }
 
-        public virtual int Size => Slots.Length;
+        public virtual int Size => this.Slots.Length;
         #endregion
 
         #region Constructors
@@ -74,6 +74,11 @@ namespace TheChest.Containers.Generics
             return itemArr;
         }
 
+        public virtual T[] AddItem(T[] items)
+        {
+            return null;
+        }
+
         public virtual T[] AddItemAt(T item, int index, int amount = 1, bool replace = true)
         {
             if (index < 0 || index >= Slots.Length || amount < 1) return new T[0];
@@ -91,11 +96,28 @@ namespace TheChest.Containers.Generics
             return Enumerable.Repeat(item, amount).ToArray();
         }
 
+        public virtual T[] AddItemAt(T[] items,int index , bool replace = true)
+        {
+            return null;
+        }
+
         #endregion
 
         public virtual bool MoveItem(int origin, int target)
         {
-            throw new System.NotImplementedException();
+            var oldItem = this.GetAll(origin);
+            var newItem = this.GetAll(target);
+
+            if (true)
+            {
+
+            }
+            else
+            {
+                
+            }
+
+            return false;
         }
 
         #region Get

@@ -54,20 +54,5 @@ namespace TheChest.Items
             this.image = image;
             this.maxStack = maxStack;
         }
-
-        public override bool Equals(object obj)
-        {
-            if(obj is Item)
-            {
-                var item = obj as Item;
-                return 
-                    item.ID == this.id && 
-                    item.Name == this.name &&
-                    item.Description == this.description &&
-                    item.maxStack == this.maxStack &&
-                    item.Image == this.image;
-            }
-            return false;
-        }
     }
 }
