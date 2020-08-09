@@ -31,12 +31,12 @@ namespace TheChest.Containers
         /// <summary>
         /// Slots of this inventory
         /// </summary>
-        public virtual new Slot[] Slots { 
+        public override ISlot<Item>[] Slots { 
             get {
                 return this.slots; 
             }
             protected set {
-                this.slots = value;
+                this.slots = (Slot[])value;
             }
         }
 
@@ -81,7 +81,7 @@ namespace TheChest.Containers
             {
                 if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
                 {
-                    amount+= this.Slots[i].StackAmount;
+                    amount+= this.slots[i].StackAmount;
                 }
             }
             return amount;
