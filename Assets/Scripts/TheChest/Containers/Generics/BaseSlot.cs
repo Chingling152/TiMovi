@@ -81,6 +81,30 @@ namespace TheChest.Containers.Generics
 
             return Math.Abs(res);
         }
+
+        public int Add(T[] items)
+        {
+            if(items == null || items.Length == 0) return 0;
+
+            if ((!this.isEmpty && this.CurrentItem != items[0]) || this.isFull)
+                return items.Length;
+
+            int res = 0;
+
+            this.CurrentItem = items[0];
+
+            if (items.Length + this.StackAmount > MaxStackAmount)
+            {
+                res = this.StackAmount + items.Length - MaxStackAmount;
+                this.StackAmount = MaxStackAmount;
+            }
+            else
+            {
+                this.StackAmount += items.Length;
+            }
+
+            return Math.Abs(res);
+        }
         #endregion
 
         #region Replace
@@ -110,6 +134,34 @@ namespace TheChest.Containers.Generics
             }
 
             return items;
+        }
+
+        public T[] Replace(T[] items)
+        {
+            T[] retItems = new T[0];
+
+            if (items == null || items.Length == 0) return retItems;
+
+            if (this.CurrentItem == items[0])
+            {
+                int resultAmount = this.Add(items);
+
+                retItems = new T[resultAmount];
+
+                for (int i = 0; i < resultAmount; i++)
+                {
+                    retItems[i] = this.CurrentItem;
+                }
+            }
+            else
+            {
+                retItems = this.GetAll();
+
+                this.CurrentItem = items[0];
+                this.StackAmount = items.Length;
+            }
+
+            return retItems;
         }
         #endregion
 

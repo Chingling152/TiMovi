@@ -1,6 +1,6 @@
-﻿using TheChest.Items;
+﻿using UnityEngine;
+using TheChest.Items;
 using TheChest.Containers.Generics;
-using UnityEngine;
 
 namespace TheChest.Containers
 {
@@ -10,6 +10,9 @@ namespace TheChest.Containers
     [System.Serializable]
     public class Inventory : BaseInventory<Item>
     {
+        /// <summary>
+        /// Displayed name of inventory
+        /// </summary>
         [SerializeField]
         protected string containerName;
 
@@ -28,15 +31,12 @@ namespace TheChest.Containers
         [SerializeField]
         protected Slot[] slots;
 
-        /// <summary>
-        /// Slots of this inventory
-        /// </summary>
         public override ISlot<Item>[] Slots { 
-            get {
-                return this.slots; 
-            }
+            get{
+                return slots;
+            } 
             protected set {
-                this.slots = (Slot[])value;
+                slots = (Slot[])value;
             }
         }
 
@@ -63,7 +63,7 @@ namespace TheChest.Containers
         /// Creates an inventory and sets it's slots
         /// </summary>
         /// <param name="slots">Preset slot array</param>
-        public Inventory(BaseSlot<Item>[] slots, string name = "Container") : base(slots)
+        public Inventory(Slot[] slots, string name = "Container") : base(slots)
         {
             this.ContainerName = name;
         }

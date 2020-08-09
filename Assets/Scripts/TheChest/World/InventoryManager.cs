@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using TheChest.Containers;
-using TheChest.UI;
+﻿using TheChest.UI;
 
 namespace TheChest.World
 {
+    [System.Obsolete]
     public static class InventoryManager
     {
         public static UIInventory playerInventory;

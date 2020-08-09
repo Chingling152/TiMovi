@@ -98,26 +98,31 @@ namespace TheChest.Containers.Generics
 
         public virtual T[] AddItemAt(T[] items,int index , bool replace = true)
         {
-            return null;
+            if (index < 0 || index >= Slots.Length || items == null) return new T[0];
+
+            var item = items?.FirstOrDefault();
+
+            if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && this.Slots[index].CurrentItem == item))
+            {
+                var res = this.Slots[index].Add(items);
+                return Enumerable.Repeat(item, res).ToArray();
+            }
+            else if (replace)
+            {
+                return this.Slots[index].Replace(items);
+            }
+            return items;
         }
 
         #endregion
 
         public virtual bool MoveItem(int origin, int target)
         {
-            var oldItem = this.GetAll(origin);
-            var newItem = this.GetAll(target);
+            var oldItems = this.GetAll(origin);
+            var res = this.AddItemAt(oldItems,target);
+            this.AddItemAt(res, origin);
 
-            if (true)
-            {
-
-            }
-            else
-            {
-                
-            }
-
-            return false;
+            return true;
         }
 
         #region Get

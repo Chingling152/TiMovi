@@ -4,7 +4,7 @@
     /// Default interface to Inventory
     /// </summary>
     /// <typeparam name="T">The item this inventory accepts</typeparam>
-    public interface IInventory<T>
+    public interface IInventory<T> //TODO: Change name to IContainer
     {
         #region Properties
         /// <summary>
@@ -104,7 +104,7 @@
         T[] AddItemAt(T[] items, int index, bool replace = true);
         #endregion
 
-        #region misc
+        #region extra
 
         /// <summary>
         /// Move a item between two slots

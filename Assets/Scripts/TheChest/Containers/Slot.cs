@@ -27,7 +27,7 @@ namespace TheChest.Containers
         }
 
         /// <summary>
-        /// The maount of the item
+        /// The amount of the item inside this slot
         /// </summary>
         [SerializeField]
         private int stackAmount;

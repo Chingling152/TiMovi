@@ -3,9 +3,12 @@ using UnityEngine.EventSystems;
 
 namespace TheChest.UI.Components.Slots
 {
+    /// <summary>
+    /// Class to handle Drag'N drop on Slot
+    /// </summary>
     [RequireComponent(typeof(UISlot))]
     [DisallowMultipleComponent]
-    public sealed class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+    public sealed class SlotDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 originalPosition;
 
@@ -13,7 +16,7 @@ namespace TheChest.UI.Components.Slots
         {
             var slot = this.GetComponent<UISlot>();
             this.originalPosition = slot.ItemSprite.rectTransform.position;
-            slot.OnSelectIndex?.Invoke(slot.Index, slot.Amount);
+            slot.Select();
         }
 
         public void OnDrag(PointerEventData eventData)

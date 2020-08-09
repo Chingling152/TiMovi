@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -218,6 +218,84 @@ MonoBehaviour:
         description: 
         image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
         maxStack: 13
+      stackAmount: 4
+    - item:
+        name: Item
+        description: 
+        image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+        maxStack: 13
+      stackAmount: 1
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 1
+      stackAmount: 0
+    - item:
+        name: Item 2
+        description: 
+        image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+        maxStack: 24
       stackAmount: 12
     - item:
         name: 
@@ -225,91 +303,6 @@ MonoBehaviour:
         image: {fileID: 0}
         maxStack: 1
       stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-  selectedSlot:
-    item:
-      name: 
-      description: 
-      image: {fileID: 0}
-      maxStack: 1
-    stackAmount: 0
   containerName: {fileID: 1517517489}
   slotContainer: {fileID: 781111379}
   slotPrefab: {fileID: 3061905806792562279, guid: ae22afe8f4a2d474896483b08dc511e1,
@@ -590,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

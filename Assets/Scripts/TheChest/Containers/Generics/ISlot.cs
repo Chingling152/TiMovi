@@ -6,7 +6,7 @@
     /// <typeparam name="T">Item the Slot Accept</typeparam>
     public interface ISlot<T>
     {
-        #region Properties
+        #region properties
         /// <summary>
         /// The current item inside the slot
         /// </summary>
@@ -38,6 +38,13 @@
         /// <param name="amount">The amount of items added</param>
         /// <returns>Return 0 if all items are fully added to slot , else will return the amount left</returns>
         int Add(T item, int amount = 1);
+
+        /// <summary>
+        /// Try adds an array of items inside the current slot
+        /// </summary>
+        /// <param name="items">array of items to be added</param>
+        /// <returns>returns the amount of items that couldn't be added</returns>
+        int Add(T[] items);
         #endregion
 
         #region replace
@@ -48,6 +55,8 @@
         /// <param name="amount">The amount of the New item</param>
         /// <returns>Returns an array of the old item</returns>
         T[] Replace(T item, int amount = 1);
+
+        T[] Replace(T[] items);
         #endregion
 
         #region get

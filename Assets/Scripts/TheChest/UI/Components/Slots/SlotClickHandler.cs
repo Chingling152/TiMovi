@@ -3,16 +3,18 @@ using UnityEngine.EventSystems;
 
 namespace TheChest.UI.Components.Slots
 {
+    /// <summary>
+    /// Class to handle Click On Slot
+    /// </summary>
     [RequireComponent(typeof(UISlot))]
     [DisallowMultipleComponent]
-    public sealed class ClickHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler , IPointerExitHandler
+    public sealed class SlotClickHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler , IPointerExitHandler
     {
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                var slot = this.GetComponent<UISlot>();
-                slot.OnSelectIndex?.Invoke(slot.Index,slot.Amount);
+                this.GetComponent<UISlot>().Select();
             }
         }
 

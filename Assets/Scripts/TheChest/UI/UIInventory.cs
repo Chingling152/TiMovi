@@ -5,6 +5,7 @@ using TheChest.Items;
 using TheChest.World;
 using System.Collections.Generic;
 using System;
+using TheChest.Containers.Generics;
 
 namespace TheChest.UI
 {
@@ -12,7 +13,6 @@ namespace TheChest.UI
     public class UIInventory : MonoBehaviour
     {
         [Header("Inventory stats")]
-
         [SerializeField]
         private Inventory inventory;
 
@@ -27,12 +27,14 @@ namespace TheChest.UI
         [SerializeField]
         private UISlot slotPrefab;
 
-        private int selectedSlot;
-        private int selectedAmount;
-
-        //[Header("Slots")]
-        //[SerializeField]
-        //private List<UISlot> slots;
+        public int SelectedIndex { 
+            get ;
+            protected set ;
+        }
+        public int SelectedAmount {
+            get;
+            protected set ;
+        }
 
         /// <summary>
         /// Defines the inventory and trigger the <see cref="GenerateUI"/> method
@@ -49,13 +51,6 @@ namespace TheChest.UI
             this.GenerateUI();
         }
 
-        public bool Add(Item item)
-        {
-            var added = this.inventory.AddItem(item);
-            RefreshUI();
-            return added.Length == 0;
-        }
-
         public void GenerateUI()
         {
             this.ClearUI();
@@ -67,7 +62,8 @@ namespace TheChest.UI
                 for (int i = 0; i < inventory.Size; i++)
                 {
                     UISlot container = Instantiate(slotPrefab, slotContainer.transform);
-                    container.SetSlot(this.inventory.Slots[i], i);
+                    var slot = (Slot)this.inventory.Slots[i];
+                    container.SetSlot(slot, i);
                     container.OnSelectIndex += this.AddItem;
                 }
             }
@@ -75,47 +71,47 @@ namespace TheChest.UI
 
         private void AddItem(int index, int amount = 1)
         {
-            if (selectedSlot == index)
+            if (SelectedIndex == index)
             {
-                selectedSlot = -1;
-                selectedAmount = 0;
+                this.SelectedIndex = -1;
+                this.SelectedAmount = 0;
                 return;
             }
 
-            if(selectedSlot != -1)
+            if(SelectedIndex != -1)
             {
-                this.inventory.MoveItem(selectedSlot,index);
-                this.RefreshUI();
+                this.inventory.MoveItem(SelectedIndex, index);
+                this.SelectedIndex = -1;
+                this.SelectedAmount = 0;
             }
             else
             {
-                selectedSlot = index;
-                selectedAmount = amount;
+                this.SelectedIndex = index;
+                this.SelectedAmount = amount;
             }
+            this.RefreshUI();
         }
 
         public void RefreshUI()
         {
-            for (int i = 0; i < this.transform.childCount; i++)
+            for (int i = 0; i < slotContainer.transform.childCount; i++)
             {
-                var container = this.transform.GetChild(i).GetComponent<UISlot>();
-                container.SetSlot(this.inventory.Slots[i], i);
+                var container = slotContainer.transform.GetChild(i).GetComponent<UISlot>();
+                var slot = (Slot)this.inventory.Slots[i];
+                container.SetSlot(slot, i,i == SelectedIndex);
             }
         }
 
         public void ClearUI()
         {
             this.containerName.text = "";
+            this.SelectedIndex = -1;
+            this.SelectedAmount = 0;
 
             foreach (var item in this.transform.GetComponentsInChildren<UISlot>())
             {
                 Destroy(item);
             }
-        }
-
-        public void SelectItem(Item item)
-        {
-
         }
     }
 }

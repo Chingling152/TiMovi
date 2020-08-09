@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheChest.Items
@@ -53,6 +54,24 @@ namespace TheChest.Items
             this.description = description;
             this.image = image;
             this.maxStack = maxStack;
+        }
+
+        public static bool operator ==(Item item1, Item item2)
+        {
+            return item1?.Equals(item2)??false;
+        }
+
+        public static bool operator !=(Item item1, Item item2)
+        {
+            return !item1?.Equals(item2) ?? false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null && obj is Item item &&
+                   ID == item.ID &&
+                   Name == item.Name &&
+                   MaxStack == item.MaxStack;
         }
     }
 }
