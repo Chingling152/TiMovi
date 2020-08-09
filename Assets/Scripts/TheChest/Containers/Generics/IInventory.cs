@@ -78,6 +78,13 @@
         T[] AddItem(T item,int amount = 1);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        T[] AddItem(T[] items); 
+
+        /// <summary>
         /// Adds an amount of item in a specific slot
         /// </summary>
         /// <param name="item">item to be added</param>
@@ -86,6 +93,15 @@
         /// <param name="replace"></param>
         /// <returns>Returns the item that couldn't be added or the replaced items</returns>
         T[] AddItemAt(T item, int index, int amount = 1, bool replace = true);
+
+        /// <summary>
+        /// Adds an array of item inside the inventory
+        /// </summary>
+        /// <param name="items">Array of item of the same type wich will be added to inventory</param>
+        /// <param name="index">Wich slot the items will be added</param>
+        /// <param name="replace">Defines if the current Slot item will be replaced by the <see cref="items"/> param</param>
+        /// <returns>Returns a array of items replaced or could'nt be added</returns>
+        T[] AddItemAt(T[] items, int index, bool replace = true);
         #endregion
 
         #region misc
