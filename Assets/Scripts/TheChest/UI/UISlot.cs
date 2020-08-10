@@ -19,7 +19,7 @@ namespace TheChest.UI
 
         public Image ItemSprite => itemSprite;
 
-        public int Index { get; protected set; }
+        public int Index { get; protected set; } 
         public int Amount { get; protected set; }
 
         public event Action<int,int> OnSelectIndex;

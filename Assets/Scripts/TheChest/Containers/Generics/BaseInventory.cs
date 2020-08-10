@@ -101,8 +101,9 @@ namespace TheChest.Containers.Generics
             if (index < 0 || index >= Slots.Length || items == null) return new T[0];
 
             var item = items?.FirstOrDefault();
+            var eq = this.Slots[index].CurrentItem?.Equals(item)?? false;
 
-            if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && this.Slots[index].CurrentItem == item))
+            if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && eq))
             {
                 var res = this.Slots[index].Add(items);
                 return Enumerable.Repeat(item, res).ToArray();

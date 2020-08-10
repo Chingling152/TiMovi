@@ -45,9 +45,10 @@ namespace TheChest.Containers.Generics
         /// <returns>returns true if successfully added</returns>
         public virtual bool Add(T item)
         {
+            var eq = this.CurrentItem?.Equals(item)??false;
             if (
                 this.isEmpty ||
-                (this.CurrentItem == item && !this.isFull)
+                (eq && !this.isFull)
             )
             {
                 this.CurrentItem = item;
@@ -60,9 +61,11 @@ namespace TheChest.Containers.Generics
 
         public virtual int Add(T item, int amount = 1)
         {
-            if (amount < 1) return 0; 
-            
-            if ((!this.isEmpty && this.CurrentItem != item) || this.isFull)
+            if (amount < 1) return 0;
+
+            var eq = this.CurrentItem?.Equals(item) ?? false;
+
+            if ((!this.isEmpty && !eq) || this.isFull)
                 return amount;
 
             int res = 0;
@@ -86,7 +89,9 @@ namespace TheChest.Containers.Generics
         {
             if(items == null || items.Length == 0) return 0;
 
-            if ((!this.isEmpty && this.CurrentItem != items[0]) || this.isFull)
+            var eq = this.CurrentItem?.Equals(items[0])??false;
+
+            if ((!this.isEmpty && !eq) || this.isFull)
                 return items.Length;
 
             int res = 0;
@@ -113,8 +118,10 @@ namespace TheChest.Containers.Generics
             T[] items = new T[0];
 
             if (amount < 1) return items;
-            
-            if (this.CurrentItem == item)
+
+            var eq = this.CurrentItem?.Equals(item) ?? false;
+
+            if (eq)
             {
                 int resultAmount = this.Add(item, amount);
 
@@ -142,7 +149,9 @@ namespace TheChest.Containers.Generics
 
             if (items == null || items.Length == 0) return retItems;
 
-            if (this.CurrentItem == items[0])
+            var eq = this.CurrentItem?.Equals(items[0]) ?? false;
+
+            if (eq)
             {
                 int resultAmount = this.Add(items);
 

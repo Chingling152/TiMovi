@@ -73,5 +73,10 @@ namespace TheChest.Items
                    Name == item.Name &&
                    MaxStack == item.MaxStack;
         }
+
+        public int GetHashCode(Item obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
