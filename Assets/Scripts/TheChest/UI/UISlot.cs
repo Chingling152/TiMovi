@@ -8,12 +8,13 @@ namespace TheChest.UI
     [DisallowMultipleComponent]
     public class UISlot : MonoBehaviour
     {
+        //TODO: https://www.youtube.com/watch?v=wYkzeKghjsI maybe (?)
         [Header("Values")]
         [Tooltip("The Image element wich will render the item sprite")]
         [SerializeField]
         private Image itemSprite;
 
-        [Tooltip("Teh Text element wich will render the item amount")]
+        [Tooltip("The Text element wich will render the item amount")]
         [SerializeField]
         private Text itemAmount;
 
@@ -49,7 +50,7 @@ namespace TheChest.UI
             this.Amount = slot.StackAmount;
         }
 
-        public void Select()
+        public void Selected()
         {
             this.OnSelectIndex?.Invoke(this.Index, this.Amount);
         }

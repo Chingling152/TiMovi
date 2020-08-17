@@ -2,13 +2,16 @@
 using TheChest.Items;
 using TheChest.Containers;
 using NUnit.Framework;
+using System.Collections;
+using System.Linq;
 
 namespace TheWorld.Tests.TheChest
 {
     public partial class SlotTests
     {
+        #region Add 
         [Test]
-        public void OnAdd_ShouldAddItemOnEmptySlot()
+        public void Add__Should_add_Item_to_empty_Slot()
         {
             var item = this.DefaultItemGenerator();
 
@@ -23,7 +26,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnAdd_ShouldStackItemOnSlot()
+        public void Add__Should_stack_Item_to_Slot()
         {
             var item = new Item(
                id: Guid.NewGuid().ToString(),
@@ -44,7 +47,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnAdd_ShouldNotAddItemOnFullSlot()
+        public void Add__Full_Slot_should_not_Add()
         {
             var item = new Item(
                id: Guid.NewGuid().ToString(),
@@ -63,7 +66,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnAdd_ShouldNotAddItemOnSlotWithOtherItem()
+        public void Add__Slot_with_other_Item_Type__Should_not_add()
         {
             var item = this.DefaultItemGenerator();
             var otherItem = this.DefaultItemGenerator();
@@ -75,9 +78,11 @@ namespace TheWorld.Tests.TheChest
             Assert.IsFalse(result);//Should be false because cannot replace items
             Assert.AreEqual(otherItem, slot.CurrentItem);//Should keep the currentItem
         }
+        #endregion
 
+        #region AddAmount
         [Test]
-        public void OnAddAmount_ShouldAddTheAmountOfItemsOnSlot()
+        public void AddAmount__Should_add_the_amount_of_Items()
         {
             var amountAndStack = random.Next(1, high_amount);
 
@@ -99,7 +104,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnAddAmount_ShouldReturnTheAmountThatCoudNotBeAdded()
+        public void AddAmount__Should_return_the_amount_that_coud_not_be_added()
         {
             var amount = random.Next(low_amount, high_amount);
             var maxStack = random.Next(1, low_amount - 1);
@@ -121,7 +126,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void OnAddAmount_ShouldStackItemsOnSlot()
+        public void AddAmount__Should_stack_items()
         {
             var amount = random.Next(1, low_amount);
             var maxStack = amount * 2 + random.Next(0, low_amount / 2);
@@ -141,5 +146,80 @@ namespace TheWorld.Tests.TheChest
             Assert.Zero(result);
             Assert.AreEqual(slot.StackAmount, amount * 2);
         }
+        #endregion
+
+        #region Add (Array)
+        [Test]
+        public void AddArray__Should_add_the_amount_of_Items()
+        {
+            var amountAndStack = random.Next(1, high_amount);
+
+            var item = new Item(
+               id: Guid.NewGuid().ToString(),
+               name: Guid.NewGuid().ToString(),
+               description: Guid.NewGuid().ToString(),
+               image: null,
+               maxStack: amountAndStack
+            );
+
+            var arr = Enumerable.Repeat(item, amountAndStack).ToArray();
+
+            var slot = new Slot();
+
+            var result = slot.Add(arr);
+
+            Assert.AreEqual(0, result);//Should be true
+
+            Assert.IsTrue(slot.isFull);//Verify if the inventory is full
+        }
+
+        [Test]
+        public void AddArray__Should_return_the_amount_that_coud_not_be_added()
+        {
+            var amount = random.Next(low_amount, high_amount);
+            var maxStack = random.Next(1, low_amount - 1);
+
+            var item = new Item(
+               id: Guid.NewGuid().ToString(),
+               name: Guid.NewGuid().ToString(),
+               description: Guid.NewGuid().ToString(),
+               image: null,
+               maxStack: maxStack
+            );
+
+            var arr = Enumerable.Repeat(item, amount).ToArray();
+
+            var slot = new Slot();
+
+            var result = slot.Add(arr);
+
+            Assert.AreEqual(Math.Abs(maxStack - amount), result);//Should be true
+            Assert.IsTrue(slot.isFull);
+        }
+
+        [Test]
+        public void AddArray__Should_stack_items()
+        {
+            var amount = random.Next(1, low_amount);
+            var maxStack = amount * 2 + random.Next(0, low_amount / 2);
+
+            var item = new Item(
+               id: Guid.NewGuid().ToString(),
+               name: Guid.NewGuid().ToString(),
+               description: Guid.NewGuid().ToString(),
+               image: null,
+               maxStack: maxStack
+            );
+
+            var arr = Enumerable.Repeat(item, amount).ToArray();
+
+            var slot = new Slot(item, amount);
+
+            var result = slot.Add(arr);
+
+            Assert.Zero(result);
+            Assert.AreEqual(slot.StackAmount, amount * 2);
+        }
+        #endregion
     }
 }

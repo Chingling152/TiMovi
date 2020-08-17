@@ -14,7 +14,7 @@ namespace TheChest.UI.Components.Slots
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                this.GetComponent<UISlot>().Select();
+                this.GetComponent<UISlot>().Selected();
             }
         }
 

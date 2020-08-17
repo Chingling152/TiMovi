@@ -35,6 +35,20 @@ namespace TheChest.Containers.Generics
             this.StackAmount = CurrentItem != null ? amount : 0;
             this.MaxStackAmount = maxStackAmount < 0 ? 1 : maxStackAmount;
         }
+
+        public BaseSlot(T[] items,int maxStack = 1)
+        {
+            if(items != null && items.Length == 0)
+            {
+                this.CurrentItem = items[0];
+
+                if(items.Length > maxStack)
+                    this.StackAmount = maxStack;
+                else
+                    this.StackAmount = items.Length;
+            }
+            this.MaxStackAmount = maxStack;
+        }
         #endregion
 
         #region Add
@@ -147,7 +161,7 @@ namespace TheChest.Containers.Generics
         {
             T[] retItems = new T[0];
 
-            if (items == null || items.Length == 0) return retItems;
+            if (items == null || items.Length == 0) return this.GetAll();
 
             var eq = this.CurrentItem?.Equals(items[0]) ?? false;
 

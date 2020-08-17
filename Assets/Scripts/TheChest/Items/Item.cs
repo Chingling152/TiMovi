@@ -55,17 +55,6 @@ namespace TheChest.Items
             this.image = image;
             this.maxStack = maxStack;
         }
-
-        public static bool operator ==(Item item1, Item item2)
-        {
-            return item1?.Equals(item2)??false;
-        }
-
-        public static bool operator !=(Item item1, Item item2)
-        {
-            return !item1?.Equals(item2) ?? false;
-        }
-
         public override bool Equals(object obj)
         {
             return obj != null && obj is Item item &&
@@ -74,9 +63,9 @@ namespace TheChest.Items
                    MaxStack == item.MaxStack;
         }
 
-        public int GetHashCode(Item obj)
+        public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return base.GetHashCode();
         }
     }
 }

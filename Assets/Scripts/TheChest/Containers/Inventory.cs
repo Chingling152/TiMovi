@@ -16,6 +16,9 @@ namespace TheChest.Containers
         [SerializeField]
         protected string containerName;
 
+        [SerializeField]
+        protected Slot[] slots;
+
         /// <summary>
         /// Displayed name of inventory
         /// </summary>
@@ -28,15 +31,12 @@ namespace TheChest.Containers
             }
         }
 
-        [SerializeField]
-        protected Slot[] slots;
-
         public override ISlot<Item>[] Slots { 
             get{
                 return slots;
             } 
             protected set {
-                slots = (Slot[])value;
+                slots = value as Slot[];
             }
         }
 

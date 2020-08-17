@@ -122,7 +122,6 @@ namespace TheChest.Containers.Generics
             var oldItems = this.GetAll(origin);
             var res = this.AddItemAt(oldItems,target);
             this.AddItemAt(res, origin);
-
             return true;
         }
 

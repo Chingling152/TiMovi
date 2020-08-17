@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TheChest.Containers;
-using TheChest.Items;
-using TheChest.World;
-using System.Collections.Generic;
-using System;
-using TheChest.Containers.Generics;
 
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public class UIInventory : MonoBehaviour
+    public partial class UIInventory : MonoBehaviour
     {
         [Header("Inventory stats")]
         [SerializeField]
         private Inventory inventory;
 
         [Header("UI Components")]
+
+        //TODO: https://www.youtube.com/watch?v=wYkzeKghjsI
 
         [SerializeField]
         private Text containerName;
@@ -31,6 +28,7 @@ namespace TheChest.UI
             get ;
             protected set ;
         }
+
         public int SelectedAmount {
             get;
             protected set ;
@@ -89,6 +87,7 @@ namespace TheChest.UI
                 this.SelectedIndex = index;
                 this.SelectedAmount = amount;
             }
+
             this.RefreshUI();
         }
 

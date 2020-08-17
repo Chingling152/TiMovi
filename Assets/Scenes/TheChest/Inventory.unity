@@ -224,7 +224,7 @@ MonoBehaviour:
         description: 
         image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
         maxStack: 13
-      stackAmount: 10
+      stackAmount: 12
     - item:
         name: 
         description: 

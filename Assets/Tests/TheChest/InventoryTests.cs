@@ -12,7 +12,6 @@ namespace TheWorld.Tests.TheChest
         const int low_amount = 10;
         const int high_amount = 20;
 
-
         const int low_size = 10;
         const int high_size = 20;
 
