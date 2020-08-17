@@ -6,7 +6,7 @@ using TheChest.Containers;
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public class UISlot : MonoBehaviour
+    public class UISlot : MonoBehaviour//TODO : BaseUISlot
     {
         //TODO: https://www.youtube.com/watch?v=wYkzeKghjsI maybe (?)
         [Header("Values")]
@@ -22,6 +22,8 @@ namespace TheChest.UI
 
         public int Index { get; protected set; } 
         public int Amount { get; protected set; }
+
+        public bool IsEmpty => this.Amount == 0;
 
         public event Action<int,int> OnSelectIndex;
 
@@ -53,6 +55,11 @@ namespace TheChest.UI
         public void Selected()
         {
             this.OnSelectIndex?.Invoke(this.Index, this.Amount);
+        }
+
+        public void Selected(int index, int amount = 1)
+        {
+            this.OnSelectIndex?.Invoke(Index, amount);
         }
     }
 }

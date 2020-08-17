@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TheChest.Containers;
+using TheChest.Items;
+using TheChest.World;
 
 namespace TheChest.UI
 {
@@ -34,22 +36,18 @@ namespace TheChest.UI
             protected set ;
         }
 
-        /// <summary>
-        /// Defines the inventory and trigger the <see cref="GenerateUI"/> method
-        /// </summary>
-        public Inventory Inventory {
-            set {
-                inventory = value;
-                this.GenerateUI();
-            }
-        }
-
         private void Awake()
         {
             this.GenerateUI();
+            InventoryManager.PlayerInventory = this;
         }
 
-        public void GenerateUI()
+        public bool Add(Item item,int amount = 1)
+        {
+            return this.inventory.AddItem(item,amount).Length == 0;
+        }
+
+        private void GenerateUI()
         {
             this.ClearUI();
             if (this.containerName != null)
@@ -62,36 +60,46 @@ namespace TheChest.UI
                     UISlot container = Instantiate(slotPrefab, slotContainer.transform);
                     var slot = (Slot)this.inventory.Slots[i];
                     container.SetSlot(slot, i);
-                    container.OnSelectIndex += this.AddItem;
+                    container.OnSelectIndex += this.SelectItem;
                 }
             }
         }
 
-        private void AddItem(int index, int amount = 1)
+        private void Drop() { 
+        }
+        
+        private void Unselect()
+        {
+
+        }
+
+        private void SelectItem(int index, int amount = 1)
         {
             if (SelectedIndex == index)
             {
                 this.SelectedIndex = -1;
                 this.SelectedAmount = 0;
-                return;
-            }
-
-            if(SelectedIndex != -1)
-            {
-                this.inventory.MoveItem(SelectedIndex, index);
-                this.SelectedIndex = -1;
-                this.SelectedAmount = 0;
             }
             else
             {
-                this.SelectedIndex = index;
-                this.SelectedAmount = amount;
+                if(SelectedIndex != -1)
+                {
+                    this.inventory.MoveItem(SelectedIndex, index);
+                    this.SelectedIndex = -1;
+                    this.SelectedAmount = 0;
+                }
+                else
+                {
+                    this.SelectedIndex = index;
+                    this.SelectedAmount = amount;
+                }
             }
+
 
             this.RefreshUI();
         }
 
-        public void RefreshUI()
+        private void RefreshUI()
         {
             for (int i = 0; i < slotContainer.transform.childCount; i++)
             {
@@ -101,7 +109,7 @@ namespace TheChest.UI
             }
         }
 
-        public void ClearUI()
+        private void ClearUI()
         {
             this.containerName.text = "";
             this.SelectedIndex = -1;

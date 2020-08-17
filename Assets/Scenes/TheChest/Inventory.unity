@@ -399,7 +399,7 @@ RectTransform:
   m_Children:
   - {fileID: 17108201}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -530,7 +530,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1517517487
 GameObject:
@@ -621,6 +621,8 @@ GameObject:
   - component: {fileID: 1744917313}
   - component: {fileID: 1744917312}
   - component: {fileID: 1744917314}
+  - component: {fileID: 1744917315}
+  - component: {fileID: 1744917316}
   m_Layer: 0
   m_Name: Item_One
   m_TagString: Untagged
@@ -686,11 +688,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744917311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -1.26, z: 0}
+  m_LocalPosition: {x: 8.031, y: 0.779, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1744917314
 MonoBehaviour:
@@ -704,6 +706,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6fa8537dd0ad44cac3172cd14121d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item:
+    name: Item
+    description: test
+    image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    maxStack: 7
+  amount: 9
+--- !u!114 &1744917315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744917311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3651b189e906ac242bae5f16d2188997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1744917316
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744917311}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.2, y: 0.2}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0
 --- !u!1 &1829856497
 GameObject:
   m_ObjectHideFlags: 0
