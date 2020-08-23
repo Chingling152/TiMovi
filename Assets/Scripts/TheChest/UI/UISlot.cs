@@ -5,6 +5,7 @@ using TheChest.Containers;
 
 namespace TheChest.UI
 {
+    //TODO: fix UI Layer
     [DisallowMultipleComponent]
     public class UISlot : MonoBehaviour//TODO : BaseUISlot
     {

@@ -8,7 +8,7 @@ namespace TheChest.UI.Components.Slots
     /// </summary>
     [RequireComponent(typeof(UISlot))]
     [DisallowMultipleComponent]
-    public sealed class SlotClickHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler , IPointerExitHandler
+    public sealed class UISlotClickHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler , IPointerExitHandler
     {
         public void OnPointerClick(PointerEventData eventData)
         {

@@ -8,7 +8,7 @@ namespace TheChest.UI.Components.Slots
     /// </summary>
     [RequireComponent(typeof(UISlot))]
     [DisallowMultipleComponent]
-    public sealed class SlotDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+    public sealed class UISlotDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
     {
         /// <summary>
         /// Position on screen of the selected item
@@ -47,14 +47,14 @@ namespace TheChest.UI.Components.Slots
         /// </summary>
         /// <param name="eventData"></param>
         public void OnEndDrag(PointerEventData eventData)
-        {
-            this.GetComponent<UISlot>().ItemSprite.rectTransform.position = originalPosition;
+        {//TODO: fix bug when clicks and drag
+            var slot = this.GetComponent<UISlot>();
+            slot.ItemSprite.rectTransform.position = originalPosition;
         }
 
         public void OnDrop(PointerEventData eventData)
         {
-            var slot = this.GetComponent<UISlot>();
-            slot.Selected();
+            this.GetComponent<UISlot>().Selected();
         }
     }
 }

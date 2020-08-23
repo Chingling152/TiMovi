@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using TheChest.Containers;
 using TheChest.Items;
 using TheChest.World;
+using TheChest.UI.Components.Inventory;
 
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
+    //[RequireComponent(typeof(UIInventoryConfig))]
     public partial class UIInventory : MonoBehaviour
     {
         [Header("Inventory stats")]
@@ -26,6 +28,8 @@ namespace TheChest.UI
         [SerializeField]
         private UISlot slotPrefab;
 
+        private UIInventoryConfig configs;
+
         public int SelectedIndex { 
             get ;
             protected set ;
@@ -38,13 +42,16 @@ namespace TheChest.UI
 
         private void Awake()
         {
+            this.configs = this.GetComponent<UIInventoryConfig>();
             this.GenerateUI();
             InventoryManager.PlayerInventory = this;
         }
 
         public bool Add(Item item,int amount = 1)
         {
-            return this.inventory.AddItem(item,amount).Length == 0;
+            var res = this.inventory.AddItem(item, amount).Length == 0;
+            this.RefreshUI();
+            return res;
         }
 
         private void GenerateUI()
@@ -57,20 +64,23 @@ namespace TheChest.UI
             {
                 for (int i = 0; i < inventory.Size; i++)
                 {
-                    UISlot container = Instantiate(slotPrefab, slotContainer.transform);
-                    var slot = (Slot)this.inventory.Slots[i];
-                    container.SetSlot(slot, i);
-                    container.OnSelectIndex += this.SelectItem;
+                    var slot = this.inventory.Slots[i];
+                    UISlot uiSlot = Instantiate(this.slotPrefab, this.slotContainer.transform);
+                    uiSlot.SetSlot((Slot)slot, i);
+                    uiSlot.OnSelectIndex += this.SelectItem;
                 }
             }
         }
 
         private void Drop() { 
+
         }
         
         private void Unselect()
         {
-
+            this.SelectedIndex = -1;
+            this.SelectedAmount = 0;
+            this.RefreshUI();
         }
 
         private void SelectItem(int index, int amount = 1)
@@ -94,7 +104,6 @@ namespace TheChest.UI
                     this.SelectedAmount = amount;
                 }
             }
-
 
             this.RefreshUI();
         }
