@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TheChest.Containers;
 using TheChest.Items;
 using TheChest.World;
-using TheChest.UI.Components.Inventory;
 
 namespace TheChest.UI
 {
@@ -28,8 +27,6 @@ namespace TheChest.UI
         [SerializeField]
         private UISlot slotPrefab;
 
-        private UIInventoryConfig configs;
-
         public int SelectedIndex { 
             get ;
             protected set ;
@@ -42,7 +39,6 @@ namespace TheChest.UI
 
         private void Awake()
         {
-            this.configs = this.GetComponent<UIInventoryConfig>();
             this.GenerateUI();
             InventoryManager.PlayerInventory = this;
         }

@@ -131,8 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 17108201}
   - component: {fileID: 17108203}
-  - component: {fileID: 17108204}
-  - component: {fileID: 17108205}
+  - component: {fileID: 17108202}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -161,6 +160,145 @@ RectTransform:
   m_AnchoredPosition: {x: -155.7738, y: 0}
   m_SizeDelta: {x: -311.5476, y: 306}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &17108202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17108200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ac37a5a8bf6224dafe3ad2e707b719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+    containerName: Test Inventory
+    slots:
+    - item:
+        name: Test Item
+        description: Item description
+        image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+        maxStack: 15
+      stackAmount: 12
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+    - item:
+        name: 
+        description: 
+        image: {fileID: 0}
+        maxStack: 0
+      stackAmount: 0
+  containerName: {fileID: 1517517489}
+  slotContainer: {fileID: 781111379}
+  slotPrefab: {fileID: 3061905806792562279, guid: ae22afe8f4a2d474896483b08dc511e1,
+    type: 3}
 --- !u!222 &17108203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -169,134 +307,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17108200}
   m_CullTransparentMesh: 0
---- !u!114 &17108204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17108200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3609b6fbdfcf0194a9c438132a83959a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory:
-    containerName: Inventory
-    slots:
-    - item:
-        name: Item
-        description: 
-        image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-        maxStack: 13
-      stackAmount: 12
-    - item:
-        name: Item
-        description: 
-        image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-        maxStack: 13
-      stackAmount: 12
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-    - item:
-        name: Item 2
-        description: 
-        image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-        maxStack: 24
-      stackAmount: 12
-    - item:
-        name: 
-        description: 
-        image: {fileID: 0}
-        maxStack: 1
-      stackAmount: 0
-  containerName: {fileID: 1517517489}
-  slotContainer: {fileID: 781111379}
-  slotPrefab: {fileID: 3061905806792562279, guid: ae22afe8f4a2d474896483b08dc511e1,
-    type: 3}
---- !u!114 &17108205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17108200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9496c7276a650d240b29672ff4b21a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotArea: {fileID: 781111379}
-  slotPrefab: {fileID: 3061905806792562279, guid: ae22afe8f4a2d474896483b08dc511e1,
-    type: 3}
-  hasDragAndDrop: 0
-  DropArea: {fileID: 0}
-  DropAreaCloses: 0
-  DropEntity: {fileID: 0}
 --- !u!1 &77809499
 GameObject:
   m_ObjectHideFlags: 0
