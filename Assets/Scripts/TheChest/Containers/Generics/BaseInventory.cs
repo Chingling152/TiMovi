@@ -150,6 +150,7 @@ namespace TheChest.Containers.Generics
         #endregion
 
         #region item
+
         public virtual T GetItem(T item)
         {
             for (int i = 0; i < this.Slots.Length; i++)
@@ -161,6 +162,7 @@ namespace TheChest.Containers.Generics
             }
             return null;
         }
+
         public virtual T[] GetItemAmount(T item, int amount = 1)
         {
             if(amount < 0) return new T[0];

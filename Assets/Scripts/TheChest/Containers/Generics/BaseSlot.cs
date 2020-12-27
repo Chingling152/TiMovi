@@ -9,6 +9,9 @@ namespace TheChest.Containers.Generics
     public class BaseSlot<T> : ISlot<T> where T : class
     {
         #region Properties
+        /// <summary>
+        /// The current item inside the slot
+        /// </summary>
         public virtual T CurrentItem { get; protected set; }
 
         /// <summary>
@@ -21,8 +24,14 @@ namespace TheChest.Containers.Generics
         /// </summary>
         public virtual int MaxStackAmount { get; protected set ;}
 
-        public virtual bool isFull => StackAmount == MaxStackAmount;
+        /// <summary>
+        /// Verify if the slot is full
+        /// </summary>
+        public virtual bool isFull => StackAmount == MaxStackAmount && !this.isEmpty;
 
+        /// <summary>
+        /// Verify if the slot is empty
+        /// </summary>
         public virtual bool isEmpty => CurrentItem == null || StackAmount == 0;
         #endregion
 
@@ -53,17 +62,14 @@ namespace TheChest.Containers.Generics
 
         #region Add
         /// <summary>
-        /// Adds a item in the slot (try stack)
+        /// Adds an item in the slot (try stack)
         /// </summary>
         /// <param name="item">Item to be added</param>
         /// <returns>returns true if successfully added</returns>
         public virtual bool Add(T item)
         {
             var eq = this.CurrentItem?.Equals(item)??false;
-            if (
-                this.isEmpty ||
-                (eq && !this.isFull)
-            )
+            if (this.isEmpty || (eq && !this.isFull))
             {
                 this.CurrentItem = item;
                 this.StackAmount++;
@@ -73,6 +79,12 @@ namespace TheChest.Containers.Generics
             return false;
         }
 
+        /// <summary>
+        /// Adds an item in the slot
+        /// </summary>
+        /// <param name="item">Item to be added</param>
+        /// <param name="amount">amount to be added</param>
+        /// <returns>Returns the amount that could be not be added</returns>
         public virtual int Add(T item, int amount = 1)
         {
             if (amount < 1) return 0;
@@ -99,6 +111,11 @@ namespace TheChest.Containers.Generics
             return Math.Abs(res);
         }
 
+        /// <summary>
+        /// Adds an array of items in the slot
+        /// </summary>
+        /// <param name="items">array of items to be added</param>
+        /// <returns>Returns the amount that could be not be added</returns>
         public int Add(T[] items)
         {
             if(items == null || items.Length == 0) return 0;

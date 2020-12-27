@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TheChest.Containers;
 using TheChest.Items;
 using TheChest.World;
+using TheChest.UI.Components;
 
 namespace TheChest.UI
 {
@@ -11,8 +12,8 @@ namespace TheChest.UI
     public partial class UIInventory : MonoBehaviour
     {
         [Header("Inventory stats")]
-        [SerializeField]
-        private Inventory inventory;
+        [SerializeField]private DropArea dropArea;
+        [SerializeField]private Inventory inventory;
 
         [Header("UI Components")]
 
@@ -41,6 +42,7 @@ namespace TheChest.UI
         {
             this.GenerateUI();
             InventoryManager.PlayerInventory = this;
+            dropArea.OnDropItem += this.Drop;
         }
 
         public bool Add(Item item,int amount = 1)

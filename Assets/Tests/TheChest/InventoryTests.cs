@@ -54,7 +54,7 @@ namespace TheWorld.Tests.TheChest
         {
             var amount = random.Next(-high_amount,-low_amount);
             var inventory = new Inventory(amount);
-            Assert.Zero(inventory.Slots.Length);
+            Assert.AreEqual(Inventory.DEFAULT_SLOT_COUNT,inventory.Slots.Length);
         }
     }
 }

@@ -48,6 +48,7 @@ namespace TheChest.Containers
         /// </summary>
         public Inventory(string name = "Container") : base() { 
             this.ContainerName = name;
+            this.slots = new Slot[DEFAULT_SLOT_COUNT];
         }
 
         /// <summary>
@@ -56,7 +57,13 @@ namespace TheChest.Containers
         /// <param name="size">Amount of slots</param>
         public Inventory(int size, string name = "Container") : base(size)
         {
+            if(size <= 0)
+            {
+                size = DEFAULT_SLOT_COUNT;
+            }
+
             this.ContainerName = name;
+            this.slots = new Slot[size];
         }
 
         /// <summary>
@@ -66,6 +73,7 @@ namespace TheChest.Containers
         public Inventory(Slot[] slots, string name = "Container") : base(slots)
         {
             this.ContainerName = name;
+            this.slots = slots;
         }
         #endregion
 

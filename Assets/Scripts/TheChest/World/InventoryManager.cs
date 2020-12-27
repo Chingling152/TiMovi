@@ -2,10 +2,19 @@
 
 namespace TheChest.World
 {
-    [System.Obsolete]
     public static class InventoryManager
     {
-        public static UIInventory playerInventory;
+        private static UIInventory playerInventory;
+
+        public static UIInventory PlayerInventory { 
+            get => playerInventory;
+            set {
+                if(playerInventory == null)
+                {
+                    playerInventory = value;
+                }
+            }
+        }
         //public static List<Inventory> Inventories { get ; private set;}
 
         //static InventoryManager()
