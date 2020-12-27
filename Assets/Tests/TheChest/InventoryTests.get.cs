@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Linq;
 using TheChest.Containers;
+using TheChest.Items;
 
 namespace TheWorld.Tests.TheChest
 {
@@ -8,7 +10,7 @@ namespace TheWorld.Tests.TheChest
     {
         #region Index
         [Test]
-        public void Get_from_index__should_return_Item()
+        public void Get_from_index__Should_return_Item()
         {
             var amount = random.Next(low_amount,high_amount);
             var slots = Enumerable.Repeat(this.DefaultSlotGenerator(false, amount), high_size).ToArray();
@@ -22,7 +24,7 @@ namespace TheWorld.Tests.TheChest
         }
 
         [Test]
-        public void Get_from_index__wrong_index_should_return_null()
+        public void Get_from_index__Wrong_index_should_return_null()
         {
             var amount = random.Next(low_amount, high_amount);
             var slots = Enumerable.Repeat(this.DefaultSlotGenerator(false, amount), high_size).ToArray();
@@ -51,16 +53,60 @@ namespace TheWorld.Tests.TheChest
 
         #region item
 
-        public void Get_Item__should_return_a_item()
+        [Test]
+        public void Get_Item__should_return_Item()
         {
             var slots = Enumerable.Repeat(this.DefaultSlotGenerator(false), high_size).ToArray();
 
-            var inventory = new Inventory(slots);
-            //inventory.AddItem();
+            var item = new Item(
+              id: Guid.NewGuid().ToString(),
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: random.Next(1, high_amount)
+           );
 
-            var result = inventory.GetItem(random.Next(0, high_size));
+            slots[random.Next(0, slots.Length)] = new Slot(item);
+
+            var inventory = new Inventory(slots);
+
+            var result = inventory.GetItem(item);
+
+            Assert.AreEqual(item,result);
         }
 
+        [Test]
+        public void Get_Item__Wrong_item_should_return_null()
+        {
+            var slots = Enumerable.Repeat(this.DefaultSlotGenerator(true), high_size).ToArray();
+
+            var item = new Item(
+              id: Guid.NewGuid().ToString() + "2",
+              name: Guid.NewGuid().ToString(),
+              description: Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: random.Next(1, high_amount)
+           );
+
+            var inventory = new Inventory(slots);
+
+            var result = inventory.GetItem(item);
+
+            Assert.IsNull(result);
+            Assert.AreNotEqual(item, result);
+        }
+
+        [Test]
+        public void Get_Item__null_should_return_null()
+        {
+            var slots = Enumerable.Repeat(this.DefaultSlotGenerator(true), high_size).ToArray();
+
+            var inventory = new Inventory(slots);
+
+            var result = inventory.GetItem(null);
+
+            Assert.IsNull(result);
+        }
         #endregion
 
     }
