@@ -17,6 +17,9 @@ namespace TheChest.Containers
         [SerializeField]
         private Item item;
 
+        /// <summary>
+        /// Current item inside the slot
+        /// </summary>
         public override Item CurrentItem {
             get {
                 return this.item;
@@ -32,6 +35,9 @@ namespace TheChest.Containers
         [SerializeField]
         private int stackAmount;
 
+        /// <summary>
+        /// The amount of the item inside this slot
+        /// </summary>
         public override int StackAmount {
             get {
                 return this.stackAmount;
@@ -51,7 +57,7 @@ namespace TheChest.Containers
         /// Creates an Slot with an Item
         /// </summary>
         /// <param name="CurrentItem">Item inside the slot (can be null)</param>
-        /// <param name="amount">Amount of <paramref name="CurrentItem"/> (0 if null)</param>
+        /// <param name="amount">Amount of <paramref name="CurrentItem"/> (0 if item is null)</param>
         public Slot(Item CurrentItem = null,int amount = 1) 
         {
             this.CurrentItem = CurrentItem;

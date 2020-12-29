@@ -8,7 +8,6 @@ using TheChest.UI.Components;
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    //[RequireComponent(typeof(UIInventoryConfig))]
     public partial class UIInventory : MonoBehaviour
     {
         [Header("Inventory stats")]
@@ -16,8 +15,6 @@ namespace TheChest.UI
         [SerializeField]private Inventory inventory;
 
         [Header("UI Components")]
-
-        //TODO: https://www.youtube.com/watch?v=wYkzeKghjsI
 
         [SerializeField]
         private Text containerName;

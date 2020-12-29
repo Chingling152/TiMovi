@@ -41,7 +41,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void SlotConstrutorWithItem()
         {
-            var item = new Item();
+            var item = this.DefaultItemGenerator();
             var slot = new Slot(item);
 
             Assert.IsFalse(slot.isEmpty);

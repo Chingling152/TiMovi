@@ -9,7 +9,6 @@ namespace TheChest.UI
     [DisallowMultipleComponent]
     public class UISlot : MonoBehaviour//TODO : BaseUISlot
     {
-        //TODO: https://www.youtube.com/watch?v=wYkzeKghjsI maybe (?)
         [Header("Values")]
         [Tooltip("The Image element wich will render the item sprite")]
         [SerializeField]

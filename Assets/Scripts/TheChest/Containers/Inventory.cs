@@ -16,9 +16,6 @@ namespace TheChest.Containers
         [SerializeField]
         protected string containerName;
 
-        [SerializeField]
-        protected Slot[] slots;
-
         /// <summary>
         /// Displayed name of inventory
         /// </summary>
@@ -31,6 +28,12 @@ namespace TheChest.Containers
             }
         }
 
+        [SerializeField]
+        protected Slot[] slots;
+
+        /// <summary>
+        /// Slots of the <see cref="Inventory"/>
+        /// </summary>
         public override ISlot<Item>[] Slots { 
             get{
                 return slots;
@@ -40,7 +43,24 @@ namespace TheChest.Containers
             }
         }
 
+        /// <summary>
+        /// Amount of slots of the inventory
+        /// </summary>
         public override int Size => this.Slots.Length;
+
+        /// <summary>
+        /// Gets an Inventyory Slot
+        /// </summary>
+        /// <param name="index">index of the index</param>
+        /// <returns>Returns an Slot from Inventory</returns>
+        public ISlot<Item> this[int index] {
+            get {
+                if (index > slots.Length || index < 0)
+                    return null;
+
+                return this.slots[index];
+            }
+        }
 
         #region Constructors
         /// <summary>
@@ -49,6 +69,7 @@ namespace TheChest.Containers
         public Inventory(string name = "Container") : base() { 
             this.ContainerName = name;
             this.slots = new Slot[DEFAULT_SLOT_COUNT];
+            this.FillSlots();
         }
 
         /// <summary>
@@ -64,6 +85,15 @@ namespace TheChest.Containers
 
             this.ContainerName = name;
             this.slots = new Slot[size];
+            this.FillSlots();
+        }
+
+        private void FillSlots()
+        {
+            for (int i = 0; i < this.slots.Length; i++)
+            {
+                this.slots[i] = new Slot();
+            }
         }
 
         /// <summary>
