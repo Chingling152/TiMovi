@@ -63,5 +63,23 @@ namespace TheChest.Containers
             this.CurrentItem = CurrentItem;
             this.StackAmount = CurrentItem != null ? amount : 0;
         }
+
+        /// <summary>
+        /// Creates an Slot with items
+        /// </summary>
+        /// <param name="currentItems">Items inside the slot (should be copies of first item)</param>
+        public Slot(Item[] currentItems)
+        {
+            if(currentItems == null)
+            {
+                this.CurrentItem = null;
+                this.StackAmount = 0;
+            }
+            else
+            {
+                this.CurrentItem = currentItems[0];
+                this.StackAmount = currentItems.Length;
+            }
+        }
     }
 }

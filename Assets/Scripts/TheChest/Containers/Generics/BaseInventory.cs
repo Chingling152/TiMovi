@@ -85,13 +85,40 @@ namespace TheChest.Containers.Generics
 
         public virtual T[] AddItem(T[] items)
         {
-            return null;
+            if(items == null)
+            {
+                return new T[0];
+            }
+
+            var itemArr = items.Clone() as T[];
+            var item = items[0];
+
+            for (int i = 0; i < Slots.Length; i++)
+            {
+                if (this.Slots[i].isEmpty || (!this.Slots[i].isFull && this.Slots[i].CurrentItem == item))
+                {
+                    var result = this.Slots[i].Add(itemArr);
+                    itemArr = Enumerable.Repeat(item, result).ToArray();
+                }
+
+                if (itemArr.Length == 0)
+                    break;
+            }
+
+            return itemArr;
         }
 
         public virtual T[] AddItemAt(T item, int index, int amount = 1, bool replace = true)
         {
-            //TODO: implement on Inventory
-            if (index < 0 || index >= Slots.Length || amount < 1) return new T[0];
+            if (amount < 1)
+            {
+                return new T[0];
+            }
+
+            if (index < 0 || index >= Slots.Length)
+            {
+                return Enumerable.Repeat(item, amount).ToArray();
+            }
 
             if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && this.Slots[index].CurrentItem == item))
             {
@@ -108,7 +135,11 @@ namespace TheChest.Containers.Generics
 
         public virtual T[] AddItemAt(T[] items,int index , bool replace = true)
         {
-            if (index < 0 || index >= Slots.Length || items == null) return new T[0];
+            if (index < 0 || index >= Slots.Length)
+                return items;
+
+            if (items == null)
+                return new T[0];
 
             var item = items?.FirstOrDefault();
             var eq = this.Slots[index].CurrentItem?.Equals(item)?? false;
