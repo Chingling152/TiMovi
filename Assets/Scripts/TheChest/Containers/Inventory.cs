@@ -88,14 +88,6 @@ namespace TheChest.Containers
             this.FillSlots();
         }
 
-        private void FillSlots()
-        {
-            for (int i = 0; i < this.slots.Length; i++)
-            {
-                this.slots[i] = new Slot();
-            }
-        }
-
         /// <summary>
         /// Creates an inventory and sets it's slots
         /// </summary>

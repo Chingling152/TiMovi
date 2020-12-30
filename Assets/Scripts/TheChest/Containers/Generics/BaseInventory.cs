@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TheChest.Containers.Generics
@@ -46,8 +47,7 @@ namespace TheChest.Containers.Generics
         {
             if (size < 0) size = 0;
             this.Slots = new ISlot<T>[size];
-            //TODO: use default contructor using reflection
-
+            this.FillSlots();
         }
 
         /// <summary>
@@ -57,6 +57,17 @@ namespace TheChest.Containers.Generics
         public BaseInventory(ISlot<T>[] slots)
         {
             this.Slots = slots;
+            this.FillSlots();
+        }
+
+        /// <summary>
+        /// Fills the null stot with empty ones
+        /// </summary>
+        protected virtual void FillSlots(){
+            for (int i = 0; i < this.Slots.Length; i++)
+            {
+                this.Slots[i] = new BaseSlot<T>();
+            }
         }
         #endregion
 
