@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Linq;
 using TheChest.Containers;
-using TheChest.Items;
 
 namespace TheWorld.Tests.TheChest
 {
@@ -11,10 +10,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void AddItem__Empty_Inventory_should_add_to_first_Slot()
         {
-            var slots = Enumerable.Repeat(this.DefaultSlotGenerator(), high_size).ToArray();
-
-            //TODO: generate slot using empty constructor
-            var inventory = new Inventory(slots);
+            var inventory = new Inventory();
 
             var item = this.DefaultItemGenerator();
 
@@ -81,10 +77,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void AddItems__Empty_Inventory_should_add_to_first_Slot()
         {
-            var slots = Enumerable.Repeat(this.DefaultSlotGenerator(), high_size).ToArray();
-
-            //TODO: generate slot using empty constructor
-            var inventory = new Inventory(slots);
+            var inventory = new Inventory();
 
             var items = Enumerable.Repeat(this.DefaultItemGenerator(),1).ToArray();
 
@@ -137,10 +130,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void AddItems__Null_item_should_not_add()
         {
-            var slots = Enumerable.Repeat(this.DefaultSlotGenerator(), high_size).ToArray();
-
-            //TODO: generate slot using empty constructor
-            var inventory = new Inventory(slots);
+            var inventory = new Inventory();
 
             var result = inventory.AddItem(null);
             var slot = inventory[0];
