@@ -97,6 +97,16 @@ namespace TheChest.Containers
             this.ContainerName = name;
             this.slots = slots;
         }
+        /// <summary>
+        /// Fills the null slot with empty ones
+        /// </summary>
+        protected override void FillSlots()
+        {
+            for (int i = 0; i < this.Slots.Length; i++)
+            {
+                this.Slots[i] = new Slot();
+            }
+        }
         #endregion
 
         /// <summary>

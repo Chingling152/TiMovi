@@ -31,23 +31,21 @@ namespace TheChest.Containers.Generics
         #region Constructors
 
         /// <summary>
-        /// Creates an inventory with 20 Slots (using refletion)
+        /// Creates an inventory with 20 Slots
         /// </summary>
         public BaseInventory()
         {
             this.Slots = new ISlot<T>[DEFAULT_SLOT_COUNT];
-            //TODO: use default contructor using reflection
         }
 
         /// <summary>
-        /// Creates a inventory with a defined size (using refletion)
+        /// Creates a inventory with a defined size 
         /// </summary>
         /// <param name="size">The amount of Slots that will have (or 0 if lower than 0)</param>
         public BaseInventory(int size)
         {
             if (size < 0) size = 0;
             this.Slots = new ISlot<T>[size];
-            this.FillSlots();
         }
 
         /// <summary>
@@ -57,11 +55,10 @@ namespace TheChest.Containers.Generics
         public BaseInventory(ISlot<T>[] slots)
         {
             this.Slots = slots;
-            this.FillSlots();
         }
 
         /// <summary>
-        /// Fills the null stot with empty ones
+        /// Fills the null slot with empty ones
         /// </summary>
         protected virtual void FillSlots(){
             for (int i = 0; i < this.Slots.Length; i++)
