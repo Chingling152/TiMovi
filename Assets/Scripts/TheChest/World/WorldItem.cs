@@ -35,12 +35,7 @@ public class WorldItem : MonoBehaviour
 
     private void Start()
     {
-        if(item == null)
-        {
-            Destroy(this.gameObject);
-        }
-
-        this.GetComponent<SpriteRenderer>().sprite = item.Image;
+        this.GetComponent<SpriteRenderer>().sprite = item?.Image;
     }
 
     public void OnMouseDown()

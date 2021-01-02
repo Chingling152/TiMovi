@@ -8,22 +8,31 @@ using TheChest.UI.Components;
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public partial class UIInventory : MonoBehaviour
+    public class UIInventory : MonoBehaviour
     {
-        [Header("Inventory stats")]
-        [SerializeField]private DropArea dropArea;
-        [SerializeField]private Inventory inventory;
+        [Header("Inventory data")]
+        [Tooltip("Inventory class to store items data")]
+        [SerializeField]protected Inventory inventory;
 
+        #region UI
         [Header("UI Components")]
 
-        [SerializeField]
-        private Text containerName;
+        [Tooltip("Text to show the Container name")]
+        [SerializeField] protected Text containerName;
 
-        [SerializeField]
-        private GameObject slotContainer;
+        [Tooltip("Container where slot Prefabs will be created")]
+        [SerializeField] protected GameObject slotContainer;
 
-        [SerializeField]
-        private UISlot slotPrefab;
+        [Tooltip("An item slot prefab")]
+        [SerializeField] protected UISlot slotPrefab;
+
+        [Tooltip("The are where layer can drop items from inventory")]
+        [SerializeField] protected DropArea dropArea;
+        #endregion
+
+        [Header("Prefab")]
+        [Tooltip("Prefab created when the Player drops an item")]
+        [SerializeField] protected WorldItem worldItem;
 
         public int SelectedIndex { 
             get ;
@@ -67,17 +76,31 @@ namespace TheChest.UI
             }
         }
 
-        private void Drop() { 
+        private void Drop() 
+        { 
+            var items = this.inventory.GetAll(this.SelectedIndex);
 
-        }
-        
-        private void Unselect()
-        {
+            if(items.Length == 0) {
+                this.SelectedIndex = -1;
+                this.SelectedAmount = 0;
+                return;
+            }
+
+            var item = items[0];
+
+            var screenPoint = Input.mousePosition;
+            screenPoint.z = 10.0f;
+
+            var obj = Instantiate(worldItem, Camera.main.ScreenToWorldPoint(screenPoint),Quaternion.identity);
+
+            obj.GetComponent<WorldItem>().Item = item;
+            obj.GetComponent<WorldItem>().Amount = items.Length;
+
             this.SelectedIndex = -1;
             this.SelectedAmount = 0;
             this.RefreshUI();
         }
-
+        
         private void SelectItem(int index, int amount = 1)
         {
             if (SelectedIndex == index)

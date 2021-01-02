@@ -11,14 +11,22 @@ namespace TheChest.UI.Interfaces
         /// </summary>
         T Inventory { get ; }
 
+        int SelectedIndex { get ; }
+
         /// <summary>
         /// Generates the inventory slots based on <see cref="Inventory"/>
         /// </summary>
-        void GenerateUI();
+        void Generate();
+
+        void Refresh();
+
+        void Drop();
+
+        void SelectItem(int index);
 
         /// <summary>
         /// Clear the inventory UI
         /// </summary>
-        void ClearUI();
+        void Clear();
     }
 }
