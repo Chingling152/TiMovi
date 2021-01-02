@@ -8,30 +8,26 @@ using UnityEngine;
 /// </summary>
 public class WorldItem : MonoBehaviour
 {
-    [SerializeField]
-    private Item item;
-
-    [SerializeField]
-    [Range(1,100)]
-    private int amount;
-
-    public int Amount { 
-        get => amount;
-        set {
-            if(value <= 0)
-            {
-                value = 1;
-            }
-            this.amount = value;
-        }
-    }
-
     public Item Item {
         get => item;
         set {
             item = value;
         }
     }
+    [SerializeField] private Item item;
+
+    public int Amount {
+        get => amount;
+        set {
+            if (value <= 0)
+            {
+                value = 1;
+            }
+            this.amount = value;
+        }
+    }
+    [Range(1,100)]
+    [SerializeField] private int amount;
 
     private void Start()
     {

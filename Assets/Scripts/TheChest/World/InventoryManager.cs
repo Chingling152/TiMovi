@@ -15,14 +15,5 @@ namespace TheChest.World
                 }
             }
         }
-        //public static List<Inventory> Inventories { get ; private set;}
-
-        //static InventoryManager()
-        //{
-        //    Inventories = new List<Inventory>();
-        //}
-        //public static event Action<Inventory,Item> OnInventoryGetItem;
-
-        //public static event Action<Inventory,Item,Inventory> OnInventoryTransfeerItem;
     }
 }

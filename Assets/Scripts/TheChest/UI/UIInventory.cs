@@ -4,17 +4,18 @@ using TheChest.Containers;
 using TheChest.Items;
 using TheChest.World;
 using TheChest.UI.Components;
+using TheChest.UI.Interfaces;
 
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public class UIInventory : MonoBehaviour
+    public class UIInventory : MonoBehaviour, IInventoryUI<Inventory,Item>
     {
         [Header("Inventory data")]
         [Tooltip("Inventory class to store items data")]
         [SerializeField]protected Inventory inventory;
 
-        #region UI
+        #region UI Components
         [Header("UI Components")]
 
         [Tooltip("Text to show the Container name")]
@@ -34,6 +35,11 @@ namespace TheChest.UI
         [Tooltip("Prefab created when the Player drops an item")]
         [SerializeField] protected WorldItem worldItem;
 
+        #region Properties
+        public Inventory Inventory{
+            get => this.inventory; 
+         }
+
         public int SelectedIndex { 
             get ;
             protected set ;
@@ -43,24 +49,26 @@ namespace TheChest.UI
             get;
             protected set ;
         }
+        #endregion
 
         private void Awake()
         {
-            this.GenerateUI();
+            this.Generate();
             InventoryManager.PlayerInventory = this;
             dropArea.OnDropItem += this.Drop;
         }
 
+        #region Interface methods
         public bool Add(Item item,int amount = 1)
         {
             var res = this.inventory.AddItem(item, amount).Length == 0;
-            this.RefreshUI();
+            this.Refresh();
             return res;
         }
 
-        private void GenerateUI()
+        public void Generate()
         {
-            this.ClearUI();
+            this.Clear();
             if (this.containerName != null)
                 this.containerName.text = this.inventory?.ContainerName;
 
@@ -76,7 +84,7 @@ namespace TheChest.UI
             }
         }
 
-        private void Drop() 
+        public void Drop() 
         { 
             var items = this.inventory.GetAll(this.SelectedIndex);
 
@@ -98,10 +106,10 @@ namespace TheChest.UI
 
             this.SelectedIndex = -1;
             this.SelectedAmount = 0;
-            this.RefreshUI();
+            this.Refresh();
         }
-        
-        private void SelectItem(int index, int amount = 1)
+
+        public void SelectItem(int index, int amount = 1)
         {
             if (SelectedIndex == index)
             {
@@ -123,20 +131,20 @@ namespace TheChest.UI
                 }
             }
 
-            this.RefreshUI();
+            this.Refresh();
         }
 
-        private void RefreshUI()
+        public void Refresh()
         {
             for (int i = 0; i < slotContainer.transform.childCount; i++)
             {
                 var container = slotContainer.transform.GetChild(i).GetComponent<UISlot>();
                 var slot = (Slot)this.inventory.Slots[i];
-                container.SetSlot(slot, i,i == SelectedIndex);
+                container.Refresh(slot,i == SelectedIndex);
             }
         }
 
-        private void ClearUI()
+        public void Clear()
         {
             this.containerName.text = "";
             this.SelectedIndex = -1;
@@ -147,5 +155,6 @@ namespace TheChest.UI
                 Destroy(item);
             }
         }
+        #endregion
     }
 }
