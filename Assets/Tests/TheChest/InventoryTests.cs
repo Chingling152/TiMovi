@@ -22,14 +22,26 @@ namespace TheWorld.Tests.TheChest
             Assert.IsTrue(low_amount < high_amount);
         }
 
-        private Item DefaultItemGenerator()
+        #region Generators
+        private Item DefaultItemGenerator(string id = null,string name = null, string description = null , int maxStack = -1)
         {
             return new Item(
-              id: Guid.NewGuid().ToString(),
-              name: Guid.NewGuid().ToString(),
+              id: id??Guid.NewGuid().ToString(),
+              name: name??Guid.NewGuid().ToString(),
+              description: description??Guid.NewGuid().ToString(),
+              image: null,
+              maxStack: maxStack > 0? maxStack : random.Next(1, high_amount)
+           );
+        }
+
+        private Item DistinctItemGenerator(int maxStack = -1)
+        {
+            return new Item(
+              id: Guid.NewGuid().ToString() + random.Next(0,10),
+              name: Guid.NewGuid().ToString() + random.Next(0, 10),
               description: Guid.NewGuid().ToString(),
               image: null,
-              maxStack: random.Next(1, high_amount)
+              maxStack: maxStack > 0 ? maxStack : random.Next(1, high_amount)
            );
         }
 
@@ -40,6 +52,35 @@ namespace TheWorld.Tests.TheChest
             else
                 return new Slot(this.DefaultItemGenerator(), amount);
         }
+
+        private Inventory DefaultInventoryGenerator(bool isEmpty = true, int slotAmount = 20 , int itemAmount = high_amount, Item itemTemplate = null)
+        {
+            if (isEmpty)
+            {
+                return new Inventory();
+            }
+            else
+            {
+                var slots = new Slot[slotAmount];
+
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    if(itemTemplate == null)
+                    {
+                        slots[i] = new Slot(this.DefaultItemGenerator(maxStack: itemAmount));
+                    }
+                    else
+                    {
+                        slots[i] = new Slot(itemTemplate,itemAmount);
+                    }
+                }
+
+                var inventory = new Inventory(slots);
+
+                return inventory;
+            }
+        }
+        #endregion
 
         [Test]
         public void InventoryConstructorAmount()
@@ -52,9 +93,9 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void InventoryConstructorNegativeAmount()
         {
-            var amount = random.Next(-high_amount,-low_amount);
+            var amount = random.Next(-high_size, -low_size);
             var inventory = new Inventory(amount);
-            Assert.Zero(inventory.Slots.Length);
+            Assert.AreEqual(Inventory.DEFAULT_SLOT_COUNT,inventory.Slots.Length);
         }
     }
 }

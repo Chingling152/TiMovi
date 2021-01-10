@@ -2,7 +2,6 @@
 using TheChest.Items;
 using TheChest.Containers;
 using NUnit.Framework;
-using System.Collections;
 using System.Linq;
 
 namespace TheWorld.Tests.TheChest

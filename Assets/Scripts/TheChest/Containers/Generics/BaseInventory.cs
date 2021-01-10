@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TheChest.Containers.Generics
@@ -16,8 +17,14 @@ namespace TheChest.Containers.Generics
         /// </summary>
         public const int DEFAULT_SLOT_COUNT = 20;
 
+        /// <summary>
+        /// Slots of the inventory
+        /// </summary>
         public virtual ISlot<T>[] Slots { get; protected set; }
 
+        /// <summary>
+        /// Amount of slots of the inventory
+        /// </summary>
         public virtual int Size => this.Slots.Length;
         #endregion
 
@@ -32,9 +39,9 @@ namespace TheChest.Containers.Generics
         }
 
         /// <summary>
-        /// Creates a inventory with a defined size
+        /// Creates a inventory with a defined size 
         /// </summary>
-        /// <param name="size">The amount of Slots that will have (or 0 if lower than 0 )</param>
+        /// <param name="size">The amount of Slots that will have (or 0 if lower than 0)</param>
         public BaseInventory(int size)
         {
             if (size < 0) size = 0;
@@ -49,10 +56,19 @@ namespace TheChest.Containers.Generics
         {
             this.Slots = slots;
         }
+
+        /// <summary>
+        /// Fills the null slot with empty ones
+        /// </summary>
+        protected virtual void FillSlots(){
+            for (int i = 0; i < this.Slots.Length; i++)
+            {
+                this.Slots[i] = new BaseSlot<T>();
+            }
+        }
         #endregion
 
         #region Add
-
         public virtual T[] AddItem(T item, int amount = 1)
         {
             if(amount < 1) return new T[0];
@@ -64,6 +80,7 @@ namespace TheChest.Containers.Generics
                 if (this.Slots[i].isEmpty || (!this.Slots[i].isFull && this.Slots[i].CurrentItem == item))
                 {
                     var result = this.Slots[i].Add(item, amount);
+                    amount = result;
                     itemArr = Enumerable.Repeat(item, result).ToArray();
                 }
 
@@ -76,12 +93,40 @@ namespace TheChest.Containers.Generics
 
         public virtual T[] AddItem(T[] items)
         {
-            return null;
+            if(items == null)
+            {
+                return new T[0];
+            }
+
+            var itemArr = items.Clone() as T[];
+            var item = items[0];
+
+            for (int i = 0; i < Slots.Length; i++)
+            {
+                if (this.Slots[i].isEmpty || (!this.Slots[i].isFull && this.Slots[i].CurrentItem == item))
+                {
+                    var result = this.Slots[i].Add(itemArr);
+                    itemArr = Enumerable.Repeat(item, result).ToArray();
+                }
+
+                if (itemArr.Length == 0)
+                    break;
+            }
+
+            return itemArr;
         }
 
         public virtual T[] AddItemAt(T item, int index, int amount = 1, bool replace = true)
         {
-            if (index < 0 || index >= Slots.Length || amount < 1) return new T[0];
+            if (amount < 1)
+            {
+                return new T[0];
+            }
+
+            if (index < 0 || index >= Slots.Length)
+            {
+                return Enumerable.Repeat(item, amount).ToArray();
+            }
 
             if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && this.Slots[index].CurrentItem == item))
             {
@@ -98,7 +143,11 @@ namespace TheChest.Containers.Generics
 
         public virtual T[] AddItemAt(T[] items,int index , bool replace = true)
         {
-            if (index < 0 || index >= Slots.Length || items == null) return new T[0];
+            if (index < 0 || index >= Slots.Length)
+                return items;
+
+            if (items == null)
+                return new T[0];
 
             var item = items?.FirstOrDefault();
             var eq = this.Slots[index].CurrentItem?.Equals(item)?? false;
@@ -117,6 +166,7 @@ namespace TheChest.Containers.Generics
 
         #endregion
 
+        #region Move
         public virtual bool MoveItem(int origin, int target)
         {
             var oldItems = this.GetAll(origin);
@@ -124,10 +174,12 @@ namespace TheChest.Containers.Generics
             this.AddItemAt(res, origin);
             return true;
         }
+        #endregion
 
         #region Get
 
         #region index
+
         public virtual T GetItem(int index)
         {
             if (index > Slots.Length || index < 0)
@@ -150,6 +202,7 @@ namespace TheChest.Containers.Generics
         #endregion
 
         #region item
+
         public virtual T GetItem(T item)
         {
             for (int i = 0; i < this.Slots.Length; i++)
@@ -161,33 +214,42 @@ namespace TheChest.Containers.Generics
             }
             return null;
         }
+
         public virtual T[] GetItemAmount(T item, int amount = 1)
         {
             if(amount < 0) return new T[0];
 
-            var currentAmount = amount;
             var itemArr = new T[amount];
+
+            var currentAmount = amount;
+            var index = 0;
             
+            //TODO: optimize the for loops
             for (int i = 0; i < this.Slots.Length; i++)
             {
                 if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
                 {
                     var result = this.Slots[i].GetAmount(currentAmount);
-                    result.CopyTo(itemArr, amount-currentAmount);
-                    currentAmount -= result.Length;
+
+                    for (int j = 0; j < result.Length; j++)
+                    {
+                        var obj = result[j];
+
+                        if(obj != null)
+                        {
+                            itemArr[index] = obj;
+                            index ++;
+                            currentAmount --;
+                        }
+                    }
                 }
 
                 if(currentAmount == 0)
                     break;
             }
-            return itemArr;
+            return itemArr.Take(index).ToArray();
         }
 
-        /// <summary>
-        /// Returns the amount of an item (one per slot)
-        /// </summary>
-        /// <param name="item">item to be searched</param>
-        /// <returns></returns>
         public virtual int GetItemCount(T item)
         {
             int amount = 0;
@@ -204,6 +266,7 @@ namespace TheChest.Containers.Generics
         public virtual T[] Clear()
         {
             var list = new List<T>();
+
             for (int i = 0; i < this.Slots.Length; i++)
             {
                 var res = this.Slots[i].GetAll();

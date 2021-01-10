@@ -56,6 +56,11 @@
         /// <returns>Returns an array of the old item</returns>
         T[] Replace(T item, int amount = 1);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         T[] Replace(T[] items);
         #endregion
 

@@ -6,7 +6,7 @@
     /// <typeparam name="T">The item this inventory accepts</typeparam>
     public interface IInventory<T> //TODO: Change name to IContainer
     {
-        #region Properties
+        #region properties
         /// <summary>
         /// Slots in the Inventory
         /// </summary>
@@ -19,7 +19,6 @@
         #endregion
 
         #region get
-
         /// <summary>
         /// Gets an <see cref="item"/> inside a slot
         /// </summary>
@@ -57,6 +56,11 @@
         /// <returns>Returns the amount of items searched (or the max it can)</returns>
         T[] GetItemAmount(T item, int amount = 1);
 
+        /// <summary>
+        /// Get all Item of the selected type from all slots
+        /// </summary>
+        /// <param name="item">Item to be search</param>
+        /// <returns>Returns a list with all items founded in the inventory</returns>
         T[] GetAll(T item);
 
         /// <summary>
@@ -68,7 +72,6 @@
         #endregion
 
         #region add
-
         /// <summary>
         /// Adds an amount of item in a avaliable <see cref="ISlot{T}"/> 
         /// </summary>
@@ -78,9 +81,9 @@
         T[] AddItem(T item,int amount = 1);
 
         /// <summary>
-        /// 
+        /// Adds and array of item in a avaliable <see cref="ISlot{T}"/> 
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">Array of items to be added to any avaliable <see cref="ISlot{T}"/> founded</param>
         /// <returns></returns>
         T[] AddItem(T[] items); 
 
@@ -105,7 +108,6 @@
         #endregion
 
         #region extra
-
         /// <summary>
         /// Move a item between two slots
         /// </summary>

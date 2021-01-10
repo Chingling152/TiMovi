@@ -14,6 +14,12 @@ namespace TheChest.UI.Components.Slots
         /// Position on screen of the selected item
         /// </summary>
         private Vector2 originalPosition;
+        private UISlot component;
+
+        void Start()
+        {
+            component = this.GetComponent<UISlot>();
+        }
 
         /// <summary>
         /// Event that occour when the slot is clicked
@@ -23,9 +29,8 @@ namespace TheChest.UI.Components.Slots
         {
             if(eventData.button == PointerEventData.InputButton.Left)
             {
-                var slot = this.GetComponent<UISlot>();
-                this.originalPosition = slot.ItemSprite.rectTransform.position;
-                slot.Selected();
+                this.originalPosition = component.ItemSprite.rectTransform.position;
+                component.Select();
             }
         }
 
@@ -37,8 +42,7 @@ namespace TheChest.UI.Components.Slots
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                var itemSprite = this.GetComponent<UISlot>().ItemSprite;
-                itemSprite.rectTransform.position = Input.mousePosition;
+                component.ItemSprite.rectTransform.position = Input.mousePosition;
             }
         }
 
@@ -47,14 +51,13 @@ namespace TheChest.UI.Components.Slots
         /// </summary>
         /// <param name="eventData"></param>
         public void OnEndDrag(PointerEventData eventData)
-        {//TODO: fix bug when clicks and drag
-            var slot = this.GetComponent<UISlot>();
-            slot.ItemSprite.rectTransform.position = originalPosition;
+        {
+            component.ItemSprite.rectTransform.position = originalPosition;
         }
 
         public void OnDrop(PointerEventData eventData)
         {
-            this.GetComponent<UISlot>().Selected();
+            component.Select();
         }
     }
 }

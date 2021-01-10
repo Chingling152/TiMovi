@@ -14,17 +14,19 @@ namespace TheChest.UI.Components.Slots
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                this.GetComponent<UISlot>().Selected();
+                this.GetComponent<UISlot>().Select();
             }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            //TODO: Tooltip
             //throw new System.NotImplementedException();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            //TODO: Tooltip
             //throw new System.NotImplementedException();
         }
     }

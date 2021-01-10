@@ -30,12 +30,25 @@ namespace TheChest.Items
         /// Unique identifier of item 
         /// </summary>
         public string ID => id;
+
+        /// <summary>
+        /// Name of item
+        /// </summary>
         public string Name => name;
 
+        /// <summary>
+        /// Description of Item
+        /// </summary>
         public string Description => description;
 
+        /// <summary>
+        /// Image of item
+        /// </summary>
         public Sprite Image => image;
 
+        /// <summary>
+        /// Max stack of item on slot
+        /// </summary>
         public int MaxStack => maxStack;
 
         public Item()

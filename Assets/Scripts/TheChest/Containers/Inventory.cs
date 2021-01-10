@@ -16,9 +16,6 @@ namespace TheChest.Containers
         [SerializeField]
         protected string containerName;
 
-        [SerializeField]
-        protected Slot[] slots;
-
         /// <summary>
         /// Displayed name of inventory
         /// </summary>
@@ -31,6 +28,12 @@ namespace TheChest.Containers
             }
         }
 
+        [SerializeField]
+        protected Slot[] slots;
+
+        /// <summary>
+        /// Slots of the <see cref="Inventory"/>
+        /// </summary>
         public override ISlot<Item>[] Slots { 
             get{
                 return slots;
@@ -40,7 +43,24 @@ namespace TheChest.Containers
             }
         }
 
+        /// <summary>
+        /// Amount of slots of the inventory
+        /// </summary>
         public override int Size => this.Slots.Length;
+
+        /// <summary>
+        /// Gets an Inventyory Slot
+        /// </summary>
+        /// <param name="index">index of the index</param>
+        /// <returns>Returns an Slot from Inventory</returns>
+        public ISlot<Item> this[int index] {
+            get {
+                if (index > slots.Length || index < 0)
+                    return null;
+
+                return this.slots[index];
+            }
+        }
 
         #region Constructors
         /// <summary>
@@ -48,6 +68,8 @@ namespace TheChest.Containers
         /// </summary>
         public Inventory(string name = "Container") : base() { 
             this.ContainerName = name;
+            this.slots = new Slot[DEFAULT_SLOT_COUNT];
+            this.FillSlots();
         }
 
         /// <summary>
@@ -56,7 +78,14 @@ namespace TheChest.Containers
         /// <param name="size">Amount of slots</param>
         public Inventory(int size, string name = "Container") : base(size)
         {
+            if(size <= 0)
+            {
+                size = DEFAULT_SLOT_COUNT;
+            }
+
             this.ContainerName = name;
+            this.slots = new Slot[size];
+            this.FillSlots();
         }
 
         /// <summary>
@@ -66,6 +95,17 @@ namespace TheChest.Containers
         public Inventory(Slot[] slots, string name = "Container") : base(slots)
         {
             this.ContainerName = name;
+            this.slots = slots;
+        }
+        /// <summary>
+        /// Fills the null slot with empty ones
+        /// </summary>
+        protected override void FillSlots()
+        {
+            for (int i = 0; i < this.Slots.Length; i++)
+            {
+                this.Slots[i] = new Slot();
+            }
         }
         #endregion
 
