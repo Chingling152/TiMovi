@@ -1,5 +1,5 @@
 # The World [W.I.P]
-The world should be a collection of customizable and flexible libraries/systems. 
+The world is a collection of customizable and flexible libraries/systems. 
 
 ## Libraries 
 - **The Chest** - Generic Inventory System [v1.0.0]
