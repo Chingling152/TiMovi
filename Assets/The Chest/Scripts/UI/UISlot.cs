@@ -67,11 +67,11 @@ namespace TheChest.UI
         {
             if (selected)
             {
-                this.GetComponent<RawImage>().color = Color.yellow;
+                this.GetComponent<Image>().color = Color.yellow;
             }
             else
             {
-                this.GetComponent<RawImage>().color = Color.white;
+                this.GetComponent<Image>().color = Color.white;
             }
         }
 
