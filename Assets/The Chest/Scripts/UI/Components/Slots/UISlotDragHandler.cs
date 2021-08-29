@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace TheChest.UI.Components.Slots
 {
@@ -10,27 +11,32 @@ namespace TheChest.UI.Components.Slots
     [DisallowMultipleComponent]
     public sealed class UISlotDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
     {
-        /// <summary>
-        /// Position on screen of the selected item
-        /// </summary>
-        private Vector2 originalPosition;
-        private UISlot component;
+        private UISlot slot;
+
+        private static Image image;
 
         void Start()
         {
-            component = this.GetComponent<UISlot>();
+            slot = this.GetComponent<UISlot>();
+            if (image == null)
+            {
+                image = Instantiate(new GameObject("SelectedItemSprite").AddComponent<Image>(), slot.transform.parent.parent);
+                image.rectTransform.sizeDelta = slot.ItemSprite.rectTransform.sizeDelta;
+                image.raycastTarget = false;
+                image.enabled = false;
+            }
         }
-
         /// <summary>
         /// Event that occour when the slot is clicked
         /// </summary>
         /// <param name="eventData"></param>
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Left)
+            if(eventData.button == PointerEventData.InputButton.Left && !slot.IsEmpty)
             {
-                this.originalPosition = component.ItemSprite.rectTransform.position;
-                component.Select();
+                image.enabled = true;
+                image.sprite = slot.ItemSprite.sprite;
+                slot.Select();
             }
         }
 
@@ -40,9 +46,9 @@ namespace TheChest.UI.Components.Slots
         /// <param name="eventData"></param>
         public void OnDrag(PointerEventData eventData)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
+            if (eventData.button == PointerEventData.InputButton.Left && !slot.IsEmpty)
             {
-                component.ItemSprite.rectTransform.position = Input.mousePosition;
+                image.rectTransform.position = Input.mousePosition;
             }
         }
 
@@ -52,12 +58,13 @@ namespace TheChest.UI.Components.Slots
         /// <param name="eventData"></param>
         public void OnEndDrag(PointerEventData eventData)
         {
-            component.ItemSprite.rectTransform.position = originalPosition;
+            image.enabled = false;
+            image.rectTransform.position = slot.ItemSprite.rectTransform.position;
         }
 
         public void OnDrop(PointerEventData eventData)
         {
-            component.Select();
+            slot.Select();
         }
     }
 }

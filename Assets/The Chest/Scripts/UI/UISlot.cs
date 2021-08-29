@@ -77,15 +77,17 @@ namespace TheChest.UI
 
         private void SetItem(Item item)
         {
-            if (item != null)
+            if (!slot.isEmpty)
             {
                 this.itemAmount.text = slot.StackAmount == 0 ? string.Empty : slot.StackAmount.ToString();
                 this.itemSprite.sprite = item.Image;
+                this.itemSprite.color = Color.white;
             }
             else
             {
                 this.itemAmount.text = string.Empty;
                 this.itemSprite.sprite = null;
+                this.itemSprite.color = new Color(0, 0, 0, 0);
             }
         }
         #endregion

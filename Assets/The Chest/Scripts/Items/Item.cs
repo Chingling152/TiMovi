@@ -11,7 +11,7 @@ namespace TheChest.Items
         [Header("Basic item data")]
 
         [SerializeField]
-        protected readonly string id;
+        protected string id;
 
         [SerializeField]
         protected string name;
@@ -68,6 +68,7 @@ namespace TheChest.Items
             this.image = image;
             this.maxStack = maxStack;
         }
+
         public override bool Equals(object obj)
         {
             return obj != null && obj is Item item &&
