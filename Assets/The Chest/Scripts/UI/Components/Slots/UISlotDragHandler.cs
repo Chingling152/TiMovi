@@ -7,17 +7,14 @@ namespace TheChest.UI.Components.Slots
     /// <summary>
     /// Class to handle Drag'n drop on Slot
     /// </summary>
-    [RequireComponent(typeof(UISlot))]
     [DisallowMultipleComponent]
-    public sealed class UISlotDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+    public sealed class UISlotDragHandler : UISlotComponent, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
     {
-        private UISlot slot;
-
         private static Image image;
 
-        void Start()
+        new void Start()
         {
-            slot = this.GetComponent<UISlot>();
+            base.Start();
             if (image == null)
             {
                 image = Instantiate(new GameObject("SelectedItemSprite").AddComponent<Image>(), slot.transform.parent.parent);
