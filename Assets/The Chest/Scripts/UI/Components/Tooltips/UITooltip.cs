@@ -18,8 +18,8 @@ namespace TheChest.UI.Components.Tooltips
         }
 
         #region Sanitize text
-        private const int maxTitleSize = 22;
-        private const int maxDescriptionSize = 180;
+        private const int maxTitleSize = 30;
+        private const int maxDescriptionSize = 84;
 
         private static string Sanitize(string str, int size)
         {

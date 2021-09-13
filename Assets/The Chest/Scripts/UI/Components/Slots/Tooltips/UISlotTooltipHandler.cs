@@ -27,12 +27,23 @@ namespace TheChest.UI.Components.Slots.Tooltips
         public void OnPointerEnter(PointerEventData eventData)
         {
             var rect = tooltip.GetComponent<RectTransform>();
-            var slotRect = slot.GetComponent<RectTransform>();
 
             if (!this.slot.Slot.isEmpty)
             {
+                var slotRect = slot.GetComponent<RectTransform>();
+
+                var viewPos = Camera.current.WorldToViewportPoint(slotRect.position);
+
+                if (viewPos.x > (Screen.currentResolution.width / 2))//TODO: need fixes
+                {
+                    rect.position = slotRect.position - new Vector3(-slotRect.rect.width, 0);
+                }
+                else
+                {
+                    rect.position = slotRect.position + new Vector3(slotRect.rect.width, 0);
+                }
+
                 tooltip.gameObject.SetActive(true);
-                rect.position = slotRect.position + new Vector3(160,0);
                 tooltip.ShowItem(this.slot.Slot.CurrentItem);
             }
         }
