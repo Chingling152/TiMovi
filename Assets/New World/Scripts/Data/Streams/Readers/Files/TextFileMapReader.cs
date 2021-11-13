@@ -3,9 +3,8 @@ using System.IO;
 using UnityEngine;
 using NewWorld.Data.Standard;
 using System.Collections.Generic;
-using NewWorld.Data.Readers.Abstractions;
 
-namespace NewWorld.Data.Streams.Readers
+namespace NewWorld.Data.Streams.Readers.Files
 {
     [Serializable]
     public class TextFileMapReader : MapReader<ChunkData>

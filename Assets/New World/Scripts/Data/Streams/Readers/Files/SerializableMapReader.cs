@@ -3,8 +3,9 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace NewWorld.Data.Streams.Readers
+namespace NewWorld.Data.Streams.Readers.Files
 {
+    [Serializable]
     public class SerializableMapReader<T> : MapReader<T> 
         where T : class
     {
