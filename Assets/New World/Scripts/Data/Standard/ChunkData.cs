@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace NewWorld.Data.Standard
 {
+    [Serializable]
     public class ChunkData
     {
         public int X;

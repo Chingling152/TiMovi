@@ -8,7 +8,7 @@ using NewWorld.Data.Readers.Abstractions;
 namespace NewWorld.Data.Streams.Readers
 {
     [Serializable]
-    public class TextFileMapReader : IMapReader<ChunkData>
+    public class TextFileMapReader : MapReader<ChunkData>
     {
         [SerializeField]
         protected string basePath;
@@ -16,17 +16,17 @@ namespace NewWorld.Data.Streams.Readers
         [SerializeField]
         protected List<TileData> Tiles;
 
-        public event Action<Vector2, Vector2> OnChunkLoad;
-        public event Action<Exception> OnChunkError;
+        public override event Action<Vector2, Vector2> OnChunkLoad;
+        public override event Action<Exception> OnChunkError;
 
         public TextFileMapReader(string basePath)
         {
             this.basePath = basePath;
         }
 
-        public Func<string, ChunkData> ReadMethod { get ; set; }
+        public override Func<string, ChunkData> ReadMethod { get ; set; }
 
-        public ChunkData Read(string path)
+        public override ChunkData Read(string path)
         {
             var fullPath = Path.Combine(basePath,path);
             ChunkData chunk;
@@ -70,47 +70,6 @@ namespace NewWorld.Data.Streams.Readers
             }
 
             return chunk;
-        }
-
-        public IEnumerable<ChunkData> Read(params string[] paths)
-        {
-            var length = paths.Length;
-            var chunks = new ChunkData[length];
-
-            for (int i = 0; i < length; i++)
-            {
-                try
-                {
-                    chunks[i] = this.Read(paths[i]);
-                }
-                catch (Exception e)
-                {
-                    this.OnChunkError?.Invoke(e);
-                }
-            }
-
-            return chunks;
-        }
-
-        public IEnumerator<ChunkData> ReadGenerator(params string[] paths)
-        {
-            foreach (var path in paths)
-            {
-                ChunkData chunk;
-                try
-                {
-                    chunk = this.Read(path);
-                }
-                catch (Exception e)
-                {
-                    this.OnChunkError?.Invoke(e);
-                    chunk = null;
-                }
-
-                yield return chunk;
-            }
-
-            yield return null;
         }
     }
 }
