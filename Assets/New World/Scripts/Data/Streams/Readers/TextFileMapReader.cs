@@ -3,25 +3,30 @@ using System.IO;
 using UnityEngine;
 using NewWorld.Data.Standard;
 using System.Collections.Generic;
+using NewWorld.Data.Readers.Abstractions;
 
 namespace NewWorld.Data.Streams.Readers
 {
-    public class TextFileMapReader : MapReader
+    [Serializable]
+    public class TextFileMapReader : IMapReader<ChunkData>
     {
-        private readonly string basePath;
-
-        public override event Action<Vector2, Vector2> OnChunkLoad;
-        public override event Action<Exception> OnChunkError;
+        [SerializeField]
+        protected string basePath;
 
         [SerializeField]
-        protected List<TileData> Tiles { get ; set ;}
+        protected List<TileData> Tiles;
+
+        public event Action<Vector2, Vector2> OnChunkLoad;
+        public event Action<Exception> OnChunkError;
 
         public TextFileMapReader(string basePath)
         {
             this.basePath = basePath;
         }
 
-        public override ChunkData Read(string path)
+        public Func<string, ChunkData> ReadMethod { get ; set; }
+
+        public ChunkData Read(string path)
         {
             var fullPath = Path.Combine(basePath,path);
             ChunkData chunk;
@@ -67,7 +72,7 @@ namespace NewWorld.Data.Streams.Readers
             return chunk;
         }
 
-        public override IEnumerable<ChunkData> Read(params string[] paths)
+        public IEnumerable<ChunkData> Read(params string[] paths)
         {
             var length = paths.Length;
             var chunks = new ChunkData[length];
@@ -87,7 +92,7 @@ namespace NewWorld.Data.Streams.Readers
             return chunks;
         }
 
-        public override IEnumerator<ChunkData> ReadGenerator(params string[] paths)
+        public IEnumerator<ChunkData> ReadGenerator(params string[] paths)
         {
             foreach (var path in paths)
             {
