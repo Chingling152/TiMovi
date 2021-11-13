@@ -1,31 +1,50 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
-using NewWorld.Data.Readers.Abstractions;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NewWorld.Data.Streams.Readers
 {
-    public class SerializableMapReader<T> : IMapReader<T>
+    public class SerializableMapReader<T> : MapReader<T> 
         where T : class
     {
-        public Func<string, T> ReadMethod { get; set; }
+        private readonly string basePath;
 
-        public event Action<Vector2, Vector2> OnChunkLoad;
-        public event Action<Exception> OnChunkError;
-
-        public T Read(string path)
+        public SerializableMapReader(string basePath)
         {
-            throw new NotImplementedException();
+            this.basePath = basePath;
         }
 
-        public IEnumerable<T> Read(params string[] paths)
+        public override Func<string, T> ReadMethod { get; set; }
+
+        public override event Action<Vector2, Vector2> OnChunkLoad;
+        public override event Action<Exception> OnChunkError;
+
+        public T Deserialize(string path)
         {
-            throw new NotImplementedException();
+            byte[] bytes = File.ReadAllBytes(path);
+            using (MemoryStream stream = new MemoryStream(bytes))
+            {
+                BinaryFormatter deserializer = new BinaryFormatter();
+                return deserializer.Deserialize(stream) as T;
+            }
         }
 
-        public IEnumerator<T> ReadGenerator(params string[] paths)
+        public override T Read(string path)
         {
-            throw new NotImplementedException();
+            var fullPath = Path.Combine(basePath, path);
+            T chunk;
+
+            if (this.ReadMethod != null)
+            {
+                chunk = this.ReadMethod(fullPath);
+            }
+            else
+            {
+                chunk = this.Deserialize(path);
+            }
+
+            return chunk;
         }
     }
 }
