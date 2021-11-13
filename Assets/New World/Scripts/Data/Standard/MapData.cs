@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace NewWorld.Data.Standard
 {
+    [Serializable]
     public class MapData
     {
-        public Vector2 MapSize { get ; protected set; }
-        public Vector2 ChunkSize { get ; protected set; }
+        public Vector2 MapSize;
+        public Vector2 ChunkSize;
 
-        public ChunkData[,] Chunks { get; protected set; }
+        public ChunkData[,] Chunks;
     }
 }
