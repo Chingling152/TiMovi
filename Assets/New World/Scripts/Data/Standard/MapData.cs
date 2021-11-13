@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NewWorld.Scripts.Data.Standard
+namespace NewWorld.Data.Standard
 {
     public class MapData
     {
