@@ -1,8 +1,8 @@
-﻿
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
+using NewWorld.Data.Streams.Readers.Abstractions;
 
 namespace NewWorld.Data.Streams.Readers.Files
 {
@@ -35,7 +35,7 @@ namespace NewWorld.Data.Streams.Readers.Files
             }
             else
             {
-                chunk = this.Deserialize(path);
+                chunk = this.Deserialize(fullPath);
             }
 
             return chunk;

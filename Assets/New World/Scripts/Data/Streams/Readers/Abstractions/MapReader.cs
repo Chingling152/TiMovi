@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using NewWorld.Data.Readers.Abstractions;
 
-namespace NewWorld.Data.Streams.Readers
+namespace NewWorld.Data.Streams.Readers.Abstractions
 {
     public abstract class MapReader<T> : IMapReader<T>
     {
@@ -16,6 +16,7 @@ namespace NewWorld.Data.Streams.Readers
         public virtual event Action<Exception> OnChunkError;
 
         public abstract T Read(string path);
+
         public virtual IEnumerable<T> Read(params string[] path)
         {
             var length = path.Length;

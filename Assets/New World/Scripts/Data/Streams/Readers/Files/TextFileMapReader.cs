@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using NewWorld.Data.Standard;
-using System.Collections.Generic;
+using NewWorld.Data.Streams.Readers.Abstractions;
 
 namespace NewWorld.Data.Streams.Readers.Files
 {
@@ -47,9 +48,9 @@ namespace NewWorld.Data.Streams.Readers.Files
                     {
                         if(int.TryParse(fileLines[y], out var value))
                         {
-                            if(value > 0 && Tiles.Count > value)
+                            if(value > 0 && this.Tiles.Count > value)
                             {
-                                chunk.Tiles[x, y] = Tiles[value];
+                                chunk[x, y] = this.Tiles[value];
                             }
                             else
                             {
