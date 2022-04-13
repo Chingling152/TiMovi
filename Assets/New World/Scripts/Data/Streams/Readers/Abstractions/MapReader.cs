@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using NewWorld.Data.Readers.Abstractions;
 
-namespace NewWorld.Data.Streams.Readers
+namespace NewWorld.Data.Streams.Readers.Abstractions
 {
     public abstract class MapReader<T> : IMapReader<T>
     {
