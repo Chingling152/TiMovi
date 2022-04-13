@@ -13,17 +13,15 @@ namespace NewWorld.Data.Streams.Readers.Files
         protected string basePath;
 
         [SerializeField]
-        protected List<TileData> Tiles;
+        protected List<TileData> Tiles;//TODO: remove
 
         public override event Action<Vector2, Vector2> OnChunkLoad;
         public override event Action<Exception> OnChunkError;
 
-        public TextFileMapReader(string basePath)
+        public TextFileMapReader()
         {
-            this.basePath = basePath;
-        }
 
-        public override Func<string, ChunkData> ReadMethod { get ; set; }
+        }
 
         public override ChunkData Read(string path)
         {

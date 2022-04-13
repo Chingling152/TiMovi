@@ -7,6 +7,9 @@ namespace NewWorld.Data.Streams.Readers
 {
     public abstract class MapReader<T> : IMapReader<T>
     {
+        /// <summary>
+        /// Methods that will be executed to deserialize saved data
+        /// </summary>
         public virtual Func<string, T> ReadMethod { get; set; }
 
         public virtual event Action<Vector2, Vector2> OnChunkLoad;

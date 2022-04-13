@@ -1,19 +1,44 @@
-﻿using System;
+﻿
+using Newtonsoft.Json;
+using System;
+using System.IO;
 using UnityEngine;
-using System.Collections.Generic;
+
 namespace NewWorld.Data.Streams.Readers.Files
 {
-    [System.Obsolete("Not Implemented", true)]
     public class JsonFileMapReader<T> : MapReader<T>
     {
-        public override Func<string, T> ReadMethod { get ; set; }
-
+        [SerializeField]
+        protected string basePath; 
+        
         public override event Action<Vector2, Vector2> OnChunkLoad;
         public override event Action<Exception> OnChunkError;
 
+        public JsonFileMapReader()
+        {
+
+        }
+
+        private T Deserialize(string path)
+        {
+            return JsonConvert.DeserializeObject<T>(path);
+        }
+
         public override T Read(string path)
         {
-            throw new NotImplementedException();
+            var fullPath = Path.Combine(basePath, path);
+            T chunk;
+
+            if (this.ReadMethod != null)
+            {
+                chunk = this.ReadMethod(fullPath);
+            }
+            else
+            {
+                chunk = this.Deserialize(path);
+            }
+
+            return chunk;
         }
     }
 }

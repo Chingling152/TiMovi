@@ -24,12 +24,17 @@ namespace NewWorld.Data.Readers.Abstractions
         /// </summary>
         event Action<Exception> OnChunkError;//TODO: maybe create a ChunkErrorEventArgs
 
+
+        // TODO: try implement these approach
+        //T Read(int x, int y);
+        //T Read(Vector2 coordinates);
+
         /// <summary>
         /// Reads map data
         /// </summary>
         /// <param name="path">Anything that indicates what shoudl be read</param>
         /// <returns>A Standardized object based on the readed file</returns>
-        T Read(string path);
+        T Read(string path);        
         /// <summary>
         /// Reads one or more map data 
         /// </summary>

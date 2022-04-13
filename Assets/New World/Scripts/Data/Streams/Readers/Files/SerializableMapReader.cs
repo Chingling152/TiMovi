@@ -9,24 +9,23 @@ namespace NewWorld.Data.Streams.Readers.Files
     public class SerializableMapReader<T> : MapReader<T> 
         where T : class
     {
-        private readonly string basePath;
+        [SerializeField]
+        protected string basePath;
 
-        public SerializableMapReader(string basePath)
+        public SerializableMapReader()
         {
-            this.basePath = basePath;
-        }
 
-        public override Func<string, T> ReadMethod { get; set; }
+        }
 
         public override event Action<Vector2, Vector2> OnChunkLoad;
         public override event Action<Exception> OnChunkError;
 
-        public T Deserialize(string path)
+        protected T Deserialize(string path)
         {
             byte[] bytes = File.ReadAllBytes(path);
-            using (MemoryStream stream = new MemoryStream(bytes))
+            using (var stream = new MemoryStream(bytes))
             {
-                BinaryFormatter deserializer = new BinaryFormatter();
+                var deserializer = new BinaryFormatter();
                 return deserializer.Deserialize(stream) as T;
             }
         }
