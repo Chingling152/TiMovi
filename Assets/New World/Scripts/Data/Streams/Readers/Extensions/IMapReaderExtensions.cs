@@ -1,7 +1,7 @@
 ﻿using NewWorld.Data.Readers.Abstractions;
 using System;
 
-namespace NewWorld.Data.Streams.Extensions
+namespace NewWorld.Data.Streams.Raeders.Extensions
 {
     public static class IMapReaderExtensions
     {
