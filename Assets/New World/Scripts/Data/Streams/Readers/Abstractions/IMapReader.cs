@@ -33,7 +33,7 @@ namespace NewWorld.Data.Readers.Abstractions
         /// <summary>
         /// Reads map data
         /// </summary>
-        /// <param name="path">Anything that indicates what shoudl be read</param>
+        /// <param name="path">Anything that indicates what should be read</param>
         /// <returns>A Standardized object based on the readed file</returns>
         T Read(string path);        
         /// <summary>

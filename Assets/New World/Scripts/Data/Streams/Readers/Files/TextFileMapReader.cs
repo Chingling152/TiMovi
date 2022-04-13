@@ -48,9 +48,9 @@ namespace NewWorld.Data.Streams.Readers.Files
                     {
                         if(int.TryParse(fileLines[y], out var value))
                         {
-                            if(value > 0 && Tiles.Count > value)
+                            if(value > 0 && this.Tiles.Count > value)
                             {
-                                chunk.Tiles[x, y] = Tiles[value];
+                                chunk[x, y] = this.Tiles[value];
                             }
                             else
                             {

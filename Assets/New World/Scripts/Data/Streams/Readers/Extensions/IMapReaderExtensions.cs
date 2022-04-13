@@ -1,5 +1,5 @@
-﻿using NewWorld.Data.Readers.Abstractions;
-using System;
+﻿using System;
+using NewWorld.Data.Readers.Abstractions;
 
 namespace NewWorld.Data.Streams.Raeders.Extensions
 {

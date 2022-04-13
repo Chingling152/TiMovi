@@ -35,7 +35,7 @@ namespace NewWorld.Data.Streams.Readers.Files
             }
             else
             {
-                chunk = this.Deserialize(path);
+                chunk = this.Deserialize(fullPath);
             }
 
             return chunk;
