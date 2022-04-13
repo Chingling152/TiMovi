@@ -28,6 +28,7 @@ namespace NewWorld.Data.Readers.Abstractions
         // TODO: try implement these approach
         //T Read(int x, int y);
         //T Read(Vector2 coordinates);
+        //T Read(params Vector2[] coordinates);
 
         /// <summary>
         /// Reads map data
