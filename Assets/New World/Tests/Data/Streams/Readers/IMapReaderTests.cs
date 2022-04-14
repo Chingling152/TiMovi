@@ -1,6 +1,6 @@
-using NewWorld.Data.Readers.Abstractions;
 using NUnit.Framework;
 using System;
+using NewWorld.Data.Streams.Readers.Abstractions;
 
 namespace NewWorld.Tests.Data.Streams.Readers
 {
