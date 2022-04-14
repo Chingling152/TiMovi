@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace NewWorld.Data.Readers.Abstractions
+namespace NewWorld.Data.Streams.Readers.Abstractions
 {
     /// <summary>
     /// Interface responsible to deserialize any Map data to a class
