@@ -13,6 +13,7 @@ namespace NewWorld.Data.Streams.Readers.Abstractions
         /// <summary>
         /// Methods that will be executed to deserialize saved data
         /// </summary>
+        [Obsolete("Inherit the interface IMapReader<T>")]
         Func<string, T> ReadMethod { get ; set ;}
 
         /// <summary>
@@ -24,11 +25,7 @@ namespace NewWorld.Data.Streams.Readers.Abstractions
         /// </summary>
         event Action<Exception> OnChunkError;//TODO: maybe create a ChunkErrorEventArgs
 
-
-        // TODO: try implement these approach
-        //T Read(int x, int y);
-        //T Read(Vector2 coordinates);
-        //T Read(params Vector2[] coordinates);
+        //Y Read<Y>(string path);
 
         /// <summary>
         /// Reads map data

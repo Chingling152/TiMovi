@@ -3,6 +3,7 @@ using NewWorld.Data.Streams.Writers.Abstractions;
 
 namespace NewWorld.World.Adapters.Abstractions
 {
+    //Maybe use MapProvider?
     public interface IMapAdapter<T>
     {
         bool IsReadOnly { get; }
