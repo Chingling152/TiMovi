@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using NewWorld.Data.Streams.Readers.Abstractions;
 using NewWorld.Data.Streams.Writers.Abstractions;
 
-namespace NewWorld.Data.Adapters.Abstractions
+namespace NewWorld.World.Adapters.Abstractions
 {
     public abstract class MapAdapter<T> : IMapAdapter<T>
     {

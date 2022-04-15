@@ -1,7 +1,7 @@
 ﻿using NewWorld.Data.Streams.Readers.Abstractions;
 using NewWorld.Data.Streams.Writers.Abstractions;
 
-namespace NewWorld.Data.Adapters.Abstractions
+namespace NewWorld.World.Adapters.Abstractions
 {
     public interface IMapAdapter<T>
     {
