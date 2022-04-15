@@ -1,6 +1,6 @@
 ﻿using NewWorld.Data.Streams.Writers.Abstractions;
 
-namespace NewWorld.World.Adapters.Abstractions
+namespace NewWorld.Data.Adapters.Abstractions
 {
     public interface IMapWriterAdapter<T>
     {

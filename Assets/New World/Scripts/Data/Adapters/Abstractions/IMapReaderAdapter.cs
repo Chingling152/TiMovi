@@ -1,6 +1,6 @@
 ﻿using NewWorld.Data.Streams.Readers.Abstractions;
 
-namespace NewWorld.World.Adapters.Abstractions
+namespace NewWorld.Data.Adapters.Abstractions
 {
     public interface IMapReaderAdapter<T>
     {

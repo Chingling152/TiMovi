@@ -7,7 +7,7 @@ using NewWorld.World.Adapters.Abstractions;
 using System;
 using UnityEngine;
 
-namespace NewWorld.World.Adapters
+namespace NewWorld.Data.Adapters
 {
     [Serializable]
     public class MapAdapter : IMapAdapter<ChunkData>
