@@ -1,5 +1,4 @@
-﻿using System;
-using TheChest.Items;
+﻿using TheChest.Items;
 using TheChest.World;
 using UnityEngine;
 

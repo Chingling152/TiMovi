@@ -26,21 +26,23 @@ namespace TheChest.UI.Components.Slots.Tooltips
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            var rect = tooltip.GetComponent<RectTransform>();
+            var tooltipRect = tooltip.GetComponent<RectTransform>();
 
-            if (!this.slot.Slot.isEmpty)
+            if (!this.slot.Slot.isEmpty && Camera.current != null)
             {
                 var slotRect = slot.GetComponent<RectTransform>();
 
-                var viewPos = Camera.current.WorldToViewportPoint(slotRect.position);
-
-                if (viewPos.x > (Screen.currentResolution.width / 2))//TODO: need fixes
+                if (slotRect.transform.position.x > Camera.current.pixelWidth / 2)
                 {
-                    rect.position = slotRect.position - new Vector3(-slotRect.rect.width, 0);
+                    //TODO : use Vector3.left
+                    //TODO : avoid using tooltipRect.rect (instead use someting releated to the pivot)
+                    Debug.Log("LEFT");
+                    tooltipRect.position = slotRect.position - new Vector3(tooltipRect.rect.width + slotRect.rect.width , 0);
                 }
                 else
                 {
-                    rect.position = slotRect.position + new Vector3(slotRect.rect.width, 0);
+                    Debug.Log("RIGHT");
+                    tooltipRect.position = slotRect.position + new Vector3(slotRect.rect.width / 2, 0);
                 }
 
                 tooltip.gameObject.SetActive(true);
