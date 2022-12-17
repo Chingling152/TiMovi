@@ -4,9 +4,6 @@ using TheChest.UI.Components.Tooltips;
 
 namespace TheChest.UI.Components.Slots.Tooltips
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [DisallowMultipleComponent]
     public class UISlotTooltipHandler : UISlotComponent, IPointerEnterHandler, IPointerExitHandler
     {
@@ -34,15 +31,15 @@ namespace TheChest.UI.Components.Slots.Tooltips
 
                 if (slotRect.transform.position.x > Camera.current.pixelWidth / 2)
                 {
-                    //TODO : use Vector3.left
-                    //TODO : avoid using tooltipRect.rect (instead use someting releated to the pivot)
-                    Debug.Log("LEFT");
-                    tooltipRect.position = slotRect.position - new Vector3(tooltipRect.rect.width + slotRect.rect.width , 0);
+                    var horizontal = Vector3.left * (tooltipRect.rect.width + (slotRect.rect.width / 2));
+                    var vertical = Vector3.down * (slotRect.rect.height / 2);
+                    tooltipRect.localPosition = slotRect.localPosition + horizontal + vertical;
                 }
                 else
                 {
-                    Debug.Log("RIGHT");
-                    tooltipRect.position = slotRect.position + new Vector3(slotRect.rect.width / 2, 0);
+                    var horizontal = Vector3.right * (slotRect.rect.width / 2);
+                    var vertical = Vector3.down * (slotRect.rect.height / 2);
+                    tooltipRect.localPosition = slotRect.localPosition + horizontal + vertical;
                 }
 
                 tooltip.gameObject.SetActive(true);
