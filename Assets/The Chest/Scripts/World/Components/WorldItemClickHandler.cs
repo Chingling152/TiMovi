@@ -12,7 +12,6 @@ namespace TheChest.World.Components
         {
             if(eventData.button == PointerEventData.InputButton.Left)
             {
-                Debug.LogError("AAAA");
                 var item = this.GetComponent<WorldItem>().Item;
                 var amount = this.GetComponent<WorldItem>().Amount;
                 if (InventoryManager.PlayerInventory.Add(item,amount))
