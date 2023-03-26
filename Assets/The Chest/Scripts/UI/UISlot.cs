@@ -67,25 +67,27 @@ namespace TheChest.UI
         {
             if (selected)
             {
-                this.GetComponent<Image>().color = Color.yellow;
+                this.GetComponent<RawImage>().color = Color.yellow;
             }
             else
             {
-                this.GetComponent<Image>().color = Color.white;
+                this.GetComponent<RawImage>().color = Color.white;
             }
         }
 
         private void SetItem(Item item)
         {
-            if (item != null)
+            if (!slot.isEmpty)
             {
                 this.itemAmount.text = slot.StackAmount == 0 ? string.Empty : slot.StackAmount.ToString();
                 this.itemSprite.sprite = item.Image;
+                this.itemSprite.color = Color.white;
             }
             else
             {
                 this.itemAmount.text = string.Empty;
                 this.itemSprite.sprite = null;
+                this.itemSprite.color = new Color(0, 0, 0, 0);
             }
         }
         #endregion

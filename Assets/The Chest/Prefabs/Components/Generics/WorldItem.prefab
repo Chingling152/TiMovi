@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7406715785012539465}
   - component: {fileID: 7406715785012539464}
   - component: {fileID: 7406715785012539466}
-  - component: {fileID: 7406715785012539467}
+  - component: {fileID: 5764454144111556542}
   - component: {fileID: 7406715785012539468}
   m_Layer: 0
-  m_Name: Item_One
+  m_Name: WorldItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
     image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     maxStack: 7
   amount: 5
---- !u!114 &7406715785012539467
+--- !u!114 &5764454144111556542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7406715785012539447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3651b189e906ac242bae5f16d2188997, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a8c5c9d09b8f18419e46fd4f30ff1c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &7406715785012539468
