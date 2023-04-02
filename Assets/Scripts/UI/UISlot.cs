@@ -31,6 +31,7 @@ namespace TheChest.UI
         public int Amount { get; protected set; }
 
         public bool IsEmpty => this.Amount == 0;
+        public bool IsSelected => this.Index != -1;
 
         public event Action<int,int> OnSelectIndex;
         #endregion
