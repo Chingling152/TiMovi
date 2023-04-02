@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TheChest.ContextMenus;
+using TheChest.Items;
 
 namespace TheChest.UI.Components.ContextMenus
 {
@@ -11,17 +12,7 @@ namespace TheChest.UI.Components.ContextMenus
         [SerializeField] private ContainerContextMenu menu;
 
         [SerializeField] private UIContextMenuOption optionPrefab;
-
-        public string Title
-        {
-            set
-            {
-                title.text = value;
-            }
-            get { 
-                return title.text; 
-            }
-        }
+        private Item item;
 
         private void Start()
         {
@@ -32,6 +23,11 @@ namespace TheChest.UI.Components.ContextMenus
                 var menuOption = Instantiate(this.optionPrefab, this.optionsContainer.transform);
                 menuOption.SetMenuOption(option);
             }
+        }
+
+        public void SetItem(Item item)
+        {
+            this.title.text = item.Name;
         }
     }
 }
