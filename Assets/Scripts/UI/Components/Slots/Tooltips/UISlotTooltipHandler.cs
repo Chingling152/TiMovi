@@ -24,7 +24,7 @@ namespace TheChest.UI.Components.Slots.Tooltips
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!this.slot.Slot.isEmpty && Camera.current != null)
+            if (!this.slot.Slot.isEmpty)
             {
                 var tooltipRect = tooltip.GetComponent<RectTransform>();
                 tooltipRect.localPosition = slot.GetComponent<RectTransform>().AdjacentPosition(tooltipRect);

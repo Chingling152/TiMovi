@@ -5,10 +5,12 @@ using TheChest.UI.Extensions;
 
 namespace TheChest.UI.Components.Slots 
 {
+    [DisallowMultipleComponent]
     public class UISlotContextMenuHandler : UISlotComponent, IPointerClickHandler
     {
+        private static UIContextMenu contextMenu;
+
         [SerializeField]private UIContextMenu contextMenuPrefab;
-        private UIContextMenu contextMenu;
 
         new void Start()
         {
@@ -35,10 +37,10 @@ namespace TheChest.UI.Components.Slots
                     this.slot.Select();
                 }
 
-                var contextMenuRect = contextMenu.GetComponent<RectTransform>();
-                contextMenuRect.localPosition = this.slot.GetComponent<RectTransform>().AdjacentPosition(contextMenuRect);
-
                 contextMenu.gameObject.SetActive(true);
+
+                var contextMenuRect = contextMenu.GetComponent<RectTransform>();
+                contextMenuRect.localPosition = slot.GetComponent<RectTransform>().AdjacentPosition(contextMenuRect);
             }
         }
     }
