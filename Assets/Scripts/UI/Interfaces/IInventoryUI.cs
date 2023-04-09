@@ -7,14 +7,9 @@ namespace TheChest.UI.Interfaces
     /// </summary>
     /// <typeparam name="T">Valid inventory interface</typeparam>
     /// <typeparam name="Y">Any value stored on <see cref="IInventory{Y}"/> </typeparam>
-    public interface IInventoryUI<T,Y> where T : IInventory<Y>
+    public interface IInventoryUI<Y>
     {
         #region Properties
-        /// <summary>
-        /// Inventory data source
-        /// </summary>
-        T Inventory { get ; }
-
         /// <summary>
         /// The current and selected slot index
         /// </summary>

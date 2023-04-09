@@ -9,7 +9,7 @@ using TheChest.UI.Interfaces;
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public class UIInventory : MonoBehaviour, IInventoryUI<Inventory,Item>
+    public class UIInventory : MonoBehaviour, IInventoryUI<Item>
     {
         [Header("Inventory data")]
         [Tooltip("Inventory class to store items data")]
@@ -36,10 +36,6 @@ namespace TheChest.UI
         [SerializeField] protected WorldItem worldItem;
 
         #region Properties
-        public Inventory Inventory{
-            get => this.inventory; 
-         }
-
         public int SelectedIndex { 
             get ;
             protected set ;
