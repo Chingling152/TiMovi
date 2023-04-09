@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 2962033908667055428}
   - component: {fileID: 7991167433344206489}
   - component: {fileID: 9142209879129869616}
-  - component: {fileID: 5729641880554750857}
   - component: {fileID: -605366338322995757}
+  - component: {fileID: 5729641880554750857}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aa48b92584e464e9212ce1a3a87a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: -1
 --- !u!114 &9142209879129869616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,19 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c7d5c02bff9604b9e7a075012fd7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5729641880554750857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5943219554885439038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6febcf33a6003c429a8136da8ca1bcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltipPrefab: {fileID: 3197704417248633759, guid: eb2d54ba92ea85b44a371a3db6ca1520, type: 3}
+  priority: 3
 --- !u!114 &-605366338322995757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +219,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a37259b15acda74486d75a5d651399b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 2
   contextMenuPrefab: {fileID: 3186453178387792648, guid: 387a306f83ac32644bb678712be44fe5, type: 3}
+--- !u!114 &5729641880554750857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943219554885439038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6febcf33a6003c429a8136da8ca1bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  tooltipPrefab: {fileID: 3197704417248633759, guid: eb2d54ba92ea85b44a371a3db6ca1520, type: 3}
 --- !u!1 &8213164125134094223
 GameObject:
   m_ObjectHideFlags: 0

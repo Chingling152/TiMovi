@@ -11,13 +11,16 @@ namespace TheChest.UI.Extensions
                 rectTransform.pivot.Set(0f, 0.5f);
             }
         }
+
         public static Vector3 AdjacentPosition(this RectTransform rectTransform, RectTransform positionedTransform)
         {
             return rectTransform.AdjacentPosition(positionedTransform,Vector3.zero);
         }
+
         public static Vector3 AdjacentPosition(this RectTransform rectTransform, RectTransform positionedTransform, Vector3 spacing)
         {
             positionedTransform.NormalizePivot();
+
             if (Camera.main != null)//TODO: remove Camera.main
             {
                 Vector3 vertical   = Vector3.down * (rectTransform.rect.height / 2);
