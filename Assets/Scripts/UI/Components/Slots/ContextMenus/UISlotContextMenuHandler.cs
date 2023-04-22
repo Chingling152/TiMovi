@@ -38,6 +38,7 @@ namespace TheChest.UI.Components.Slots
                 }
 
                 contextMenu.gameObject.SetActive(true);
+                contextMenu.Title.text = this.slot.Slot.CurrentItem.Name;
 
                 var contextMenuRect = contextMenu.GetComponent<RectTransform>();
                 contextMenuRect.localPosition = slot.GetComponent<RectTransform>().AdjacentPosition(contextMenuRect);
