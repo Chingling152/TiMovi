@@ -95,7 +95,7 @@ namespace TheChest.UI
             var screenPoint = Input.mousePosition;
             screenPoint.z = 10.0f;
 
-            var obj = Instantiate(worldItem, Camera.main.ScreenToWorldPoint(screenPoint),Quaternion.identity);
+            var obj = Instantiate(worldItem, Camera.main.ScreenToWorldPoint(screenPoint), Quaternion.identity);
 
             obj.GetComponent<WorldItem>().Item = item;
             obj.GetComponent<WorldItem>().Amount = items.Length;

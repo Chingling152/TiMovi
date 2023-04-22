@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TheChest.Containers;
 using TheChest.UI.Interfaces;
 using TheChest.Items;
+using TheChest.UI.Components.Slots;
 
 namespace TheChest.UI
 {
