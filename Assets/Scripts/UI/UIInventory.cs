@@ -54,6 +54,43 @@ namespace TheChest.UI
             dropArea.OnDropItem += this.Drop;
         }
 
+        #region Context Menu
+        private void RandomWorldItemSpawn(Item item, int amount = 1)
+        {
+            var obj = Instantiate(
+                original: worldItem,
+                position: new Vector2(Random.Range(2, 5), Random.Range(-5, 5)),
+                Quaternion.identity
+            );
+
+            obj.GetComponent<WorldItem>().Item = item;
+            obj.GetComponent<WorldItem>().Amount = amount;
+        }
+
+        public void Use(int index)
+        {
+            _ = this.inventory.GetItem(index);
+        }
+
+        public void Split(int index)
+        {
+            var items = this.inventory.GetAll(index);
+            var halfCount = (int)System.Math.Floor(items.Length / 2.0);
+            this.inventory.AddItem(items[0..halfCount]);
+            this.inventory.AddItem(items[halfCount..-1]);
+        }
+
+        public void Drop(int index, int amount)
+        {
+            var items = this.inventory.GetItemAmount(index, amount);
+            RandomWorldItemSpawn(items[0], items.Length);
+            this.SelectedIndex = -1;
+            this.SelectedAmount = 0;
+            this.Refresh();
+        }
+
+        #endregion
+
         #region Interface methods
         public bool Add(Item item,int amount = 1)
         {

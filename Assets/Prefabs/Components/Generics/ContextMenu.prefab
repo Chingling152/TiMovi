@@ -282,22 +282,17 @@ MonoBehaviour:
   menu:
     title: Item name
     options:
-    - title: Option 1
+    - title: Use
       image: {fileID: 0}
       action:
         m_PersistentCalls:
           m_Calls: []
-    - title: Option 2
+    - title: Split
       image: {fileID: 0}
       action:
         m_PersistentCalls:
           m_Calls: []
-    - title: Option 3
-      image: {fileID: 0}
-      action:
-        m_PersistentCalls:
-          m_Calls: []
-    - title: Option 4
+    - title: Drop
       image: {fileID: 0}
       action:
         m_PersistentCalls:

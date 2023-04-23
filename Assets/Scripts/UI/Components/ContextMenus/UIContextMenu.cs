@@ -14,7 +14,6 @@ namespace TheChest.UI.Components.ContextMenus
         [SerializeField] private ContainerContextMenu menu;
 
         [SerializeField] private UIContextMenuOption optionPrefab;
-        private Item item;
 
         private void Start()
         {
