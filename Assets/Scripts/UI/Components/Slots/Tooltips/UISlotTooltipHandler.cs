@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using TheChest.UI.Components.Tooltips;
+using TheChest.UI.Extensions;
 
 namespace TheChest.UI.Components.Slots.Tooltips
 {
@@ -23,24 +24,10 @@ namespace TheChest.UI.Components.Slots.Tooltips
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            var tooltipRect = tooltip.GetComponent<RectTransform>();
-
-            if (!this.slot.Slot.isEmpty && Camera.current != null)
+            if (!this.slot.Slot.isEmpty)
             {
-                var slotRect = slot.GetComponent<RectTransform>();
-
-                if (slotRect.transform.position.x > Camera.current.pixelWidth / 2)
-                {
-                    var horizontal = Vector3.left * (tooltipRect.rect.width + (slotRect.rect.width / 2));
-                    var vertical = Vector3.down * (slotRect.rect.height / 2);
-                    tooltipRect.localPosition = slotRect.localPosition + horizontal + vertical;
-                }
-                else
-                {
-                    var horizontal = Vector3.right * (slotRect.rect.width / 2);
-                    var vertical = Vector3.down * (slotRect.rect.height / 2);
-                    tooltipRect.localPosition = slotRect.localPosition + horizontal + vertical;
-                }
+                var tooltipRect = tooltip.GetComponent<RectTransform>();
+                tooltipRect.localPosition = slot.GetComponent<RectTransform>().AdjacentPosition(tooltipRect);
 
                 tooltip.gameObject.SetActive(true);
                 tooltip.ShowItem(this.slot.Slot.CurrentItem);

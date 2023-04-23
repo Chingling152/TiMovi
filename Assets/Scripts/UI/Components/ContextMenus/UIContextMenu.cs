@@ -1,27 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TheChest.ContextMenus;
+using TheChest.Items;
 
 namespace TheChest.UI.Components.ContextMenus
 {
     public class UIContextMenu : MonoBehaviour
     {
         [SerializeField] private Text title;
+        public Text Title => this.title;
+
         [SerializeField] private GameObject optionsContainer;
         [SerializeField] private ContainerContextMenu menu;
 
         [SerializeField] private UIContextMenuOption optionPrefab;
-
-        public string Title
-        {
-            set
-            {
-                title.text = value;
-            }
-            get { 
-                return title.text; 
-            }
-        }
 
         private void Start()
         {
