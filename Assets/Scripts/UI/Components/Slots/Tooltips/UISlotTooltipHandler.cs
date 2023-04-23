@@ -25,7 +25,7 @@ namespace TheChest.UI.Components.Slots.Tooltips
         {
             var tooltipRect = tooltip.GetComponent<RectTransform>();
 
-            if (!this.slot.Slot.isEmpty && Camera.current != null)
+            if (!this.slot.Slot.IsEmpty && Camera.current != null)
             {
                 var slotRect = slot.GetComponent<RectTransform>();
 

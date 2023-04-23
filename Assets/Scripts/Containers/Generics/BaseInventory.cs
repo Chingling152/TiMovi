@@ -77,7 +77,7 @@ namespace TheChest.Containers.Generics
 
             for (int i = 0; i < Slots.Length; i++)
             {
-                if (this.Slots[i].isEmpty || (!this.Slots[i].isFull && this.Slots[i].CurrentItem == item))
+                if (this.Slots[i].IsEmpty || (!this.Slots[i].IsFull && this.Slots[i].CurrentItem == item))
                 {
                     var result = this.Slots[i].Add(item, amount);
                     amount = result;
@@ -103,7 +103,7 @@ namespace TheChest.Containers.Generics
 
             for (int i = 0; i < Slots.Length; i++)
             {
-                if (this.Slots[i].isEmpty || (!this.Slots[i].isFull && this.Slots[i].CurrentItem == item))
+                if (this.Slots[i].IsEmpty || (!this.Slots[i].IsFull && this.Slots[i].CurrentItem == item))
                 {
                     var result = this.Slots[i].Add(itemArr);
                     itemArr = Enumerable.Repeat(item, result).ToArray();
@@ -128,7 +128,7 @@ namespace TheChest.Containers.Generics
                 return Enumerable.Repeat(item, amount).ToArray();
             }
 
-            if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && this.Slots[index].CurrentItem == item))
+            if (this.Slots[index].IsEmpty || (!this.Slots[index].IsFull && this.Slots[index].CurrentItem == item))
             {
                 var result = this.Slots[index].Add(item,amount);
                 return Enumerable.Repeat(item, result).ToArray();
@@ -152,7 +152,7 @@ namespace TheChest.Containers.Generics
             var item = items?.FirstOrDefault();
             var eq = this.Slots[index].CurrentItem?.Equals(item)?? false;
 
-            if (this.Slots[index].isEmpty || (!this.Slots[index].isFull && eq))
+            if (this.Slots[index].IsEmpty || (!this.Slots[index].IsFull && eq))
             {
                 var res = this.Slots[index].Add(items);
                 return Enumerable.Repeat(item, res).ToArray();
@@ -207,7 +207,7 @@ namespace TheChest.Containers.Generics
         {
             for (int i = 0; i < this.Slots.Length; i++)
             {
-                if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
+                if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem == item)
                 {
                     return this.Slots[i].GetOne();
                 }
@@ -227,7 +227,7 @@ namespace TheChest.Containers.Generics
             //TODO: optimize the for loops
             for (int i = 0; i < this.Slots.Length; i++)
             {
-                if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
+                if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem == item)
                 {
                     var result = this.Slots[i].GetAmount(currentAmount);
 
@@ -255,7 +255,7 @@ namespace TheChest.Containers.Generics
             int amount = 0;
             for (int i = 0; i < this.Slots.Length; i++)
             {
-                if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
+                if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem == item)
                 { 
                     amount++;
                 }
@@ -282,7 +282,7 @@ namespace TheChest.Containers.Generics
 
             for (int i = 0; i < this.Slots.Length; i++)
             {
-                if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
+                if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem == item)
                 {
                     var res = this.Slots[i].GetAll();
                     list.AddRange(res);

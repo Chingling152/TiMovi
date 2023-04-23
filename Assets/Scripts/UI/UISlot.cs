@@ -77,7 +77,7 @@ namespace TheChest.UI
 
         private void SetItem(Item item)
         {
-            if (!slot.isEmpty)
+            if (!slot.IsEmpty)
             {
                 this.itemAmount.text = slot.StackAmount == 0 ? string.Empty : slot.StackAmount.ToString();
                 this.itemSprite.sprite = item.Image;

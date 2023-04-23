@@ -34,7 +34,7 @@ namespace TheWorld.Tests.TheChest
         public void SlotConstrutorEmpty()
         {
             var slot = new Slot();
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
 
@@ -44,7 +44,7 @@ namespace TheWorld.Tests.TheChest
             var item = this.DefaultItemGenerator();
             var slot = new Slot(item);
 
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.IsNotNull(slot.CurrentItem);
             Assert.AreEqual(item, slot.CurrentItem);
         }

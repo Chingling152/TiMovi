@@ -65,7 +65,7 @@ namespace TheWorld.Tests.TheChest
             var res = inventory.MoveItem(0, 1);
 
             Assert.IsTrue(res);
-            Assert.IsTrue(inventory[0].isEmpty);
+            Assert.IsTrue(inventory[0].IsEmpty);
             Assert.AreEqual(item1, inventory[1].CurrentItem);
         }
 

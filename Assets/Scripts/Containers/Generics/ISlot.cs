@@ -15,12 +15,12 @@
         /// <summary>
         /// Verify if the slot is full
         /// </summary>
-        bool isFull { get;}
+        bool IsFull { get;}
 
         /// <summary>
         /// Verify if the current slot is empty
         /// </summary>
-        bool isEmpty { get; }
+        bool IsEmpty { get; }
         #endregion
 
         #region add
@@ -68,14 +68,14 @@
         /// <summary>
         /// Returns an item from slot
         /// </summary>
-        /// <returns>Returns an item of the slot, if <see cref="isEmpty"/> returns null</returns>
+        /// <returns>Returns an item of the slot, if <see cref="IsEmpty"/> returns null</returns>
         T GetOne();
 
         /// <summary>
         /// Returns an array of item from slot
         /// </summary>
         /// <param name="amount">The amount of items to be returned</param>
-        /// <returns>Returns an array from slot or an empty array if <see cref="isEmpty"/> </returns>
+        /// <returns>Returns an array from slot or an empty array if <see cref="IsEmpty"/> </returns>
         T[] GetAmount(int amount = 1);
 
         /// <summary>

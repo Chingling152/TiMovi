@@ -19,7 +19,7 @@ namespace TheWorld.Tests.TheChest
             var result = slot.Add(item);
 
             Assert.IsTrue(result);//should IsTrue
-            Assert.IsFalse(slot.isEmpty);//Should not be empty
+            Assert.IsFalse(slot.IsEmpty);//Should not be empty
             Assert.IsNotNull(slot.CurrentItem);//Should not be null
             Assert.AreSame(item, slot.CurrentItem);//Should be the item created
         }
@@ -40,7 +40,7 @@ namespace TheWorld.Tests.TheChest
             var result = slot.Add(item);
 
             Assert.IsTrue(result);//Should be true
-            Assert.IsTrue(slot.isFull);//The inventory needs to be full
+            Assert.IsTrue(slot.IsFull);//The inventory needs to be full
 
             Assert.AreEqual(item, slot.CurrentItem);//Should keep the currentItem
         }
@@ -61,7 +61,7 @@ namespace TheWorld.Tests.TheChest
             var result = slot.Add(item);
 
             Assert.IsFalse(result);//Should be false because the inventory is full
-            Assert.IsTrue(slot.isFull);//The inventory needs to be full
+            Assert.IsTrue(slot.IsFull);//The inventory needs to be full
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace TheWorld.Tests.TheChest
 
             Assert.AreEqual(0, result);//Should be true
            
-            Assert.IsTrue(slot.isFull);//Verify if the inventory is full
+            Assert.IsTrue(slot.IsFull);//Verify if the inventory is full
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace TheWorld.Tests.TheChest
             var result = slot.Add(item, amount);
 
             Assert.AreEqual(Math.Abs(maxStack-amount), result);//Should be true
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace TheWorld.Tests.TheChest
 
             Assert.AreEqual(0, result);//Should be true
 
-            Assert.IsTrue(slot.isFull);//Verify if the inventory is full
+            Assert.IsTrue(slot.IsFull);//Verify if the inventory is full
         }
 
         [Test]
@@ -193,7 +193,7 @@ namespace TheWorld.Tests.TheChest
             var result = slot.Add(arr);
 
             Assert.AreEqual(Math.Abs(maxStack - amount), result);//Should be true
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
         }
 
         [Test]

@@ -25,7 +25,7 @@ namespace TheWorld.Tests.TheChest
             var resultItem = slot.GetOne();
 
             Assert.AreEqual(item,resultItem);
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
 
@@ -37,7 +37,7 @@ namespace TheWorld.Tests.TheChest
             var resultItem = slot.GetOne();
 
             Assert.IsNull(resultItem);
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
 
@@ -62,7 +62,7 @@ namespace TheWorld.Tests.TheChest
             var resultItem = slot.GetAll();
 
             Assert.AreEqual(stackAmount, resultItem.Length);
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
 
@@ -103,7 +103,7 @@ namespace TheWorld.Tests.TheChest
             var resultAmount = result.Length;
             Assert.IsNotNull(result);
             Assert.AreEqual(randomAmount, resultAmount);
-            Assert.AreEqual( (expectedAmount - resultAmount) == 0,slot.isEmpty);
+            Assert.AreEqual( (expectedAmount - resultAmount) == 0,slot.IsEmpty);
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace TheWorld.Tests.TheChest
 
             var result = slot.GetAmount(searchedAmount);
 
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.AreEqual(itemAmount,result.Length);
         }
         #endregion
@@ -200,7 +200,7 @@ namespace TheWorld.Tests.TheChest
 
             var results = slot.Replace(newItem);
 
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
             Assert.AreEqual(oldItemAmountRandom,results.Length);
         }
@@ -245,7 +245,7 @@ namespace TheWorld.Tests.TheChest
 
             var results = slot.Replace(item, itemAmount);
 
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(itemAmount * 2 - maxStack, results.Length);
         }
         #endregion
@@ -307,7 +307,7 @@ namespace TheWorld.Tests.TheChest
 
             var results = slot.Replace(null);
 
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
             Assert.AreEqual(oldItemAmountRandom, results.Length);
         }
@@ -356,7 +356,7 @@ namespace TheWorld.Tests.TheChest
 
             var results = slot.Replace(array);
 
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(itemAmount * 2 - maxStack, results.Length);
         }
 

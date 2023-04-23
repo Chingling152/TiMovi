@@ -18,7 +18,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[0];
 
             Assert.IsEmpty(result);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -34,10 +34,10 @@ namespace TheWorld.Tests.TheChest
 
             Assert.IsEmpty(result);
 
-            Assert.IsFalse(inventory[0].isEmpty);
+            Assert.IsFalse(inventory[0].IsEmpty);
             Assert.AreEqual(item, inventory[0].CurrentItem);
 
-            Assert.IsFalse(inventory[1].isEmpty);
+            Assert.IsFalse(inventory[1].IsEmpty);
             Assert.AreEqual(item, inventory[1].CurrentItem);
         }
 
@@ -56,7 +56,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -85,7 +85,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[0];
 
             Assert.IsEmpty(result);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -101,10 +101,10 @@ namespace TheWorld.Tests.TheChest
 
             Assert.IsEmpty(result);
 
-            Assert.IsFalse(inventory[0].isEmpty);
+            Assert.IsFalse(inventory[0].IsEmpty);
             Assert.AreEqual(items[0], inventory[0].CurrentItem);
 
-            Assert.IsFalse(inventory[1].isEmpty);
+            Assert.IsFalse(inventory[1].IsEmpty);
             Assert.AreEqual(items[1], inventory[1].CurrentItem);
         }
 
@@ -123,7 +123,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -136,7 +136,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[0];
 
             Assert.IsEmpty(result);
-            Assert.IsTrue(slot.isEmpty);
+            Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
 
@@ -180,7 +180,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.False(slot.isEmpty);
+            Assert.False(slot.IsEmpty);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -199,7 +199,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -219,7 +219,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsNotEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -238,7 +238,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsNotEmpty(result);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreEqual(item, slot.CurrentItem);
         }
 
@@ -258,7 +258,7 @@ namespace TheWorld.Tests.TheChest
 
             Assert.IsNotEmpty(result);
             Assert.AreEqual(item,result[0]);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreNotEqual(item, slot.CurrentItem);
         }
         #endregion
@@ -290,7 +290,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.False(slot.isEmpty);
+            Assert.False(slot.IsEmpty);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -309,7 +309,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -329,7 +329,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsNotEmpty(result);
-            Assert.IsTrue(slot.isFull);
+            Assert.IsTrue(slot.IsFull);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -348,7 +348,7 @@ namespace TheWorld.Tests.TheChest
             var slot = inventory[randomIndex];
 
             Assert.IsNotEmpty(result);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreEqual(items[0], slot.CurrentItem);
         }
 
@@ -368,7 +368,7 @@ namespace TheWorld.Tests.TheChest
 
             Assert.IsNotEmpty(result);
             Assert.AreEqual(items[0], result[0]);
-            Assert.IsFalse(slot.isEmpty);
+            Assert.IsFalse(slot.IsEmpty);
             Assert.AreNotEqual(items[0], slot.CurrentItem);
         }
         #endregion

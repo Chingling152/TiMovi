@@ -119,7 +119,7 @@ namespace TheChest.Containers
             int amount = 0;
             for (int i = 0; i < this.Slots.Length; i++)
             {
-                if (!this.Slots[i].isEmpty && this.Slots[i].CurrentItem == item)
+                if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem == item)
                 {
                     amount+= this.slots[i].StackAmount;
                 }

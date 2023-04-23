@@ -27,12 +27,12 @@ namespace TheChest.Containers.Generics
         /// <summary>
         /// Verify if the slot is full
         /// </summary>
-        public virtual bool isFull => StackAmount == MaxStackAmount && !this.isEmpty;
+        public virtual bool IsFull => StackAmount == MaxStackAmount && !this.IsEmpty;
 
         /// <summary>
         /// Verify if the slot is empty
         /// </summary>
-        public virtual bool isEmpty => CurrentItem == null || StackAmount == 0;
+        public virtual bool IsEmpty => CurrentItem == null || StackAmount == 0;
         #endregion
 
         #region Constructor
@@ -69,7 +69,7 @@ namespace TheChest.Containers.Generics
         public virtual bool Add(T item)
         {
             var eq = this.CurrentItem?.Equals(item)??false;
-            if (this.isEmpty || (eq && !this.isFull))
+            if (this.IsEmpty || (eq && !this.IsFull))
             {
                 this.CurrentItem = item;
                 this.StackAmount++;
@@ -91,7 +91,7 @@ namespace TheChest.Containers.Generics
 
             var eq = this.CurrentItem?.Equals(item) ?? false;
 
-            if ((!this.isEmpty && !eq) || this.isFull)
+            if ((!this.IsEmpty && !eq) || this.IsFull)
                 return amount;
 
             int res = 0;
@@ -122,7 +122,7 @@ namespace TheChest.Containers.Generics
 
             var eq = this.CurrentItem?.Equals(items[0])??false;
 
-            if ((!this.isEmpty && !eq) || this.isFull)
+            if ((!this.IsEmpty && !eq) || this.IsFull)
                 return items.Length;
 
             int res = 0;

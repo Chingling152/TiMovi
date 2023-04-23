@@ -1,6 +1,6 @@
 # The Chest Changelog
 
-## v0.2.1
+## v0.2.0-1
 ### Fixes
   * Project not compiling due merge conflicts
 
