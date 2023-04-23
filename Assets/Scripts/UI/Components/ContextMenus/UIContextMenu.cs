@@ -8,6 +8,8 @@ namespace TheChest.UI.Components.ContextMenus
     public class UIContextMenu : MonoBehaviour
     {
         [SerializeField] private Text title;
+        public Text Title => this.title;
+
         [SerializeField] private GameObject optionsContainer;
         [SerializeField] private ContainerContextMenu menu;
 
@@ -23,11 +25,6 @@ namespace TheChest.UI.Components.ContextMenus
                 var menuOption = Instantiate(this.optionPrefab, this.optionsContainer.transform);
                 menuOption.SetMenuOption(option);
             }
-        }
-
-        public void SetItem(Item item)
-        {
-            this.title.text = item.Name;
         }
     }
 }
