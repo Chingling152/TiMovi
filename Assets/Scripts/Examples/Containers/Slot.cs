@@ -1,8 +1,8 @@
-﻿using TheChest.Items;
-using TheChest.Containers.Generics;
-using UnityEngine;
+﻿using UnityEngine;
+using TheChest.Items;
+using TheChest.Containers.Generics.Base;
 
-namespace TheChest.Containers
+namespace TheChest.Examples.Containers
 {
     /// <summary>
     /// Slot with stackable items and serializable Fields

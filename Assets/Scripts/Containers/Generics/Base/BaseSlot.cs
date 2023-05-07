@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace TheChest.Containers.Generics
+namespace TheChest.Containers.Generics.Base
 {
     /// <summary>
     /// Generic Slot with defined Stack
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
-    public class BaseSlot<T> : ISlot<T> where T : class
+    public class BaseSlot<T> : ISlot<T>
     {
         #region Properties
         /// <summary>
@@ -36,7 +36,7 @@ namespace TheChest.Containers.Generics
         #endregion
 
         #region Constructor
-        public BaseSlot(T CurrentItem = null, int amount = 1, int maxStackAmount = 1)
+        public BaseSlot(T CurrentItem = default, int amount = 1, int maxStackAmount = 1)
         {
             amount = amount > maxStackAmount? maxStackAmount :amount;
 
@@ -209,14 +209,14 @@ namespace TheChest.Containers.Generics
         public virtual T GetOne()
         {
             if (StackAmount < 1)
-                return null;
+                return default;
 
             T item = this.CurrentItem;
 
             this.StackAmount--;
 
             if (StackAmount == 0)
-                this.CurrentItem = null;
+                this.CurrentItem = default;
 
             return item;
         }
@@ -234,7 +234,7 @@ namespace TheChest.Containers.Generics
                 items[i] = this.CurrentItem;
             }
 
-            if (this.StackAmount == 0) this.CurrentItem = null;
+            if (this.StackAmount == 0) this.CurrentItem = default;
 
             return items;
         }
@@ -242,7 +242,7 @@ namespace TheChest.Containers.Generics
         public virtual T[] GetAll()
         {
             return this.GetAmount(this.StackAmount);
-        }
+        }   
         #endregion
     }
 }
