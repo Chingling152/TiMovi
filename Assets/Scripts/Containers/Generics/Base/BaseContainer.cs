@@ -3,7 +3,6 @@ using TheChest.Containers.Generics.Interfaces;
 
 namespace TheChest.Containers.Generics.Base
 {
-    [Serializable]
     public abstract class BaseContainer<T> : IContainer<T>
     {
         protected const int DEFAULT_SLOT_COUNT = 20;
