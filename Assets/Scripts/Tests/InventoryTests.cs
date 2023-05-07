@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
-using TheChest.Containers;
+using TheChest.Examples.Containers;
 using TheChest.Items;
 
 namespace TheWorld.Tests.TheChest
@@ -94,8 +94,7 @@ namespace TheWorld.Tests.TheChest
         public void InventoryConstructorNegativeAmount()
         {
             var amount = random.Next(-high_size, -low_size);
-            var inventory = new Inventory(amount);
-            Assert.AreEqual(Inventory.DEFAULT_SLOT_COUNT,inventory.Slots.Length);
+            Assert.Throws(typeof(ArgumentOutOfRangeException), () => new Inventory(amount), $"Invalid Container Size : {amount}");
         }
     }
 }

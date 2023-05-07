@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using TheChest.Containers;
+using TheChest.Examples.Containers;
 
 namespace TheWorld.Tests.TheChest
 {

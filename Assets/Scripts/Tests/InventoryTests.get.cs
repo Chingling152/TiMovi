@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Linq;
-using TheChest.Containers;
+using TheChest.Examples.Containers;
 using TheChest.Items;
 
 namespace TheWorld.Tests.TheChest

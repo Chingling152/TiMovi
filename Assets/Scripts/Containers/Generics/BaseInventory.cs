@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TheChest.Containers.Generics.Base;
 
 namespace TheChest.Containers.Generics
 {
@@ -8,7 +8,7 @@ namespace TheChest.Containers.Generics
     /// Base inventory With IInventory Implemented
     /// </summary>
     /// <typeparam name="T">Any kind of item</typeparam>
-    public class BaseInventory<T> : IInventory<T> where T : class
+    public class BaseInventory<T> : IDeprecatedInventory<T> where T : class
     {
         #region Properties
 

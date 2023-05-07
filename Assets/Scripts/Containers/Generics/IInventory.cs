@@ -1,10 +1,13 @@
-﻿namespace TheChest.Containers.Generics
+﻿using System;
+
+namespace TheChest.Containers.Generics
 {
     /// <summary>
     /// Default interface to Inventory
     /// </summary>
     /// <typeparam name="T">The item this inventory accepts</typeparam>
-    public interface IInventory<T> //TODO: Change name to IContainer
+    [Obsolete("Use TheChest.Containers.Generics.Interfaces.IInventory<T>")]
+    public interface IDeprecatedInventory<T> //TODO: Change name to IContainer
     {
         #region properties
         /// <summary>

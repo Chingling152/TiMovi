@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TheChest.Containers;
 using TheChest.Items;
 using TheChest.World;
 using TheChest.UI.Components;
-using TheChest.UI.Interfaces;
+using TheChest.Examples.Containers;
 
 namespace TheChest.UI
 {
     [DisallowMultipleComponent]
-    public class UIInventory : MonoBehaviour, IInventoryUI<Inventory,Item>
+    public class UIInventory : MonoBehaviour
     {
         [Header("Inventory data")]
         [Tooltip("Inventory class to store items data")]
@@ -85,7 +84,7 @@ namespace TheChest.UI
         }
 
         public void Drop() 
-        { 
+        {
             var items = this.inventory.GetAll(this.SelectedIndex);
 
             if(items.Length == 0) {
