@@ -1,6 +1,10 @@
 ﻿namespace TheChest.Containers.Generics.Interfaces
 {
-    public interface IMoveableContainer<T> : IContainer<T>
+    /// <summary>
+    /// Interface with methods for interaction with the Container 
+    /// </summary>
+    /// <typeparam name="T">An item type</typeparam>
+    public interface IInteractiveContainer<T> : IContainer<T>
     {
         /// <summary>
         /// Move a item between two slots

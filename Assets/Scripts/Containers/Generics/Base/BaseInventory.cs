@@ -4,13 +4,25 @@ using TheChest.Containers.Generics.Interfaces;
 
 namespace TheChest.Containers.Generics.Base
 {
+    /// <summary>
+    /// Generic Inventory with <see cref="IInventory{T}"/> implementation
+    /// </summary>
+    /// <typeparam name="T">An item type</typeparam>
     public abstract class BaseInventory<T> : BaseContainer<T>, IInventory<T>
     {
+        /// <summary>
+        /// Creates an Inventory with slots
+        /// </summary>
+        /// <param name="slots">An array of slots</param>
         public BaseInventory(BaseSlot<T>[] slots) : base(slots)
         {
             this.Slots = slots;
         }
 
+        /// <summary>
+        /// Creates an Inventory with a number of slots
+        /// </summary>
+        /// <param name="count">Sets the amount of slots (20 if not set)</param>
         public BaseInventory(int count) : base(count)
         {
             if (count <= 0)

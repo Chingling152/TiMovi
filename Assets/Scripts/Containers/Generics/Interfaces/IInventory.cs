@@ -1,6 +1,13 @@
 ﻿namespace TheChest.Containers.Generics.Interfaces
 {
-    public interface IInventory<T> : IContainer<T>, IMoveableContainer<T>
+    /// <summary>
+    /// Inventory Interface
+    /// <para>
+    /// This interface is still unstable. Some methods can be moved to a separated interface.
+    /// </para>
+    /// </summary>
+    /// <typeparam name="T">An item type</typeparam>
+    public interface IInventory<T> : IContainer<T>, IInteractiveContainer<T>
     {
         #region get
         /// <summary>

@@ -1,6 +1,10 @@
 ﻿namespace TheChest.Containers.Generics.Interfaces
 {
-    public interface IContainer<T> //: IEnumerable<T>
+    /// <summary>
+    /// Interface with the basics of a container
+    /// </summary>
+    /// <typeparam name="T">An item type</typeparam>
+    public interface IContainer<T>
     {
         /// <summary>
         /// Slots in the Inventory
@@ -13,10 +17,10 @@
         int Size { get; }
 
         /// <summary>
-        /// 
+        /// Gets an item from this.Slots
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="index">Index of a slot<para>It needs to be smaller than this.Size</para></param>
+        /// <returns>An item from this.Slots</returns>
         ISlot<T> this[int index] { get; }
     }
 }

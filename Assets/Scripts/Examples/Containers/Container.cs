@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TheChest.Containers;
 using TheChest.Containers.Generics;
 using TheChest.Containers.Generics.Base;
 using TheChest.Items;
