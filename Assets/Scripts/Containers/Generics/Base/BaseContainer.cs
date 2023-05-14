@@ -1,5 +1,6 @@
 ﻿using System;
 using TheChest.Containers.Generics.Interfaces;
+using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Containers.Generics.Base
 {

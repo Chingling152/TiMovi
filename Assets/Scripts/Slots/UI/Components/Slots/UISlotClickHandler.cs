@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace TheChest.UI.Components.Slots
+namespace TheChest.Slots.UI.Components.Slots
 {
     /// <summary>
     /// Class to handle Click On Slot

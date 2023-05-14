@@ -1,17 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using TheChest.UI.Interfaces;
 using TheChest.Items;
 using TheChest.Examples.Containers;
 
-namespace TheChest.UI
+namespace TheChest.Slots.UI
 {
     /// <summary>
     /// UI Slot with name, amount and icon
     /// </summary>
     [DisallowMultipleComponent]
-    public class UISlot : MonoBehaviour , ISlotUI<Slot,Item>
+    public class UISlot : MonoBehaviour
     {
         #region UI
         [Header("Values")]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TheChest.UI.Components.Slots
+namespace TheChest.Slots.UI.Components.Slots
 {
     /// <summary>
     /// 

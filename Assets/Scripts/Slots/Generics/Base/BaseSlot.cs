@@ -1,6 +1,7 @@
 ﻿using System;
+using TheChest.Slots.Generics.Interfaces;
 
-namespace TheChest.Containers.Generics.Base
+namespace TheChest.Slots.Generics.Base
 {
     /// <summary>
     /// Generic Slot with defined Stack

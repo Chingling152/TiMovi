@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using TheChest.UI.Components.Tooltips;
+using TheChest.Slots.UI.Components.Tooltips;
 
-namespace TheChest.UI.Components.Slots.Tooltips
+namespace TheChest.Slots.UI.Components.Slots.Tooltips
 {
     [DisallowMultipleComponent]
     public class UISlotTooltipHandler : UISlotComponent, IPointerEnterHandler, IPointerExitHandler

@@ -1,4 +1,6 @@
-﻿namespace TheChest.Containers.Generics.Interfaces
+﻿using TheChest.Slots.Generics.Interfaces;
+
+namespace TheChest.Containers.Generics.Interfaces
 {
     /// <summary>
     /// Interface with the basics of a container

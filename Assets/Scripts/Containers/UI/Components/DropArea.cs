@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace TheChest.UI.Components
+namespace TheChest.Containers.UI.Components
 {
     /// <summary>
     /// Inventory Drop Area

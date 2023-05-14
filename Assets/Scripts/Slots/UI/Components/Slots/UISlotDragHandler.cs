@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace TheChest.UI.Components.Slots
+namespace TheChest.Slots.UI.Components.Slots
 {
     /// <summary>
     /// Class to handle Drag'n drop on Slot

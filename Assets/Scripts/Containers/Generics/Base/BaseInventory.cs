@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
+using TheChest.Slots.Generics.Base;
 
 namespace TheChest.Containers.Generics.Base
 {

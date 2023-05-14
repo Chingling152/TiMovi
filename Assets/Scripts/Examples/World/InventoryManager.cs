@@ -1,4 +1,4 @@
-﻿using TheChest.UI;
+﻿using TheChest.Containers.UI;
 
 namespace TheChest.World
 {

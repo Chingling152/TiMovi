@@ -2,10 +2,11 @@
 using UnityEngine.UI;
 using TheChest.Items;
 using TheChest.World;
-using TheChest.UI.Components;
 using TheChest.Examples.Containers;
+using TheChest.Containers.UI.Components;
+using TheChest.Slots.UI;
 
-namespace TheChest.UI
+namespace TheChest.Containers.UI
 {
     [DisallowMultipleComponent]
     public class UIInventory : MonoBehaviour

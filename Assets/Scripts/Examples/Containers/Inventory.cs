@@ -2,7 +2,7 @@
 using UnityEngine;
 using TheChest.Items;
 using TheChest.Containers.Generics.Base;
-using TheChest.Containers.Generics;
+using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Examples.Containers
 {

@@ -1,4 +1,4 @@
-﻿namespace TheChest.Containers.Generics
+﻿namespace TheChest.Slots.Generics.Interfaces
 {
     /// <summary>
     /// Generic Inventory Slot with item stack

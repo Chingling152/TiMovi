@@ -2,7 +2,7 @@
 using TheChest.Items;
 using UnityEngine.UI;
 
-namespace TheChest.UI.Components.Tooltips
+namespace TheChest.Slots.UI.Components.Tooltips
 {
     public class UITooltip : MonoBehaviour
     {
