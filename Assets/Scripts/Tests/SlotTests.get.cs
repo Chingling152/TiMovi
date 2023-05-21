@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using TheChest.Examples.Containers;
-using TheChest.Items;
+using TheChest.Examples.Items;
 
 namespace TheWorld.Tests.TheChest
 {

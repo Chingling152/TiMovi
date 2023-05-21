@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using TheChest.Items;
 using TheChest.Examples.Containers;
+using TheChest.Examples.Items;
 
 namespace TheChest.Slots.UI
 {

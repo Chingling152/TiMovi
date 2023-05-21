@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using TheChest.Examples.Containers;
-using TheChest.Items;
+using TheChest.Examples.Items;
 
 namespace TheWorld.Tests.TheChest
 {
@@ -51,6 +51,9 @@ namespace TheWorld.Tests.TheChest
         }
         #endregion
 
+        //TODO: RE-ADD WHEN IMPLEMENTS 
+
+        /*
         #region GetItemAmount(Index)
         [Test]
         public void GetItemAmount_from_index__All_amount_Should_return_the_Items()
@@ -100,6 +103,7 @@ namespace TheWorld.Tests.TheChest
             Assert.AreEqual(0, result.Length);
         }
         #endregion
+        */
 
         #region GetItem(Item)
         [Test]

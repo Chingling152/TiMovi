@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using TheChest.Items;
 using TheChest.Slots.Generics.Base;
+using TheChest.Examples.Items;
 
 namespace TheChest.Examples.Containers
 {
@@ -8,7 +8,7 @@ namespace TheChest.Examples.Containers
     /// Slot with stackable items and serializable Fields
     /// </summary>
     [System.Serializable]
-    public class Slot : BaseSlot<Item>
+    public class Slot : BaseStackSlot<Item>
     {
         #region properties
         /// <summary>
@@ -17,9 +17,6 @@ namespace TheChest.Examples.Containers
         [SerializeField]
         private Item item;
 
-        /// <summary>
-        /// Current item inside the slot
-        /// </summary>
         public override Item CurrentItem {
             get {
                 return this.item;
@@ -29,15 +26,9 @@ namespace TheChest.Examples.Containers
             }
         }
 
-        /// <summary>
-        /// The amount of the item inside this slot
-        /// </summary>
         [SerializeField]
         private int stackAmount;
 
-        /// <summary>
-        /// The amount of the item inside this slot
-        /// </summary>
         public override int StackAmount {
             get {
                 return this.stackAmount;
@@ -47,9 +38,6 @@ namespace TheChest.Examples.Containers
             }
         }
 
-        /// <summary>
-        /// Returns the Max amount of <see cref="Item"/> this slot can carry
-        /// </summary>
         public override int MaxStackAmount => this.CurrentItem?.MaxStack??1;
         #endregion
 

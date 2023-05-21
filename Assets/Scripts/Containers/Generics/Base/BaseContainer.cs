@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Interfaces;
 
@@ -20,6 +21,10 @@ namespace TheChest.Containers.Generics.Base
         public ISlot<T> this[int index] => this.Slots[index];
 
         public int Size => Slots.Length;
+
+        public bool IsFull => this.Slots.All(x => x.IsFull);
+
+        public bool IsEmpty => this.Slots.All(x => x.IsEmpty);
 
         /// <summary>
         /// Creates a Container with slots

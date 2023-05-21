@@ -1,5 +1,5 @@
 ﻿using System;
-using TheChest.Items;
+using TheChest.Examples.Items;
 using NUnit.Framework;
 using TheChest.Examples.Containers;
 

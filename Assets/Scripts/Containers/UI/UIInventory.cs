@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TheChest.Items;
 using TheChest.World;
 using TheChest.Examples.Containers;
 using TheChest.Containers.UI.Components;
 using TheChest.Slots.UI;
+using TheChest.Examples.Items;
 
 namespace TheChest.Containers.UI
 {
@@ -61,7 +61,7 @@ namespace TheChest.Containers.UI
         #region Interface methods
         public bool Add(Item item,int amount = 1)
         {
-            var res = this.inventory.AddItem(item, amount).Length == 0;
+            var res = this.inventory.AddItem(item);
             this.Refresh();
             return res;
         }
@@ -86,15 +86,18 @@ namespace TheChest.Containers.UI
 
         public void Drop() 
         {
-            var items = this.inventory.GetAll(this.SelectedIndex);
+            var item = this.inventory.GetItem(this.SelectedIndex);
 
-            if(items.Length == 0) {
+            /*
+            var items = this.inventory.GetAll(this.SelectedIndex);
+             * if(items.Length == 0) {
                 this.SelectedIndex = -1;
                 this.SelectedAmount = 0;
                 return;
             }
 
             var item = items[0];
+            */
 
             var screenPoint = Input.mousePosition;
             screenPoint.z = 10.0f;
@@ -102,7 +105,7 @@ namespace TheChest.Containers.UI
             var obj = Instantiate(worldItem, Camera.main.ScreenToWorldPoint(screenPoint),Quaternion.identity);
 
             obj.GetComponent<WorldItem>().Item = item;
-            obj.GetComponent<WorldItem>().Amount = items.Length;
+            obj.GetComponent<WorldItem>().Amount = 1;
 
             this.SelectedIndex = -1;
             this.SelectedAmount = 0;
