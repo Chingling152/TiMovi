@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Interfaces;
 using TheChest.Slots.Generics.Base;
@@ -9,20 +7,7 @@ namespace TheChest.Containers.Generics.Base
 {
     public class BaseStackInventory<T> : BaseInventory<T>, IStackInventory<T>, IInteractiveContainer<T>
     {
-        [SerializeField]
-        protected IStackSlot<T>[] slots;
-
-        public override ISlot<T>[] Slots
-        {
-            get
-            {
-                return slots;
-            }
-            protected set
-            {
-                slots = value as IStackSlot<T>[]; 
-            } 
-        }
+        private IStackSlot<T>[] slots => this.Slots as IStackSlot<T>[];
 
         public BaseStackInventory(int count) : base(count)
         {
@@ -30,7 +15,14 @@ namespace TheChest.Containers.Generics.Base
 
         public BaseStackInventory(IStackSlot<T>[] slots) : base(slots as BaseSlot<T>[])
         {
-            this.slots = slots;
+        }
+
+        public override bool MoveItem(int origin, int target)
+        {
+            var oldItems = this.GetAll(origin);
+            var res = this.AddItemAt(oldItems, target);
+            this.AddItemAt(res, origin);
+            return true;
         }
 
         public override T[] AddItem(T item, int amount = 1)

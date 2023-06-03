@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Base;
@@ -10,7 +9,7 @@ namespace TheChest.Containers.Generics.Base
     /// Generic Inventory with <see cref="IInventory{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public abstract class BaseInventory<T> : BaseContainer<T>, IInventory<T> //, IStackContainer<T>
+    public abstract class BaseInventory<T> : BaseContainer<T>, IInventory<T>
     {
         /// <summary>
         /// Creates an Inventory with slots

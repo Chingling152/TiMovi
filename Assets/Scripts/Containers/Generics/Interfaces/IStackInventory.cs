@@ -1,6 +1,6 @@
 ﻿namespace TheChest.Containers.Generics.Interfaces
 {
-    public interface IStackInventory<T> : IInventory<T>, IStackContainer<T>
+    public interface IStackInventory<T> : IInventory<T>, IStackContainer<T>, IInteractiveContainer<T>
     {
         /// <summary>
         /// Returns an amount of items inside the Inventory Slot
