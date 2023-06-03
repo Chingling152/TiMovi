@@ -7,7 +7,7 @@ using TheChest.Examples.Items;
 namespace TheChest.Examples.Containers
 {
     [Serializable]
-    public class Inventory : BaseInventory<Item>
+    public class Inventory : BaseStackInventory<Item>
     {
         protected const string DEFAULT_CONTAINER_NAME = "CONTAINER_NAME";
 
@@ -16,7 +16,7 @@ namespace TheChest.Examples.Containers
         public string ContainerName => this.containerName;
 
         [SerializeField]
-        protected Slot[] slots;
+        protected new Slot[] slots;
 
         public override ISlot<Item>[] Slots
         {

@@ -18,21 +18,6 @@
         T[] GetAll(int index);
 
         /// <summary>
-        /// Adds an amount of item in a avaliable <see cref="ISlot{T}"/> 
-        /// </summary>
-        /// <param name="item">item to be added</param>
-        /// <param name="amount">amount of the item added</param>
-        /// <returns>returns the items that could'nt be added</returns>
-        T[] AddItem(T item, int amount);
-
-        /// <summary>
-        /// Adds and array of item in a avaliable <see cref="ISlot{T}"/> 
-        /// </summary>
-        /// <param name="items">Array of items to be added to any avaliable <see cref="ISlot{T}"/> founded</param>
-        /// <returns></returns>
-        T[] AddItem(T[] items);
-
-        /// <summary>
         /// Adds an amount of item in a specific slot
         /// </summary>
         /// <param name="item">item to be added</param>

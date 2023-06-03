@@ -33,7 +33,7 @@ namespace TheChest.Containers.Generics.Base
             this.slots = slots;
         }
 
-        public virtual T[] AddItem(T item, int amount = 1)
+        public override T[] AddItem(T item, int amount = 1)
         {
             if (amount < 1) 
                 return new T[0];
@@ -56,7 +56,7 @@ namespace TheChest.Containers.Generics.Base
             return itemArr;
         }
 
-        public virtual T[] AddItem(T[] items)
+        public override T[] AddItem(T[] items)
         {
             if (items == null)
                 return new T[0];

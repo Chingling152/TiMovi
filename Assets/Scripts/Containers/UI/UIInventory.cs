@@ -61,9 +61,9 @@ namespace TheChest.Containers.UI
         #region Interface methods
         public bool Add(Item item,int amount = 1)
         {
-            var res = this.inventory.AddItem(item);
+            var res = this.inventory.AddItem(item, amount);
             this.Refresh();
-            return res;
+            return res.Length == 0;
         }
 
         public void Generate()
