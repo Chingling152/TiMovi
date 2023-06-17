@@ -8,12 +8,12 @@ namespace TheChest.Examples.Containers
     public class Container : BaseContainer<Item>
     {
         [SerializeField]
-        protected Slot[] slots;
+        protected StackSlot[] slots;
 
         public override ISlot<Item>[] Slots 
         { 
             get => slots; 
-            protected set => slots = value as Slot[]; 
+            protected set => slots = value as StackSlot[]; 
         }
     }
 }

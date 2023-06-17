@@ -14,7 +14,7 @@ namespace TheWorld.Tests.TheChest
         {
             var item = this.DefaultItemGenerator();
 
-            var slot = new Slot();
+            var slot = new StackSlot();
 
             var result = slot.Add(item);
 
@@ -35,7 +35,7 @@ namespace TheWorld.Tests.TheChest
                maxStack: 2
             );
 
-            var slot = new Slot(item);
+            var slot = new StackSlot(item);
 
             var result = slot.Add(item);
 
@@ -56,7 +56,7 @@ namespace TheWorld.Tests.TheChest
                maxStack: 1
            );
 
-            var slot = new Slot(item);
+            var slot = new StackSlot(item);
 
             var result = slot.Add(item);
 
@@ -70,7 +70,7 @@ namespace TheWorld.Tests.TheChest
             var item = this.DefaultItemGenerator();
             var otherItem = this.DefaultItemGenerator();
 
-            var slot = new Slot(otherItem);
+            var slot = new StackSlot(otherItem);
 
             var result = slot.Add(item);
 
@@ -93,7 +93,7 @@ namespace TheWorld.Tests.TheChest
                maxStack: amountAndStack
             );
 
-            var slot = new Slot();
+            var slot = new StackSlot();
 
             var result = slot.Add(item, amountAndStack);
 
@@ -116,7 +116,7 @@ namespace TheWorld.Tests.TheChest
                maxStack: maxStack
             );
 
-            var slot = new Slot();
+            var slot = new StackSlot();
 
             var result = slot.Add(item, amount);
 
@@ -138,7 +138,7 @@ namespace TheWorld.Tests.TheChest
                maxStack: maxStack
             );
 
-            var slot = new Slot(item, amount);
+            var slot = new StackSlot(item, amount);
 
             var result = slot.Add(item, amount);
 
@@ -163,7 +163,7 @@ namespace TheWorld.Tests.TheChest
 
             var arr = Enumerable.Repeat(item, amountAndStack).ToArray();
 
-            var slot = new Slot();
+            var slot = new StackSlot();
 
             var result = slot.Add(arr);
 
@@ -188,7 +188,7 @@ namespace TheWorld.Tests.TheChest
 
             var arr = Enumerable.Repeat(item, amount).ToArray();
 
-            var slot = new Slot();
+            var slot = new StackSlot();
 
             var result = slot.Add(arr);
 
@@ -212,7 +212,7 @@ namespace TheWorld.Tests.TheChest
 
             var arr = Enumerable.Repeat(item, amount).ToArray();
 
-            var slot = new Slot(item, amount);
+            var slot = new StackSlot(item, amount);
 
             var result = slot.Add(arr);
 

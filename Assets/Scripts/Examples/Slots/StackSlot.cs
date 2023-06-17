@@ -8,7 +8,7 @@ namespace TheChest.Examples.Containers
     /// Slot with stackable items and serializable Fields
     /// </summary>
     [System.Serializable]
-    public class Slot : BaseStackSlot<Item>
+    public class StackSlot : BaseStackSlot<Item>
     {
         #region properties
         /// <summary>
@@ -46,7 +46,7 @@ namespace TheChest.Examples.Containers
         /// </summary>
         /// <param name="CurrentItem">Item inside the slot (can be null)</param>
         /// <param name="amount">Amount of <paramref name="CurrentItem"/> (0 if item is null)</param>
-        public Slot(Item CurrentItem = null,int amount = 1) 
+        public StackSlot(Item CurrentItem = null,int amount = 1) 
         {
             this.CurrentItem = CurrentItem;
             this.StackAmount = CurrentItem != null ? amount : 0;
@@ -56,7 +56,7 @@ namespace TheChest.Examples.Containers
         /// Creates an Slot with items
         /// </summary>
         /// <param name="currentItems">Items inside the slot (should be copies of first item)</param>
-        public Slot(Item[] currentItems)
+        public StackSlot(Item[] currentItems)
         {
             if(currentItems == null)
             {

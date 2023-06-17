@@ -25,7 +25,7 @@ namespace TheChest.Containers.Generics.Base
             return true;
         }
 
-        public override T[] AddItem(T item, int amount = 1)
+        public override T[] AddItem(T item, int amount)
         {
             if (amount < 1) 
                 return new T[0];
@@ -71,7 +71,7 @@ namespace TheChest.Containers.Generics.Base
             return itemArr;
         }
 
-        public virtual T[] AddItemAt(T item, int index, int amount = 1, bool replace = true)
+        public virtual T[] AddItemAt(T item, int index, int amount, bool replace = true)
         {
             if (amount < 1)
                 return new T[0];
@@ -123,7 +123,7 @@ namespace TheChest.Containers.Generics.Base
             return this.slots[index].GetAll();
         }
 
-        public virtual T[] GetItemAmount(int index, int amount = 1)
+        public virtual T[] GetItemAmount(int index, int amount)
         {
             if (index < 0 || index >= Slots.Length) 
                 return new T[0];

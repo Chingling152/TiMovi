@@ -45,12 +45,12 @@ namespace TheWorld.Tests.TheChest
            );
         }
 
-        private Slot DefaultSlotGenerator(bool isEmpty = true,int amount = high_amount)
+        private StackSlot DefaultSlotGenerator(bool isEmpty = true,int amount = high_amount)
         {
             if(isEmpty)
-                return new Slot();
+                return new StackSlot();
             else
-                return new Slot(this.DefaultItemGenerator(), amount);
+                return new StackSlot(this.DefaultItemGenerator(), amount);
         }
 
         private Inventory DefaultInventoryGenerator(bool isEmpty = true, int slotAmount = 20 , int itemAmount = high_amount, Item itemTemplate = null)
@@ -61,17 +61,17 @@ namespace TheWorld.Tests.TheChest
             }
             else
             {
-                var slots = new Slot[slotAmount];
+                var slots = new StackSlot[slotAmount];
 
                 for (int i = 0; i < slots.Length; i++)
                 {
                     if(itemTemplate == null)
                     {
-                        slots[i] = new Slot(this.DefaultItemGenerator(maxStack: itemAmount));
+                        slots[i] = new StackSlot(this.DefaultItemGenerator(maxStack: itemAmount));
                     }
                     else
                     {
-                        slots[i] = new Slot(itemTemplate,itemAmount);
+                        slots[i] = new StackSlot(itemTemplate,itemAmount);
                     }
                 }
 
