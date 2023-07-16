@@ -7,7 +7,7 @@
     /// </para>
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IInventory<T> : IContainer<T>, IInteractiveContainer<T>
+    public interface IInventory<T> : IInteractiveContainer<T>
     {
         /// <summary>
         /// Gets an <see cref="item"/> inside a slot

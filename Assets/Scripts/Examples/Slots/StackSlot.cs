@@ -8,7 +8,7 @@ namespace TheChest.Examples.Containers
     /// Slot with stackable items and serializable Fields
     /// </summary>
     [System.Serializable]
-    public class StackSlot : BaseStackSlot<Item>
+    public class StackSlot : BaseInventoryStackSlot<Item>
     {
         #region properties
         /// <summary>

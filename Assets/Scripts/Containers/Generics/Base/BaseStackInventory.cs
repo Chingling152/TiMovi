@@ -5,15 +5,19 @@ using TheChest.Slots.Generics.Base;
 
 namespace TheChest.Containers.Generics.Base
 {
-    public class BaseStackInventory<T> : BaseInventory<T>, IStackInventory<T>
+    /// <summary>
+    /// Generic Inventory with <see cref="IStackInventory{T}"/> implementation
+    /// </summary>
+    /// <typeparam name="T">An item type</typeparam>
+    public abstract class BaseStackInventory<T> : BaseInventory<T>, IStackInventory<T>
     {
-        private IStackSlot<T>[] slots => this.Slots as IStackSlot<T>[];
+        private IInventoryStackSlot<T>[] slots => this.Slots as IInventoryStackSlot<T>[];
 
-        public BaseStackInventory(int count) : base(count)
+        protected BaseStackInventory(int count) : base(count)
         {
         }
 
-        public BaseStackInventory(IStackSlot<T>[] slots) : base(slots as BaseSlot<T>[])
+        protected BaseStackInventory(IInventoryStackSlot<T>[] slots) : base(slots as BaseInventorySlot<T>[])
         {
         }
 

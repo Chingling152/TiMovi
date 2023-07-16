@@ -10,7 +10,7 @@ namespace TheChest.Containers.Generics.Base
     /// Generic Inventory with <see cref="IInventory{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public class BaseInventory<T> : BaseContainer<T>, IInventory<T>
+    public abstract class BaseInventory<T> : BaseContainer<T>, IInventory<T>
     {
         private IInventorySlot<T>[] slots => this.Slots as IInventorySlot<T>[];
 
@@ -18,7 +18,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates an Inventory with slots
         /// </summary>
         /// <param name="slots">An array of slots</param>
-        public BaseInventory(BaseInventorySlot<T>[] slots) : base(slots)
+        protected BaseInventory(IInventorySlot<T>[] slots) : base(slots)
         {
             this.Slots = slots;
         }
@@ -27,7 +27,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates an Inventory with a number of slots
         /// </summary>
         /// <param name="count">Sets the amount of slots (20 if not set)</param>
-        public BaseInventory(int count) : base(count)
+        protected BaseInventory(int count) : base(count)
         {
             if (count <= 0)
             {

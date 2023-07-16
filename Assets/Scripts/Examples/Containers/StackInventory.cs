@@ -26,7 +26,7 @@ namespace TheChest.Examples.Containers
         {
         }
 
-        public StackInventory(IStackSlot<Item>[] slots) : base(slots)
+        public StackInventory(StackSlot[] slots) : base(slots)
         {
         }
     }
