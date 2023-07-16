@@ -1,7 +1,7 @@
 ﻿namespace TheChest.Slots.Generics.Interfaces
 {
     /// <summary>
-    /// Generic Inventory Slot with item stack
+    /// Interface only with properties for a basic Slot
     /// </summary>
     /// <typeparam name="T">Item the Slot Accept</typeparam>
     public interface ISlot<T>
@@ -20,25 +20,5 @@
         /// Verify if the current slot is empty
         /// </summary>
         bool IsEmpty { get; }
-
-        /// <summary>
-        /// Add the item in the current Slot
-        /// </summary>
-        /// <param name="item">The item to be added</param>
-        /// <returns>True if the value is successful added</returns>
-        bool Add(T item);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        T Replace(T item);
-
-        /// <summary>
-        /// Returns an item from slot
-        /// </summary>
-        /// <returns>Returns an item of the slot, if <see cref="IsEmpty"/> returns null</returns>
-        T GetOne();
     }
 }

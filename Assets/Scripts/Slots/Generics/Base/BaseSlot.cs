@@ -1,5 +1,4 @@
-﻿using System;
-using TheChest.Slots.Generics.Interfaces;
+﻿using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Slots.Generics.Base
 {
@@ -7,7 +6,7 @@ namespace TheChest.Slots.Generics.Base
     /// Generic Slot with space for one ietm
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
-    public class BaseSlot<T> : ISlot<T>
+    public abstract class BaseSlot<T> : ISlot<T>
     {
         public virtual T CurrentItem { get; protected set; }
 
@@ -19,37 +18,9 @@ namespace TheChest.Slots.Generics.Base
         /// Creates a basic slot with an item
         /// </summary>
         /// <param name="currentItem">item that belongs to this slot (null if empty)</param>
-        public BaseSlot(T currentItem = default)
+        protected BaseSlot(T currentItem = default)
         {
             this.CurrentItem = currentItem;
-        }
-
-        public virtual bool Add(T item)
-        {
-            var eq = this.CurrentItem?.Equals(item)??false;
-            if (this.IsEmpty || (eq && !this.IsFull))
-            {
-                this.CurrentItem = item;
-                return true;
-            }
-
-            return false;
-        }
-
-        public T Replace(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual T GetOne()
-        {
-            if (IsEmpty)
-                return default;
-
-            T item = this.CurrentItem;
-            this.CurrentItem = default;
-
-            return item;
         }
     }
 }
