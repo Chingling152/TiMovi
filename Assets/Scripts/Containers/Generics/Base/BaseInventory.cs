@@ -2,6 +2,7 @@
 using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Base;
+using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Containers.Generics.Base
 {
@@ -9,13 +10,15 @@ namespace TheChest.Containers.Generics.Base
     /// Generic Inventory with <see cref="IInventory{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public abstract class BaseInventory<T> : BaseContainer<T>, IInventory<T>
+    public class BaseInventory<T> : BaseContainer<T>, IInventory<T>
     {
+        private IInventorySlot<T>[] slots => this.Slots as IInventorySlot<T>[];
+
         /// <summary>
         /// Creates an Inventory with slots
         /// </summary>
         /// <param name="slots">An array of slots</param>
-        protected BaseInventory(BaseSlot<T>[] slots) : base(slots)
+        public BaseInventory(BaseInventorySlot<T>[] slots) : base(slots)
         {
             this.Slots = slots;
         }
@@ -24,7 +27,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates an Inventory with a number of slots
         /// </summary>
         /// <param name="count">Sets the amount of slots (20 if not set)</param>
-        protected BaseInventory(int count) : base(count)
+        public BaseInventory(int count) : base(count)
         {
             if (count <= 0)
             {
@@ -32,15 +35,6 @@ namespace TheChest.Containers.Generics.Base
             }
 
             this.Slots = new BaseSlot<T>[count];
-            this.FillSlots();
-        }
-
-        protected virtual void FillSlots()
-        {
-            for (int i = 0; i < this.Slots.Length; i++)
-            {
-                this.Slots[i] = new BaseSlot<T>();
-            }
         }
 
         public virtual bool MoveItem(int origin, int target)
@@ -59,7 +53,7 @@ namespace TheChest.Containers.Generics.Base
             {
                 if (!this.Slots[i].IsEmpty)
                 {
-                    var res = this.Slots[i].GetOne();
+                    var res = this.slots[i].GetOne();
                     list.Add(res);
                 }
             }
@@ -72,7 +66,7 @@ namespace TheChest.Containers.Generics.Base
             if (index > Slots.Length || index < 0)
                 return default;
 
-            return Slots[index].GetOne();
+            return slots[index].GetOne();
         }
 
         public virtual T GetItem(T item)
@@ -81,7 +75,7 @@ namespace TheChest.Containers.Generics.Base
             {
                 if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem.Equals(item))
                 {
-                    return this.Slots[i].GetOne();
+                    return this.slots[i].GetOne();
                 }
             }
             return default;
@@ -97,7 +91,6 @@ namespace TheChest.Containers.Generics.Base
             var currentAmount = amount;
             var index = 0;
 
-            //TODO: optimize the for loops
             for (int i = 0; i < this.Slots.Length; i++)
             {
                 if (currentAmount == 0)
@@ -105,7 +98,7 @@ namespace TheChest.Containers.Generics.Base
 
                 if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem.Equals(item))
                 {
-                    var obj = this.Slots[i].GetOne();
+                    var obj = this.slots[i].GetOne();
                     itemArr[index] = obj;
                     index++;
                     currentAmount--;
@@ -135,7 +128,7 @@ namespace TheChest.Containers.Generics.Base
             {
                 if (!this.Slots[i].IsEmpty && this.Slots[i].CurrentItem.Equals(item))
                 {
-                    var res = this.Slots[i].GetOne();
+                    var res = this.slots[i].GetOne();
                     list.Add(res);
                 }
             }
@@ -157,7 +150,7 @@ namespace TheChest.Containers.Generics.Base
             {
                 if (this.Slots[i].IsEmpty || (!this.Slots[i].IsFull && this.Slots[i].CurrentItem.Equals(item)))
                 {
-                    this.Slots[i].Add(item);
+                    this.slots[i].Add(item);
                     return true;
                 }
             }
@@ -175,7 +168,7 @@ namespace TheChest.Containers.Generics.Base
             {
                 if (this.Slots[i].IsEmpty || (!this.Slots[i].IsFull && this.Slots[i].CurrentItem.Equals(item)))
                 {
-                    var result = this.Slots[i].Add(item);
+                    var result = this.slots[i].Add(item);
                     if (result)
                         index++;
                 }
@@ -198,7 +191,7 @@ namespace TheChest.Containers.Generics.Base
                 var item = items[index];
                 if (this.Slots[i].IsEmpty || (!this.Slots[i].IsFull && this.Slots[i].CurrentItem.Equals(item)))
                 {
-                    var result = this.Slots[i].Add(item);
+                    var result = this.slots[i].Add(item);
                     if (result)
                         index++;
                 }

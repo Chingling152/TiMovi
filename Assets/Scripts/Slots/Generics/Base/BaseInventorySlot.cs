@@ -3,6 +3,10 @@ using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Slots.Generics.Base
 {
+    /// <summary>
+    /// Generic Slot with with <see cref="IInventorySlot{T}"/> implementation
+    /// </summary>
+    /// <typeparam name="T">The item the slot accepts</typeparam>
     public abstract class BaseInventorySlot<T> : BaseSlot<T>, IInventorySlot<T>
     {
         public virtual bool Add(T item)

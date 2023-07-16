@@ -3,6 +3,10 @@ using TheChest.Slots.Generics.Interfaces;
 
 namespace TheChest.Slots.Generics.Base
 {
+    /// <summary>
+    /// Generic Slot with with <see cref="IStackSlot{T}"/> implementation
+    /// </summary>
+    /// <typeparam name="T">The item the slot accepts</typeparam>
     public abstract class BaseStackSlot<T> : BaseSlot<T>, IStackSlot<T>
     {
         private const string PROPERTY_SMALLER_THAN_ZERO = "The property cannot be smaller than zero";

@@ -3,7 +3,7 @@
 namespace TheChest.Slots.Generics.Base
 {
     /// <summary>
-    /// Generic Slot with space for one ietm
+    /// Generic Slot with with <see cref="ISlot{T}"/> implementation
     /// </summary>
     /// <typeparam name="T">The item the slot accepts</typeparam>
     public abstract class BaseSlot<T> : ISlot<T>

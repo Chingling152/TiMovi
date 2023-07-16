@@ -1,7 +1,7 @@
 ﻿namespace TheChest.Slots.Generics.Interfaces
 {
     /// <summary>
-    /// Interface with methods for a basic InventorySlot
+    /// Interface with methods for a basic Inventory Slot
     /// </summary>
     /// <typeparam name="T">Item the Slot Accept</typeparam>
     public interface IInventorySlot<T> : ISlot<T>
