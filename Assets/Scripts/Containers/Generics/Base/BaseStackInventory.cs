@@ -5,7 +5,7 @@ using TheChest.Slots.Generics.Base;
 
 namespace TheChest.Containers.Generics.Base
 {
-    public class BaseStackInventory<T> : BaseInventory<T>, IStackInventory<T>, IInteractiveContainer<T>
+    public class BaseStackInventory<T> : BaseInventory<T>, IStackInventory<T>
     {
         private IStackSlot<T>[] slots => this.Slots as IStackSlot<T>[];
 

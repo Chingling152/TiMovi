@@ -30,7 +30,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates a Container with slots
         /// </summary>
         /// <param name="slots">An array of slots</param>
-        public BaseContainer(ISlot<T>[] slots)
+        protected BaseContainer(ISlot<T>[] slots)
         {
             Slots = slots;
         }
@@ -40,7 +40,7 @@ namespace TheChest.Containers.Generics.Base
         /// </summary>
         /// <param name="size">Sets the amount of slots (20 if not set)</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public BaseContainer(int size = DEFAULT_SLOT_COUNT)
+        protected BaseContainer(int size = DEFAULT_SLOT_COUNT)
         {
             if(size < 0)
             {

@@ -15,7 +15,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates an Inventory with slots
         /// </summary>
         /// <param name="slots">An array of slots</param>
-        public BaseInventory(BaseSlot<T>[] slots) : base(slots)
+        protected BaseInventory(BaseSlot<T>[] slots) : base(slots)
         {
             this.Slots = slots;
         }
@@ -24,7 +24,7 @@ namespace TheChest.Containers.Generics.Base
         /// Creates an Inventory with a number of slots
         /// </summary>
         /// <param name="count">Sets the amount of slots (20 if not set)</param>
-        public BaseInventory(int count) : base(count)
+        protected BaseInventory(int count) : base(count)
         {
             if (count <= 0)
             {
@@ -143,6 +143,11 @@ namespace TheChest.Containers.Generics.Base
             return list.ToArray();
         }
 
+        public virtual T AddItemAt(T item, int index, bool replace = true)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public virtual bool AddItem(T item)
         {
             if (this.IsFull)
@@ -158,11 +163,6 @@ namespace TheChest.Containers.Generics.Base
             }
 
             return false;
-        }
-
-        public virtual T AddItemAt(T item, int index, bool replace = true)
-        {
-            throw new System.NotImplementedException();
         }
 
         public virtual T[] AddItem(T item, int amount)
