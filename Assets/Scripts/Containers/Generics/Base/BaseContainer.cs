@@ -20,11 +20,11 @@ namespace TheChest.Containers.Generics.Base
 
         public virtual ISlot<T> this[int index] => this.Slots[index];
 
-        public virtual int Size => Slots.Length;
+        public virtual int Size => this.Slots?.Length ?? 0;
 
-        public virtual bool IsFull => this.Slots.All(x => x.IsFull);
+        public virtual bool IsFull => this.Slots?.All(x => x.IsFull) ?? false;
 
-        public virtual bool IsEmpty => this.Slots.All(x => x.IsEmpty);
+        public virtual bool IsEmpty => this.Slots?.All(x => x.IsEmpty) ?? true;
 
         /// <summary>
         /// Creates a Container with slots
