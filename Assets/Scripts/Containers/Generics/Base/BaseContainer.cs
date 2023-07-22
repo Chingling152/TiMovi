@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Interfaces;
 
@@ -17,15 +18,19 @@ namespace TheChest.Containers.Generics.Base
             protected set;
         }
 
-        public ISlot<T> this[int index] => this.Slots[index];
+        public virtual ISlot<T> this[int index] => this.Slots[index];
 
-        public int Size => Slots.Length;
+        public virtual int Size => Slots.Length;
+
+        public virtual bool IsFull => this.Slots.All(x => x.IsFull);
+
+        public virtual bool IsEmpty => this.Slots.All(x => x.IsEmpty);
 
         /// <summary>
         /// Creates a Container with slots
         /// </summary>
         /// <param name="slots">An array of slots</param>
-        public BaseContainer(ISlot<T>[] slots)
+        protected BaseContainer(ISlot<T>[] slots)
         {
             Slots = slots;
         }
@@ -35,7 +40,7 @@ namespace TheChest.Containers.Generics.Base
         /// </summary>
         /// <param name="size">Sets the amount of slots (20 if not set)</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public BaseContainer(int size = DEFAULT_SLOT_COUNT)
+        protected BaseContainer(int size = DEFAULT_SLOT_COUNT)
         {
             if(size < 0)
             {

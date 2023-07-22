@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace TheChest.Items
+namespace TheChest.Examples.Items
 {
     [Serializable]
     public class Item
