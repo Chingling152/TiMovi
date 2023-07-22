@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using TheChest.Items;
 using TheChest.Slots.Generics.Base;
+using TheChest.Examples.Items;
 
 namespace TheChest.Examples.Containers
 {
@@ -8,7 +8,7 @@ namespace TheChest.Examples.Containers
     /// Slot with stackable items and serializable Fields
     /// </summary>
     [System.Serializable]
-    public class Slot : BaseSlot<Item>
+    public class StackSlot : BaseInventoryStackSlot<Item>
     {
         #region properties
         /// <summary>
@@ -17,9 +17,6 @@ namespace TheChest.Examples.Containers
         [SerializeField]
         private Item item;
 
-        /// <summary>
-        /// Current item inside the slot
-        /// </summary>
         public override Item CurrentItem {
             get {
                 return this.item;
@@ -29,15 +26,9 @@ namespace TheChest.Examples.Containers
             }
         }
 
-        /// <summary>
-        /// The amount of the item inside this slot
-        /// </summary>
         [SerializeField]
         private int stackAmount;
 
-        /// <summary>
-        /// The amount of the item inside this slot
-        /// </summary>
         public override int StackAmount {
             get {
                 return this.stackAmount;
@@ -47,9 +38,6 @@ namespace TheChest.Examples.Containers
             }
         }
 
-        /// <summary>
-        /// Returns the Max amount of <see cref="Item"/> this slot can carry
-        /// </summary>
         public override int MaxStackAmount => this.CurrentItem?.MaxStack??1;
         #endregion
 
@@ -58,7 +46,7 @@ namespace TheChest.Examples.Containers
         /// </summary>
         /// <param name="CurrentItem">Item inside the slot (can be null)</param>
         /// <param name="amount">Amount of <paramref name="CurrentItem"/> (0 if item is null)</param>
-        public Slot(Item CurrentItem = null,int amount = 1) 
+        public StackSlot(Item CurrentItem = null,int amount = 1) 
         {
             this.CurrentItem = CurrentItem;
             this.StackAmount = CurrentItem != null ? amount : 0;
@@ -68,7 +56,7 @@ namespace TheChest.Examples.Containers
         /// Creates an Slot with items
         /// </summary>
         /// <param name="currentItems">Items inside the slot (should be copies of first item)</param>
-        public Slot(Item[] currentItems)
+        public StackSlot(Item[] currentItems)
         {
             if(currentItems == null)
             {

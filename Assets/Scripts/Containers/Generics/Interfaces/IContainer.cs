@@ -19,6 +19,16 @@ namespace TheChest.Containers.Generics.Interfaces
         int Size { get; }
 
         /// <summary>
+        /// Verify if the container is full
+        /// </summary>
+        bool IsFull { get; }
+
+        /// <summary>
+        /// Verify if the container is empty
+        /// </summary>
+        bool IsEmpty { get; }
+
+        /// <summary>
         /// Gets an item from this.Slots
         /// </summary>
         /// <param name="index">Index of a slot<para>It needs to be smaller than this.Size</para></param>

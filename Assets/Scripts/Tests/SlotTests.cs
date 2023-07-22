@@ -1,5 +1,5 @@
 ﻿using System;
-using TheChest.Items;
+using TheChest.Examples.Items;
 using NUnit.Framework;
 using TheChest.Examples.Containers;
 
@@ -33,7 +33,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void SlotConstrutorEmpty()
         {
-            var slot = new Slot();
+            var slot = new StackSlot();
             Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
@@ -42,7 +42,7 @@ namespace TheWorld.Tests.TheChest
         public void SlotConstrutorWithItem()
         {
             var item = this.DefaultItemGenerator();
-            var slot = new Slot(item);
+            var slot = new StackSlot(item);
 
             Assert.IsFalse(slot.IsEmpty);
             Assert.IsNotNull(slot.CurrentItem);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using TheChest.Items;
 using UnityEngine.UI;
+using TheChest.Examples.Items;
 
 namespace TheChest.Slots.UI.Components.Tooltips
 {

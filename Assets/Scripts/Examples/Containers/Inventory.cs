@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
-using TheChest.Items;
 using TheChest.Containers.Generics.Base;
 using TheChest.Slots.Generics.Interfaces;
+using TheChest.Examples.Items;
 
 namespace TheChest.Examples.Containers
 {
     [Serializable]
-    public class Inventory : BaseInventory<Item>
+    public class Inventory : BaseStackInventory<Item>
     {
         protected const string DEFAULT_CONTAINER_NAME = "CONTAINER_NAME";
 
@@ -16,7 +16,7 @@ namespace TheChest.Examples.Containers
         public string ContainerName => this.containerName;
 
         [SerializeField]
-        protected Slot[] slots;
+        protected StackSlot[] slots;
 
         public override ISlot<Item>[] Slots
         {
@@ -26,7 +26,7 @@ namespace TheChest.Examples.Containers
             }
             protected set
             {
-                slots = value as Slot[];
+                slots = value as StackSlot[];
             }
         }
 
@@ -35,7 +35,7 @@ namespace TheChest.Examples.Containers
             this.containerName = containerName;
         }
 
-        public Inventory(Slot[] slots, string containerName = DEFAULT_CONTAINER_NAME) : base(slots) 
+        public Inventory(StackSlot[] slots, string containerName = DEFAULT_CONTAINER_NAME) : base(slots) 
         {
             this.containerName = containerName;
         }

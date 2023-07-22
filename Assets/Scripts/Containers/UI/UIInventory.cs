@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TheChest.Items;
 using TheChest.World;
 using TheChest.Examples.Containers;
 using TheChest.Containers.UI.Components;
 using TheChest.Slots.UI;
+using TheChest.Examples.Items;
 
 namespace TheChest.Containers.UI
 {
@@ -61,9 +61,9 @@ namespace TheChest.Containers.UI
         #region Interface methods
         public bool Add(Item item,int amount = 1)
         {
-            var res = this.inventory.AddItem(item, amount).Length == 0;
+            var res = this.inventory.AddItem(item, amount);
             this.Refresh();
-            return res;
+            return res.Length == 0;
         }
 
         public void Generate()
@@ -78,7 +78,7 @@ namespace TheChest.Containers.UI
                 {
                     var slot = this.inventory.Slots[i];
                     UISlot uiSlot = Instantiate(this.slotPrefab, this.slotContainer.transform);
-                    uiSlot.SetSlot((Slot)slot, i);
+                    uiSlot.SetSlot((StackSlot)slot, i);
                     uiSlot.OnSelectIndex += this.SelectItem;
                 }
             }
@@ -86,15 +86,18 @@ namespace TheChest.Containers.UI
 
         public void Drop() 
         {
-            var items = this.inventory.GetAll(this.SelectedIndex);
+            var item = this.inventory.GetItem(this.SelectedIndex);
 
-            if(items.Length == 0) {
+            /*
+            var items = this.inventory.GetAll(this.SelectedIndex);
+             * if(items.Length == 0) {
                 this.SelectedIndex = -1;
                 this.SelectedAmount = 0;
                 return;
             }
 
             var item = items[0];
+            */
 
             var screenPoint = Input.mousePosition;
             screenPoint.z = 10.0f;
@@ -102,7 +105,7 @@ namespace TheChest.Containers.UI
             var obj = Instantiate(worldItem, Camera.main.ScreenToWorldPoint(screenPoint),Quaternion.identity);
 
             obj.GetComponent<WorldItem>().Item = item;
-            obj.GetComponent<WorldItem>().Amount = items.Length;
+            obj.GetComponent<WorldItem>().Amount = 1;
 
             this.SelectedIndex = -1;
             this.SelectedAmount = 0;
@@ -139,7 +142,7 @@ namespace TheChest.Containers.UI
             for (int i = 0; i < slotContainer.transform.childCount; i++)
             {
                 var container = slotContainer.transform.GetChild(i).GetComponent<UISlot>();
-                var slot = (Slot)this.inventory.Slots[i];
+                var slot = (StackSlot)this.inventory.Slots[i];
                 container.Refresh(slot,i == SelectedIndex);
             }
         }
