@@ -9,12 +9,47 @@ namespace TheChest.Slots.Generics.Base
     /// <typeparam name="T">The item the slot accepts</typeparam>
     public abstract class BaseStackSlot<T> : BaseSlot<T>, IStackSlot<T>
     {
-        private const string PROPERTY_SMALLER_THAN_ZERO = "The property cannot be smaller than zero";
-        private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The amount cannot be bigger than maxAmount";
+        private const string AMOUNT_SMALLER_THAN_ZERO = "The amount property cannot be smaller than zero";
+        private const string MAXAMOUNT_SMALLER_THAN_ZERO = "The max amount property cannot be smaller than zero";
+        private const string AMOUNT_BIGGER_THAN_MAXAMOUNT = "The amount property cannot be bigger than maxAmount";
 
-        public virtual int StackAmount { get; protected set; }
+        protected int stackAmount;
+        public virtual int StackAmount 
+        {
+            get
+            {
+                return this.stackAmount;
+            }
+            protected set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_SMALLER_THAN_ZERO);
 
-        public virtual int MaxStackAmount { get; protected set; }
+                if (value > MaxStackAmount)
+                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
+
+                this.stackAmount = value;
+            }
+        }
+
+        protected int maxStackAmount;
+        public virtual int MaxStackAmount 
+        {
+            get
+            {
+                return this.maxStackAmount;
+            }
+            protected set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), MAXAMOUNT_SMALLER_THAN_ZERO);
+
+                if(value < this.stackAmount)
+                    throw new ArgumentOutOfRangeException(nameof(value), AMOUNT_BIGGER_THAN_MAXAMOUNT);
+
+                this.maxStackAmount = value;
+            }
+        }
 
         public override bool IsFull => StackAmount == MaxStackAmount && !this.IsEmpty;
 
@@ -34,23 +69,8 @@ namespace TheChest.Slots.Generics.Base
                 amount = 0;
             }
 
-            if (amount < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(amount), PROPERTY_SMALLER_THAN_ZERO);
-            }
-
-            if (maxStackAmount < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(maxStackAmount), PROPERTY_SMALLER_THAN_ZERO);
-            }
-
-            if(amount > maxStackAmount)
-            {
-                throw new ArgumentOutOfRangeException(nameof(maxStackAmount), AMOUNT_BIGGER_THAN_MAXAMOUNT);
-            }
-
-            this.StackAmount = amount;
             this.MaxStackAmount = maxStackAmount;
+            this.StackAmount = amount;
         }
 
         /// <summary>
@@ -61,23 +81,8 @@ namespace TheChest.Slots.Generics.Base
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         protected BaseStackSlot(T[] items, int maxStack)
         {
-            if (maxStack < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(maxStack), PROPERTY_SMALLER_THAN_ZERO);
-            }
-
-            if (items != null && items.Length == 0)
-            {
-                this.CurrentItem = items[0];
-
-                if (items.Length > maxStack)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(items), AMOUNT_BIGGER_THAN_MAXAMOUNT);
-                }
-            }
-
-            this.StackAmount = items?.Length ?? 0;
             this.MaxStackAmount = maxStack;
+            this.StackAmount = items?.Length ?? 0;
         }
     }
 }
