@@ -7,10 +7,10 @@ namespace TheChest.Tests.Slots.Generics
         [Test]
         public void IsEmpty_CurentItemNull_ReturnsTrue()
         {
-            var container = this.slotFaker
+            var slot = this.slotFaker
                 .WithoutItem()
                 .Generate();
-            Assert.That(container.IsEmpty, Is.True);
+            Assert.That(slot.IsEmpty, Is.True);
         }
 
         [Test]
