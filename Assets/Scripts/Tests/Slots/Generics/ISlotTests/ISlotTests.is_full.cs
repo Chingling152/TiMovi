@@ -16,21 +16,21 @@ namespace TheChest.Tests.Slots.Generics
         [Test]
         public void IsFull_CurentItemNotNull_ReturnsTrue()
         {
-            var container = this.slotFaker
+            var slot = this.slotFaker
                 .WithItem(itemFaker.Generate())
                 .Generate();
-            Assert.That(container.IsFull, Is.True);
+            Assert.That(slot.IsFull, Is.True);
         }
 
         [Test]
         public void IsFull_SlotIsEmpty_ReturnsFalse()
         {
-            var container = this.slotFaker
+            var slot = this.slotFaker
                 .WithoutItem()
                 .Generate();
 
-            Assert.That(container.IsFull, Is.False);
-            Assert.That(container.IsFull, Is.Not.EqualTo(container.IsEmpty));
+            Assert.That(slot.IsFull, Is.False);
+            Assert.That(slot.IsFull, Is.Not.EqualTo(slot.IsEmpty));
         }
     }
 }
