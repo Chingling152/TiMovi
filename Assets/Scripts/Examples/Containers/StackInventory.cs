@@ -8,7 +8,7 @@ namespace TheChest.Examples.Containers
     public class StackInventory : BaseStackInventory<Item>
     {
         [SerializeField]
-        protected StackSlot[] slots;
+        protected InventoryStackSlot[] slots;
 
         public override ISlot<Item>[] Slots
         {
@@ -18,7 +18,7 @@ namespace TheChest.Examples.Containers
             }
             protected set
             {
-                slots = value as StackSlot[];
+                slots = value as InventoryStackSlot[];
             }
         }
 
@@ -26,7 +26,7 @@ namespace TheChest.Examples.Containers
         {
         }
 
-        public StackInventory(StackSlot[] slots) : base(slots)
+        public StackInventory(InventoryStackSlot[] slots) : base(slots)
         {
         }
     }

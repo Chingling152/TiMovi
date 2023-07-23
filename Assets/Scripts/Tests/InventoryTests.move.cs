@@ -12,7 +12,7 @@ namespace TheWorld.Tests.TheChest
         {
             var item1 = this.DistinctItemGenerator();
 
-            var slots = new StackSlot[2] { new StackSlot(item1), new StackSlot(null) };
+            var slots = new InventoryStackSlot[2] { new InventoryStackSlot(item1), new InventoryStackSlot(null) };
 
             var inventory = new Inventory(slots);
 
@@ -28,7 +28,7 @@ namespace TheWorld.Tests.TheChest
         {
             var item2 = this.DistinctItemGenerator();
 
-            var slots = new StackSlot[2] { new StackSlot(null), new StackSlot(item2) };
+            var slots = new InventoryStackSlot[2] { new InventoryStackSlot(null), new InventoryStackSlot(item2) };
 
             var inventory = new Inventory(slots);
 
@@ -42,7 +42,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void MoveItem__Null_origin_and_null_target_should_move()
         {
-            var slots = new StackSlot[2] { new StackSlot(null), new StackSlot(null) };
+            var slots = new InventoryStackSlot[2] { new InventoryStackSlot(null), new InventoryStackSlot(null) };
 
             var inventory = new Inventory(slots);
 
@@ -58,7 +58,7 @@ namespace TheWorld.Tests.TheChest
         {
             var item1 = this.DefaultItemGenerator(maxStack: 2);
 
-            var slots = new StackSlot[2] { new StackSlot(item1), new StackSlot(item1) };
+            var slots = new InventoryStackSlot[2] { new InventoryStackSlot(item1), new InventoryStackSlot(item1) };
 
             var inventory = new Inventory(slots);
 
@@ -75,7 +75,7 @@ namespace TheWorld.Tests.TheChest
             var item1 = this.DistinctItemGenerator();
             var item2 = this.DistinctItemGenerator();
 
-            var slots = new StackSlot[2]{ new StackSlot(item1) , new StackSlot(item2) };
+            var slots = new InventoryStackSlot[2]{ new InventoryStackSlot(item1) , new InventoryStackSlot(item2) };
 
             var inventory = new Inventory(slots);
 

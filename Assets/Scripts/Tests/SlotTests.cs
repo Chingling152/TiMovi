@@ -33,7 +33,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void SlotConstrutorEmpty()
         {
-            var slot = new StackSlot();
+            var slot = new InventoryStackSlot();
             Assert.IsTrue(slot.IsEmpty);
             Assert.IsNull(slot.CurrentItem);
         }
@@ -42,7 +42,7 @@ namespace TheWorld.Tests.TheChest
         public void SlotConstrutorWithItem()
         {
             var item = this.DefaultItemGenerator();
-            var slot = new StackSlot(item);
+            var slot = new InventoryStackSlot(item);
 
             Assert.IsFalse(slot.IsEmpty);
             Assert.IsNotNull(slot.CurrentItem);

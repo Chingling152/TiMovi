@@ -78,7 +78,7 @@ namespace TheChest.Containers.UI
                 {
                     var slot = this.inventory.Slots[i];
                     UISlot uiSlot = Instantiate(this.slotPrefab, this.slotContainer.transform);
-                    uiSlot.SetSlot((StackSlot)slot, i);
+                    uiSlot.SetSlot((InventoryStackSlot)slot, i);
                     uiSlot.OnSelectIndex += this.SelectItem;
                 }
             }
@@ -142,7 +142,7 @@ namespace TheChest.Containers.UI
             for (int i = 0; i < slotContainer.transform.childCount; i++)
             {
                 var container = slotContainer.transform.GetChild(i).GetComponent<UISlot>();
-                var slot = (StackSlot)this.inventory.Slots[i];
+                var slot = (InventoryStackSlot)this.inventory.Slots[i];
                 container.Refresh(slot,i == SelectedIndex);
             }
         }

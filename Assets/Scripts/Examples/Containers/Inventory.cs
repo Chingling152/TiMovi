@@ -16,7 +16,7 @@ namespace TheChest.Examples.Containers
         public string ContainerName => this.containerName;
 
         [SerializeField]
-        protected StackSlot[] slots;
+        protected InventoryStackSlot[] slots;
 
         public override ISlot<Item>[] Slots
         {
@@ -26,7 +26,7 @@ namespace TheChest.Examples.Containers
             }
             protected set
             {
-                slots = value as StackSlot[];
+                slots = value as InventoryStackSlot[];
             }
         }
 
@@ -35,7 +35,7 @@ namespace TheChest.Examples.Containers
             this.containerName = containerName;
         }
 
-        public Inventory(StackSlot[] slots, string containerName = DEFAULT_CONTAINER_NAME) : base(slots) 
+        public Inventory(InventoryStackSlot[] slots, string containerName = DEFAULT_CONTAINER_NAME) : base(slots) 
         {
             this.containerName = containerName;
         }

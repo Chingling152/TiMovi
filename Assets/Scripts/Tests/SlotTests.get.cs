@@ -20,7 +20,7 @@ namespace TheWorld.Tests.TheChest
               maxStack: 1
            );
 
-            var slot = new StackSlot(item);
+            var slot = new InventoryStackSlot(item);
 
             var resultItem = slot.GetOne();
 
@@ -32,7 +32,7 @@ namespace TheWorld.Tests.TheChest
         [Test]
         public void GetOne__Empty_Slot_should_return_null()
         {
-            var slot = new StackSlot(null);
+            var slot = new InventoryStackSlot(null);
 
             var resultItem = slot.GetOne();
 
@@ -57,7 +57,7 @@ namespace TheWorld.Tests.TheChest
               maxStack: stackAmount
            );
 
-            var slot = new StackSlot(item, stackAmount);
+            var slot = new InventoryStackSlot(item, stackAmount);
 
             var resultItem = slot.GetAll();
 
@@ -79,7 +79,7 @@ namespace TheWorld.Tests.TheChest
               maxStack: stackAmount
             );
 
-            var slot = new StackSlot(item, stackAmount);
+            var slot = new InventoryStackSlot(item, stackAmount);
 
             var result = slot.GetAll();
 
@@ -96,7 +96,7 @@ namespace TheWorld.Tests.TheChest
             var expectedAmount = random.Next(low_amount, high_amount);
 
             var item = this.DefaultItemGenerator();
-            var slot = new StackSlot(item, expectedAmount);
+            var slot = new InventoryStackSlot(item, expectedAmount);
 
             var result = slot.GetAmount(randomAmount);
 
@@ -113,7 +113,7 @@ namespace TheWorld.Tests.TheChest
             var itemAmount = random.Next(1, low_amount);
 
             var item = this.DefaultItemGenerator();
-            var slot = new StackSlot(item, itemAmount);
+            var slot = new InventoryStackSlot(item, itemAmount);
 
             var result = slot.GetAmount(searchedAmount);
 
@@ -129,7 +129,7 @@ namespace TheWorld.Tests.TheChest
             //Arrange
             var item = this.DefaultItemGenerator();
 
-            var slot = new StackSlot();
+            var slot = new InventoryStackSlot();
             
             //Act
             var result = slot.Replace(item,1);
@@ -150,7 +150,7 @@ namespace TheWorld.Tests.TheChest
             var oldItemAmountRandom = random.Next(1, low_amount);
 
             //Act
-            var slot = new StackSlot(oldItem, oldItemAmountRandom);
+            var slot = new InventoryStackSlot(oldItem, oldItemAmountRandom);
 
             var results = slot.Replace(newItem, newItemAmountRandom);
 
@@ -177,7 +177,7 @@ namespace TheWorld.Tests.TheChest
             var oldItem = this.DefaultItemGenerator();
             var oldItemAmountRandom = random.Next(1, low_amount);
 
-            var slot = new StackSlot(oldItem, oldItemAmountRandom);
+            var slot = new InventoryStackSlot(oldItem, oldItemAmountRandom);
 
             var results = slot.Replace(newItem, newItemAmountRandom);
 
@@ -196,7 +196,7 @@ namespace TheWorld.Tests.TheChest
             var oldItemAmountRandom = random.Next(1, low_amount);
 
             //Act
-            var slot = new StackSlot(oldItem, oldItemAmountRandom);
+            var slot = new InventoryStackSlot(oldItem, oldItemAmountRandom);
 
             var results = slot.Replace(newItem);
 
@@ -219,7 +219,7 @@ namespace TheWorld.Tests.TheChest
               maxStack: maxStack
            );
 
-            var slot = new StackSlot(item, itemAmount);
+            var slot = new InventoryStackSlot(item, itemAmount);
 
             var results = slot.Replace(item, itemAmount);
 
@@ -241,7 +241,7 @@ namespace TheWorld.Tests.TheChest
               maxStack: maxStack
            );
 
-            var slot = new StackSlot(item, itemAmount);
+            var slot = new InventoryStackSlot(item, itemAmount);
 
             var results = slot.Replace(item, itemAmount);
 
@@ -259,7 +259,7 @@ namespace TheWorld.Tests.TheChest
             var item = this.DefaultItemGenerator();
             var arraySize = random.Next(0, low_amount);
 
-            var slot = new StackSlot();
+            var slot = new InventoryStackSlot();
 
             //Act
             var result = slot.Replace(Enumerable.Repeat(item, arraySize).ToArray());
@@ -280,7 +280,7 @@ namespace TheWorld.Tests.TheChest
             var oldItemAmount = random.Next(1, low_amount);
 
             //Act
-            var slot = new StackSlot(oldItem, oldItemAmount);
+            var slot = new InventoryStackSlot(oldItem, oldItemAmount);
 
             var results = slot.Replace(Enumerable.Repeat(newItem, newItemAmount).ToArray());
 
@@ -303,7 +303,7 @@ namespace TheWorld.Tests.TheChest
             var oldItemAmountRandom = random.Next(1, low_amount);
 
             //Act
-            var slot = new StackSlot(oldItem, oldItemAmountRandom);
+            var slot = new InventoryStackSlot(oldItem, oldItemAmountRandom);
 
             var results = slot.Replace(null,1);
 
@@ -328,7 +328,7 @@ namespace TheWorld.Tests.TheChest
 
             var array = Enumerable.Repeat(item, itemAmount).ToArray();
 
-            var slot = new StackSlot(item, itemAmount);
+            var slot = new InventoryStackSlot(item, itemAmount);
 
             var results = slot.Replace(array);
 
@@ -352,7 +352,7 @@ namespace TheWorld.Tests.TheChest
 
             var array = Enumerable.Repeat(item, itemAmount).ToArray();
 
-            var slot = new StackSlot(item, itemAmount);
+            var slot = new InventoryStackSlot(item, itemAmount);
 
             var results = slot.Replace(array);
 

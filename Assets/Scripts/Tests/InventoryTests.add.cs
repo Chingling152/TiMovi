@@ -48,7 +48,7 @@ namespace TheWorld.Tests.TheChest
 
             var randomIndex = random.Next(1, high_size);
             var item = this.DefaultItemGenerator(maxStack: 2);
-            slots[randomIndex] = new StackSlot(item, 1);
+            slots[randomIndex] = new InventoryStackSlot(item, 1);
 
             var inventory = new Inventory(slots);
 

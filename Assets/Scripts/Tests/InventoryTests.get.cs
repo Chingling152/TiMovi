@@ -112,7 +112,7 @@ namespace TheWorld.Tests.TheChest
             var slots = Enumerable.Repeat(this.DefaultSlotGenerator(false), high_size).ToArray();
 
             var item = this.DefaultItemGenerator();
-            slots[random.Next(0, slots.Length)] = new StackSlot(item);
+            slots[random.Next(0, slots.Length)] = new InventoryStackSlot(item);
 
             var inventory = new Inventory(slots);
 
@@ -163,7 +163,7 @@ namespace TheWorld.Tests.TheChest
            );
 
             var randomCollectedAmount = random.Next(1, amount);
-            slots[random.Next(0, slots.Length)] = new StackSlot(item, randomCollectedAmount);
+            slots[random.Next(0, slots.Length)] = new InventoryStackSlot(item, randomCollectedAmount);
 
             var inventory = new Inventory(slots);
 
@@ -209,7 +209,7 @@ namespace TheWorld.Tests.TheChest
             );
 
             var slotIndex = random.Next(0, high_size);
-            slots[slotIndex] = new StackSlot(item, amount);
+            slots[slotIndex] = new InventoryStackSlot(item, amount);
 
             var inventory = new Inventory(slots);
 
