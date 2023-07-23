@@ -11,13 +11,13 @@ namespace TheChest.Tests.Builders
             RuleFor(x => x.CurrentItem, default(T));
         }
 
-        public SlotFaker<Y, T> WithItem(T item)
+        public virtual SlotFaker<Y, T> WithItem(T item)
         {
             RuleFor(x => x.CurrentItem, item);
             return this;
         }
 
-        public SlotFaker<Y, T> WithoutItem()
+        public virtual SlotFaker<Y, T> WithoutItem()
         {
             RuleFor(x => x.CurrentItem, default(T));
             return this;
