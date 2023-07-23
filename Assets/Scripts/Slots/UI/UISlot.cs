@@ -17,7 +17,7 @@ namespace TheChest.Slots.UI
         [Tooltip("The Image element wich will render the item sprite")]
         [SerializeField] private Image itemSprite;
 
-        [SerializeField] private StackSlot slot;
+        [SerializeField] private InventoryStackSlot slot;
 
         [Tooltip("The Text element wich will render the item amount")]
         [SerializeField] private Text itemAmount;
@@ -35,14 +35,14 @@ namespace TheChest.Slots.UI
         #endregion
 
         #region Interface Implementations
-        public StackSlot Slot => this.slot;
+        public InventoryStackSlot Slot => this.slot;
 
         public void Select()
         {
             this.OnSelectIndex?.Invoke(this.Index, this.Amount);
         }
 
-        public void SetSlot(StackSlot slot, int slotIndex)
+        public void SetSlot(InventoryStackSlot slot, int slotIndex)
         {
             this.Index = slotIndex;
             this.Amount = slot.StackAmount;
@@ -51,7 +51,7 @@ namespace TheChest.Slots.UI
             this.SetItem(slot.CurrentItem);
         }
 
-        public void Refresh(StackSlot slot, bool selected = false)
+        public void Refresh(InventoryStackSlot slot, bool selected = false)
         {
             this.Amount = slot.StackAmount;
             this.slot = slot;
