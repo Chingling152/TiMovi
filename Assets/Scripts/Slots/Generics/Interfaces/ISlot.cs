@@ -4,7 +4,7 @@
     /// Interface only with properties for a basic Slot
     /// </summary>
     /// <typeparam name="T">Item the Slot Accept</typeparam>
-    public interface ISlot<T>
+    public interface ISlot<out T>
     {
         /// <summary>
         /// The current item inside the slot

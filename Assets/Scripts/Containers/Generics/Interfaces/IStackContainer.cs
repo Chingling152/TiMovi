@@ -4,7 +4,7 @@
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IStackContainer<T> : IContainer<T>
+    public interface IStackContainer<out T> : IContainer<T>
     {
 
     }
