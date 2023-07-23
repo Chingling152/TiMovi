@@ -4,7 +4,7 @@
     /// Interface with methods for interaction with the Container 
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IInteractiveContainer<T> : IContainer<T>
+    public interface IInteractiveContainer<out T> : IContainer<T>
     {
         /// <summary>
         /// Move a item between two slots

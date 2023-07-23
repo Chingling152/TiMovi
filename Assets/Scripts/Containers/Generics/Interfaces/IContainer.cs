@@ -6,7 +6,7 @@ namespace TheChest.Containers.Generics.Interfaces
     /// Interface with the basics of a container
     /// </summary>
     /// <typeparam name="T">An item type</typeparam>
-    public interface IContainer<T>
+    public interface IContainer<out T>
     {
         /// <summary>
         /// Slots in the Inventory
