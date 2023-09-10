@@ -2,18 +2,29 @@
 using TheChest.Containers.Generics.Base;
 using TheChest.Slots.Generics.Interfaces;
 using TheChest.Examples.Items;
+using TheChest.Examples.Slots;
 
 namespace TheChest.Examples.Containers
 {
     public class Container : BaseContainer<Item>
     {
         [SerializeField]
-        protected StackSlot[] slots;
+        protected Slot[] slots;
 
         public override ISlot<Item>[] Slots 
         { 
             get => slots; 
-            protected set => slots = value as StackSlot[]; 
+            protected set => slots = value as Slot[]; 
+        }
+
+        public Container() : base()
+        {
+
+        }
+
+        public Container(Slot[] slots)
+        {
+            Slots = slots;
         }
     }
 }

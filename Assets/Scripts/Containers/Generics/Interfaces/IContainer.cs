@@ -29,10 +29,10 @@ namespace TheChest.Containers.Generics.Interfaces
         bool IsEmpty { get; }
 
         /// <summary>
-        /// Gets an item from this.Slots
+        /// Gets an item from <see cref="Slots"/>
         /// </summary>
-        /// <param name="index">Index of a slot<para>It needs to be smaller than this.Size</para></param>
-        /// <returns>An item from this.Slots</returns>
+        /// <param name="index">Index of a slot<para>It needs to be smaller than <see cref="Size"/></para></param>
+        /// <returns>An item from <see cref="Slots"/></returns>
         ISlot<T> this[int index] { get; }
     }
 }

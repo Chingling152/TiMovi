@@ -27,7 +27,7 @@ namespace TheChest.Examples.Containers
         }
 
         [SerializeField]
-        private int stackAmount;
+        private new int stackAmount;
 
         public override int StackAmount {
             get {
