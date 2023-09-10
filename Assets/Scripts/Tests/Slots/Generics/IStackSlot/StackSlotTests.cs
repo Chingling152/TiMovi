@@ -3,7 +3,7 @@ using Bogus;
 using NUnit.Framework;
 using TheChest.Examples.Items;
 using TheChest.Examples.Slots;
-using TheChest.Tests.Builders;
+using TheChest.Tests.Slots.Builders;
 
 namespace TheChest.Tests.Slots.Generics
 {

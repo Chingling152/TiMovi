@@ -1,6 +1,6 @@
 ﻿using TheChest.Slots.Generics.Interfaces;
 
-namespace TheChest.Tests.Builders
+namespace TheChest.Tests.Slots.Builders
 {
     public class StackSlotFaker<Y, T> : SlotFaker<Y, T>
         where Y : class, IStackSlot<T>

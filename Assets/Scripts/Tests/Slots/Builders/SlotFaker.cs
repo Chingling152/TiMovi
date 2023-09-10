@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using TheChest.Slots.Generics.Interfaces;
 
-namespace TheChest.Tests.Builders
+namespace TheChest.Tests.Slots.Builders
 {
     public class SlotFaker<Y, T> : Faker<Y>
         where Y: class, ISlot<T>
