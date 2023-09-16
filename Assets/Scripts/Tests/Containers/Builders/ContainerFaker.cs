@@ -1,16 +1,17 @@
 ﻿using Bogus;
 using TheChest.Containers.Generics.Interfaces;
 using TheChest.Slots.Generics.Interfaces;
+using TheChest.Tests.Slots.Builders;
 
-namespace TheChest.Tests.Builders
+namespace TheChest.Tests.Containers.Builders
 {
     public class ContainerFaker<C, S, T> : Faker<C>
         where C: class, IContainer<T> 
         where S: class, ISlot<T>
     {
-        private int slotAmount;
+        protected int slotAmount;
 
-        private readonly SlotFaker<S, T> faker;
+        protected readonly SlotFaker<S, T> faker;
 
         public ContainerFaker(SlotFaker<S, T> faker)
         {

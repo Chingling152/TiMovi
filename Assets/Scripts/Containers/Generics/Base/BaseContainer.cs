@@ -42,7 +42,7 @@ namespace TheChest.Containers.Generics.Base
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         protected BaseContainer(int size = DEFAULT_SLOT_COUNT)
         {
-            if(size < 0)
+            if(size <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(size), $"Invalid Container Size : {size}");
             }

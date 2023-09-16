@@ -4,7 +4,8 @@ using System;
 using TheChest.Examples.Containers;
 using TheChest.Examples.Items;
 using TheChest.Examples.Slots;
-using TheChest.Tests.Builders;
+using TheChest.Tests.Slots.Builders;
+using TheChest.Tests.Containers.Builders;
 
 namespace TheChest.Tests.Containers.Generics.IContainerTests
 {
