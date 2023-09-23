@@ -17,7 +17,7 @@ namespace TheChest.Containers.Generics.Base
         {
         }
 
-        protected BaseStackInventory(IInventoryStackSlot<T>[] slots) : base(slots as BaseInventorySlot<T>[])
+        protected BaseStackInventory(IInventoryStackSlot<T>[] slots) : base(slots)
         {
         }
 
